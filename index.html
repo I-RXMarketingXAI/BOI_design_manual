@@ -5,1056 +5,354 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bog &amp; idé — Design Guide 2026</title>
   <style>
-    /* ── FONTS ───────────────────────────────────────────────────────────── */
     @font-face { font-family:'Velo'; src:url('fonts/VeloSerifDisplayBold.otf') format('opentype'); font-weight:700; font-display:swap; }
     @font-face { font-family:'Velo'; src:url('fonts/VeloSerifDisplayMedium.otf') format('opentype'); font-weight:500; font-display:swap; }
     @font-face { font-family:'Muller'; src:url('fonts/MullerLight.otf') format('opentype'); font-weight:300; font-display:swap; }
     @font-face { font-family:'Muller'; src:url('fonts/MullerRegular.otf') format('opentype'); font-weight:400; font-display:swap; }
     @font-face { font-family:'Muller'; src:url('fonts/MullerBold.otf') format('opentype'); font-weight:700; font-display:swap; }
 
-    /* ── VARIABLES ───────────────────────────────────────────────────────── */
     :root {
-      --red:        #e02e31;
-      --white:      #ffffff;
-      --black:      #000000;
-      --beige:      #feede0;
-      --light-red:  #f7c3c7;
-      --light-blue: #b4dcf6;
-      --blue:       #00375c;
-      --bg:         #faf9f7;
-      --text:       #1a1a1a;
-      --muted:      #666;
-      --border:     #e5e3df;
-      --sidebar-w:  252px;
-      --header-h:   56px;
+      --red:#e02e31; --white:#ffffff; --black:#000000;
+      --beige:#feede0; --light-red:#f7c3c7; --light-blue:#b4dcf6; --blue:#00375c;
+      --bg:#faf9f7; --text:#1a1a1a; --muted:#666; --border:#e5e3df;
+      --sidebar-w:252px; --header-h:56px;
     }
-
-    /* ── RESET ───────────────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
-    html { scroll-behavior:smooth; font-size:16px; }
-    body { font-family:'Muller', system-ui, sans-serif; font-weight:400; background:var(--bg); color:var(--text); line-height:1.6; }
-    img, svg { max-width:100%; display:block; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Muller',system-ui,sans-serif; font-weight:400; font-size:17px; line-height:1.65; background:var(--bg); color:var(--text); }
+    img { max-width:100%; display:block; }
     a { color:inherit; }
 
-    /* ── HEADER ──────────────────────────────────────────────────────────── */
+    /* HEADER */
     .site-header {
       position:fixed; top:0; left:0; right:0; z-index:200;
-      height:var(--header-h);
-      background:var(--black);
-      display:flex; align-items:center; justify-content:space-between;
-      padding:0 32px;
-      border-bottom:1px solid #333;
+      height:var(--header-h); background:var(--white);
+      border-bottom:1px solid var(--border);
+      display:flex; align-items:center; justify-content:space-between; padding:0 32px;
     }
-    .site-header-logo {
-      font-family:'Velo', serif;
-      font-weight:700;
-      font-size:1.35rem;
-      color:var(--white);
-      letter-spacing:0.01em;
-      text-decoration:none;
-    }
+    .site-header-logo { font-family:'Velo',serif; font-weight:700; font-size:1.25rem; color:var(--text); text-decoration:none; }
     .site-header-logo span { color:var(--red); }
-    .site-header-badge {
-      font-family:'Muller', sans-serif;
-      font-size:0.65rem;
-      font-weight:700;
-      letter-spacing:0.14em;
-      text-transform:uppercase;
-      color:var(--red);
-      border:1px solid rgba(224,46,49,0.4);
-      padding:4px 10px;
-      border-radius:2px;
-    }
+    .site-header-badge { font-size:0.65rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--red); border:1px solid rgba(224,46,49,0.35); padding:4px 10px; border-radius:2px; }
 
-    /* ── HERO ────────────────────────────────────────────────────────────── */
+    /* HERO */
     .hero {
-      margin-top:var(--header-h);
-      background:var(--black);
-      padding:96px 48px 96px calc(var(--sidebar-w) + 48px);
-      position:relative;
-      overflow:hidden;
-      min-height:420px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
+      margin-top:var(--header-h); background:var(--white);
+      padding:88px 48px 88px calc(var(--sidebar-w) + 56px);
+      border-bottom:3px solid var(--red);
     }
-    .hero::after {
-      content:'';
-      position:absolute;
-      top:0; right:0;
-      width:40%; height:100%;
-      background:linear-gradient(135deg, transparent 0%, rgba(224,46,49,0.06) 100%);
-      pointer-events:none;
-    }
-    .hero-eyebrow {
-      font-family:'Muller', sans-serif;
-      font-size:0.7rem;
-      font-weight:700;
-      letter-spacing:0.2em;
-      text-transform:uppercase;
-      color:var(--red);
-      margin-bottom:20px;
-    }
-    .hero-title {
-      font-family:'Velo', serif;
-      font-weight:700;
-      font-size:clamp(3rem, 6vw, 5.5rem);
-      line-height:1;
-      color:var(--white);
-      letter-spacing:-0.02em;
-      margin-bottom:24px;
-    }
-    .hero-desc {
-      font-family:'Muller', sans-serif;
-      font-weight:300;
-      font-size:1rem;
-      color:rgba(255,255,255,0.5);
-      max-width:520px;
-      line-height:1.75;
-    }
-    .hero-bracket {
-      position:absolute;
-      bottom:32px; right:56px;
-      font-family:'Muller', sans-serif;
-      font-weight:300;
-      font-size:0.75rem;
-      color:rgba(255,255,255,0.2);
-      letter-spacing:0.1em;
-    }
+    .hero-eyebrow { font-size:0.72rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--red); margin-bottom:18px; }
+    .hero-title { font-family:'Velo',serif; font-weight:700; font-size:clamp(2.8rem,5.5vw,5rem); line-height:1; letter-spacing:-0.02em; color:var(--text); margin-bottom:24px; }
+    .hero-desc { font-weight:300; font-size:1.1rem; color:var(--muted); max-width:560px; line-height:1.75; }
 
-    /* ── PAGE LAYOUT ─────────────────────────────────────────────────────── */
-    .page-body {
-      display:flex;
-    }
+    /* PAGE LAYOUT */
+    .page-body { display:flex; }
 
-    /* ── SIDEBAR ─────────────────────────────────────────────────────────── */
+    /* SIDEBAR */
     .sidebar {
-      width:var(--sidebar-w);
-      flex-shrink:0;
-      position:sticky;
-      top:var(--header-h);
-      height:calc(100vh - var(--header-h));
-      overflow-y:auto;
-      background:var(--white);
-      border-right:1px solid var(--border);
-      padding:32px 0 48px;
+      width:var(--sidebar-w); flex-shrink:0;
+      position:sticky; top:var(--header-h);
+      height:calc(100vh - var(--header-h)); overflow-y:auto;
+      background:var(--white); border-right:1px solid var(--border);
+      padding:28px 0 48px;
     }
-    .sidebar::-webkit-scrollbar { width:4px; }
-    .sidebar::-webkit-scrollbar-track { background:transparent; }
-    .sidebar::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
-    .sidebar-section-label {
-      font-size:0.62rem;
-      font-weight:700;
-      letter-spacing:0.18em;
-      text-transform:uppercase;
-      color:var(--muted);
-      padding:24px 28px 8px;
-    }
-    .sidebar-section-label:first-child { padding-top:0; }
-    .nav-link {
-      display:block;
-      padding:7px 28px;
-      font-size:0.82rem;
-      font-weight:400;
-      color:var(--muted);
-      text-decoration:none;
-      border-left:2px solid transparent;
-      transition:color 0.15s, border-color 0.15s, background 0.15s;
-      line-height:1.3;
-    }
+    .sidebar::-webkit-scrollbar { width:3px; }
+    .sidebar::-webkit-scrollbar-thumb { background:var(--border); }
+    .sidebar-label { font-size:0.6rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); padding:20px 28px 6px; }
+    .sidebar-label:first-child { padding-top:0; }
+    .nav-link { display:block; padding:6px 28px; font-size:0.82rem; color:var(--muted); text-decoration:none; border-left:2px solid transparent; transition:color .15s,border-color .15s,background .15s; line-height:1.3; }
     .nav-link:hover { color:var(--text); background:rgba(0,0,0,0.02); }
     .nav-link.active { color:var(--red); border-left-color:var(--red); font-weight:700; background:rgba(224,46,49,0.04); }
-    .nav-link.sub {
-      padding-left:40px;
-      font-size:0.78rem;
-    }
+    .nav-link.sub { padding-left:42px; font-size:0.78rem; }
 
-    /* ── MAIN CONTENT ────────────────────────────────────────────────────── */
-    .main-content {
-      flex:1;
-      min-width:0;
-    }
+    /* MAIN */
+    .main-content { flex:1; min-width:0; }
 
-    /* ── SECTIONS ────────────────────────────────────────────────────────── */
-    .section {
-      padding:72px 64px;
-      border-bottom:1px solid var(--border);
-    }
+    /* SECTIONS */
+    .section { padding:72px 64px; border-bottom:1px solid var(--border); }
     .section-alt { background:var(--white); }
-    .section-dark { background:var(--black); color:var(--white); }
     .section-beige { background:var(--beige); }
 
-    .section-tag {
-      display:inline-block;
-      font-size:0.62rem;
-      font-weight:700;
-      letter-spacing:0.2em;
-      text-transform:uppercase;
-      color:var(--red);
-      margin-bottom:12px;
-    }
-    .section-dark .section-tag { color:rgba(224,46,49,0.8); }
-    .section-title {
-      font-family:'Velo', serif;
-      font-weight:700;
-      font-size:clamp(2rem, 3.5vw, 2.8rem);
-      line-height:1.05;
-      letter-spacing:-0.02em;
-      margin-bottom:48px;
-    }
-    .section-dark .section-title { color:var(--white); }
-    .section-subtitle {
-      font-family:'Velo', serif;
-      font-weight:700;
-      font-size:1.35rem;
-      letter-spacing:-0.01em;
-      margin-bottom:24px;
-      margin-top:56px;
-    }
-    .section-dark .section-subtitle { color:var(--white); }
-    .section-subtitle:first-child { margin-top:0; }
-    .lead {
-      font-weight:300;
-      font-size:1.05rem;
-      line-height:1.75;
-      color:var(--muted);
-      max-width:680px;
-      margin-bottom:40px;
-    }
-    .section-dark .lead { color:rgba(255,255,255,0.55); }
-    .rule {
-      font-size:0.9rem;
-      line-height:1.7;
-      color:var(--muted);
-      max-width:680px;
-    }
-    .section-dark .rule { color:rgba(255,255,255,0.55); }
+    .section-tag { display:inline-block; font-size:0.62rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--red); margin-bottom:10px; }
+    .section-title { font-family:'Velo',serif; font-weight:700; font-size:clamp(2rem,3.5vw,2.8rem); line-height:1.05; letter-spacing:-0.02em; margin-bottom:40px; }
+    .section-subtitle { font-family:'Velo',serif; font-weight:700; font-size:1.4rem; letter-spacing:-0.01em; margin-bottom:20px; margin-top:56px; }
+    .section-subtitle:first-of-type { margin-top:0; }
+    .lead { font-weight:300; font-size:1.05rem; line-height:1.75; color:var(--muted); max-width:680px; margin-bottom:36px; }
+    .rule { font-size:0.95rem; line-height:1.75; color:var(--muted); max-width:680px; }
+    .divider { border:none; border-top:1px solid var(--border); margin:52px 0; }
 
-    /* ── GRID HELPERS ────────────────────────────────────────────────────── */
-    .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
-    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-    .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
-    .grid-auto { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:24px; }
+    /* GRIDS */
+    .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
 
-    /* ── DIVIDER ─────────────────────────────────────────────────────────── */
-    .divider {
-      border:none;
-      border-top:1px solid var(--border);
-      margin:48px 0;
-    }
-    .section-dark .divider { border-color:rgba(255,255,255,0.1); }
+    /* INFO BOX */
+    .info-box { padding:18px 22px; background:var(--beige); border-left:3px solid var(--red); border-radius:2px; font-size:0.9rem; line-height:1.65; color:var(--text); }
+    .info-box strong { display:block; margin-bottom:4px; }
 
-    /* ─────────────────────────────────────────────────────────────────────
-       1. TONE OF VOICE
-    ───────────────────────────────────────────────────────────────────── */
-    .tov-pillars {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:2px;
-      margin-bottom:56px;
-    }
-    .tov-pillar {
-      background:rgba(255,255,255,0.04);
-      padding:40px;
-      transition:background 0.2s;
-    }
-    .tov-pillar:hover { background:rgba(255,255,255,0.07); }
-    .tov-pillar-title {
-      font-family:'Velo', serif;
-      font-weight:700;
-      font-size:1.4rem;
-      color:var(--white);
-      margin-bottom:12px;
-      letter-spacing:-0.01em;
-    }
-    .tov-pillar-text {
-      font-size:0.88rem;
-      line-height:1.75;
-      color:rgba(255,255,255,0.5);
-      font-weight:300;
-    }
+    /* ── BRAND INTRO ───────────────────────────────────────────────────── */
+    .brand-intro-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; margin-bottom:52px; }
+    .brand-signoff-large { font-family:'Velo',serif; font-weight:700; font-size:clamp(2.4rem,5vw,4rem); color:var(--red); letter-spacing:-0.02em; line-height:1; margin-bottom:12px; }
+    .brand-pills { display:flex; gap:12px; flex-wrap:wrap; margin-top:24px; }
+    .brand-pill { background:var(--white); border:1px solid var(--border); border-radius:100px; padding:8px 18px; font-size:0.85rem; font-weight:700; color:var(--text); }
+    .brand-levels { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .brand-level { padding:24px 28px; border-radius:4px; border:1px solid var(--border); background:var(--white); }
+    .brand-level-tag { font-size:0.62rem; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--red); margin-bottom:8px; }
+    .brand-level p { font-size:0.9rem; line-height:1.7; color:var(--muted); }
+    .brand-rule { margin-top:20px; padding:16px 20px; background:var(--bg); border-left:3px solid var(--red); border-radius:2px; font-size:0.88rem; line-height:1.65; }
 
-    .says-table {
-      width:100%;
-      border-collapse:collapse;
-      margin-top:16px;
-    }
-    .says-table th {
-      text-align:left;
-      font-size:0.68rem;
-      font-weight:700;
-      letter-spacing:0.16em;
-      text-transform:uppercase;
-      padding:10px 20px 10px 0;
-      border-bottom:1px solid rgba(255,255,255,0.12);
-    }
-    .says-table th.yes { color:#7ac987; }
-    .says-table th.no  { color:rgba(224,46,49,0.7); }
-    .says-table td {
-      padding:14px 20px 14px 0;
-      font-size:0.875rem;
-      border-bottom:1px solid rgba(255,255,255,0.06);
-      color:rgba(255,255,255,0.65);
-      vertical-align:top;
-      line-height:1.5;
-    }
-    .says-table tr td:first-child { color:rgba(255,255,255,0.88); padding-right:48px; }
+    /* ── TONE OF VOICE ─────────────────────────────────────────────────── */
+    .tov-pillars { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:48px; }
+    .tov-pillar { background:var(--white); border:1px solid var(--border); border-radius:4px; padding:36px; transition:border-color .2s; }
+    .tov-pillar:hover { border-color:var(--red); }
+    .tov-pillar-title { font-family:'Velo',serif; font-weight:700; font-size:1.25rem; color:var(--text); margin-bottom:10px; }
+    .tov-pillar-text { font-size:0.92rem; line-height:1.75; color:var(--muted); font-weight:300; }
 
-    .channel-cards {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:16px;
-      margin-top:16px;
-    }
-    .channel-card {
-      background:rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.08);
-      border-radius:4px;
-      padding:28px 32px;
-    }
-    .channel-card-name {
-      font-size:0.68rem;
-      font-weight:700;
-      letter-spacing:0.16em;
-      text-transform:uppercase;
-      color:var(--red);
-      margin-bottom:12px;
-    }
-    .channel-card-rule {
-      font-size:0.85rem;
-      color:rgba(255,255,255,0.55);
-      line-height:1.65;
-      font-weight:300;
-      margin-bottom:16px;
-    }
-    .channel-card-example {
-      font-size:0.85rem;
-      color:rgba(255,255,255,0.85);
-      font-style:italic;
-      line-height:1.5;
-      padding-left:12px;
-      border-left:2px solid var(--red);
-    }
+    .says-table { width:100%; border-collapse:collapse; margin-top:16px; }
+    .says-table th { text-align:left; font-size:0.68rem; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; padding:10px 20px 10px 0; border-bottom:2px solid var(--border); }
+    .says-table th.yes { color:#2d7a4f; }
+    .says-table th.no  { color:var(--red); }
+    .says-table td { padding:14px 24px 14px 0; font-size:0.92rem; border-bottom:1px solid var(--border); color:var(--muted); vertical-align:top; line-height:1.55; }
+    .says-table tr td:first-child { color:var(--text); padding-right:40px; }
 
-    /* ─────────────────────────────────────────────────────────────────────
-       2. VISUEL IDENTITET
-    ───────────────────────────────────────────────────────────────────── */
+    .channel-cards { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px; }
+    .channel-card { background:var(--white); border:1px solid var(--border); border-radius:4px; padding:28px 32px; }
+    .channel-card-name { font-size:0.68rem; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--red); margin-bottom:10px; }
+    .channel-card-rule { font-size:0.9rem; color:var(--muted); line-height:1.65; font-weight:300; margin-bottom:14px; }
+    .channel-card-example { font-size:0.88rem; font-style:italic; color:var(--text); line-height:1.5; padding-left:12px; border-left:2px solid var(--red); }
 
-    /* Logo */
-    .logo-variants {
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:16px;
-      margin-bottom:40px;
-    }
-    .logo-variant {
-      border-radius:4px;
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-    }
-    .logo-variant-display {
-      flex:1;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:40px 24px;
-      min-height:140px;
-    }
-    .logo-variant-display img { max-height:70px; width:auto; }
-    .logo-variant-label {
-      font-size:0.72rem;
-      font-weight:700;
-      letter-spacing:0.12em;
-      text-transform:uppercase;
-      padding:12px 20px;
-      color:var(--muted);
-      background:var(--bg);
-    }
+    /* ── LOGO ──────────────────────────────────────────────────────────── */
+    .logo-variants { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:36px; }
+    .logo-variant { border-radius:4px; overflow:hidden; }
+    .logo-variant-display { display:flex; align-items:center; justify-content:center; padding:48px 32px; min-height:160px; }
     .logo-variant.on-white .logo-variant-display { background:var(--white); border:1px solid var(--border); }
     .logo-variant.on-dark  .logo-variant-display { background:#1a1a1a; }
-    .logo-variant.on-red   .logo-variant-display { background:var(--red); }
+    .logo-variant-label { font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:12px 18px; color:var(--muted); background:var(--bg); }
 
-    .logo-rules {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-    }
-    .logo-rule-item {
-      display:flex;
-      gap:14px;
-      align-items:flex-start;
-      padding:20px 24px;
-      border-radius:4px;
-      background:var(--bg);
-    }
-    .logo-rule-icon {
-      width:26px; height:26px;
-      border-radius:50%;
-      display:flex; align-items:center; justify-content:center;
-      font-size:0.8rem;
-      font-weight:700;
-      flex-shrink:0;
-      margin-top:1px;
-    }
+    /* Facade logo — own block, larger */
+    .logo-facade-block { background:var(--bg); border-radius:4px; padding:48px; display:flex; gap:56px; align-items:center; margin-bottom:32px; }
+    .logo-facade-display { background:var(--red); border-radius:4px; display:flex; align-items:center; justify-content:center; min-width:200px; min-height:200px; flex-shrink:0; }
+    .logo-facade-display img { width:160px; height:160px; }
+    .logo-facade-info { }
+    .logo-facade-info h4 { font-family:'Velo',serif; font-weight:700; font-size:1.2rem; margin-bottom:12px; }
+    .logo-facade-info p { font-size:0.92rem; color:var(--muted); line-height:1.7; }
+
+    /* Respektafstand */
+    .respekt-wrap { display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start; margin-bottom:32px; }
+    .respekt-img { border-radius:4px; overflow:hidden; border:1px solid var(--border); }
+    .respekt-img img { width:100%; }
+
+    /* Do/Don't grid */
+    .dodont-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:24px; }
+    .dodont-card { border-radius:4px; overflow:hidden; }
+    .dodont-card img { width:100%; display:block; }
+
+    /* Logo rules */
+    .logo-rules { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:24px; }
+    .logo-rule-item { display:flex; gap:14px; align-items:flex-start; padding:18px 22px; border-radius:4px; background:var(--bg); }
+    .logo-rule-icon { width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.8rem; font-weight:700; flex-shrink:0; }
     .logo-rule-icon.ok { background:#dff0e0; color:#2d7a4f; }
     .logo-rule-icon.no { background:#fde2e2; color:#c0392b; }
-    .logo-rule-text strong { display:block; font-size:0.85rem; margin-bottom:3px; }
-    .logo-rule-text span { font-size:0.82rem; color:var(--muted); line-height:1.5; }
+    .logo-rule-text strong { display:block; font-size:0.88rem; margin-bottom:3px; }
+    .logo-rule-text span { font-size:0.83rem; color:var(--muted); line-height:1.5; }
 
-    /* Logo download */
-    .download-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fill, minmax(200px,1fr));
-      gap:16px;
-    }
-    .download-card {
-      background:var(--white);
-      border:1px solid var(--border);
-      border-radius:4px;
-      padding:24px;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      transition:border-color 0.15s, box-shadow 0.15s;
-    }
-    .download-card:hover { border-color:var(--red); box-shadow:0 2px 20px rgba(224,46,49,0.08); }
-    .download-card-name { font-size:0.88rem; font-weight:700; }
-    .download-card-meta { font-size:0.78rem; color:var(--muted); line-height:1.5; }
-    .download-card-formats { display:flex; flex-wrap:wrap; gap:6px; margin-top:4px; }
-    .fmt-tag {
-      font-size:0.62rem;
-      font-weight:700;
-      letter-spacing:0.1em;
-      padding:3px 8px;
-      border-radius:2px;
-      background:var(--bg);
-      color:var(--muted);
-      text-transform:uppercase;
-    }
-    .download-btn {
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      margin-top:auto;
-      background:var(--black);
-      color:var(--white);
-      text-decoration:none;
-      padding:9px 16px;
-      border-radius:3px;
-      font-size:0.78rem;
-      font-weight:700;
-      letter-spacing:0.05em;
-      transition:background 0.15s;
-    }
+    /* Downloads */
+    .download-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .download-card { background:var(--white); border:1px solid var(--border); border-radius:4px; padding:24px; display:flex; flex-direction:column; gap:10px; transition:border-color .15s,box-shadow .15s; }
+    .download-card:hover { border-color:var(--red); box-shadow:0 2px 20px rgba(224,46,49,.08); }
+    .download-card-name { font-size:0.92rem; font-weight:700; }
+    .download-card-meta { font-size:0.82rem; color:var(--muted); line-height:1.5; }
+    .fmt-tags { display:flex; flex-wrap:wrap; gap:6px; }
+    .fmt-tag { font-size:0.62rem; font-weight:700; letter-spacing:.1em; padding:3px 8px; border-radius:2px; background:var(--bg); color:var(--muted); text-transform:uppercase; }
+    .download-btn { display:inline-flex; align-items:center; gap:6px; margin-top:auto; background:var(--black); color:var(--white); text-decoration:none; padding:9px 16px; border-radius:3px; font-size:0.78rem; font-weight:700; letter-spacing:.05em; transition:background .15s; }
     .download-btn:hover { background:var(--red); }
 
-    /* Sign-off */
-    .signoff-display {
-      background:var(--black);
-      color:var(--white);
-      padding:56px 48px;
-      border-radius:4px;
-      text-align:center;
-      margin-bottom:32px;
-      position:relative;
-      overflow:hidden;
-    }
-    .signoff-brackets {
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-    }
-    .signoff-text {
-      font-family:'Velo', serif;
-      font-weight:700;
-      font-size:clamp(2rem, 5vw, 3.5rem);
-      color:var(--white);
-      letter-spacing:-0.02em;
-      position:relative;
-      z-index:1;
-    }
-    .signoff-levels {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:16px;
-    }
-    .signoff-level {
-      padding:28px 32px;
-      border-radius:4px;
-      border:1px solid var(--border);
-    }
-    .signoff-level-tag {
-      font-size:0.65rem;
-      font-weight:700;
-      letter-spacing:0.15em;
-      text-transform:uppercase;
-      color:var(--red);
-      margin-bottom:10px;
-    }
-    .signoff-level p {
-      font-size:0.88rem;
-      line-height:1.65;
-      color:var(--muted);
-    }
+    /* ── SIGN-OFF ───────────────────────────────────────────────────────── */
+    .signoff-display { background:var(--beige); padding:52px 48px; border-radius:4px; text-align:center; margin-bottom:28px; position:relative; overflow:hidden; }
+    .signoff-brackets { position:absolute; inset:0; pointer-events:none; }
+    .signoff-text { font-family:'Velo',serif; font-weight:700; font-size:clamp(2rem,5vw,3.5rem); color:var(--text); letter-spacing:-0.02em; position:relative; z-index:1; }
 
-    /* Klammer */
-    .klammer-demos {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:24px;
-      margin-bottom:40px;
-    }
-    .klammer-demo-card {
-      border-radius:4px;
-      overflow:hidden;
-    }
-    .klammer-demo-card img { width:100%; height:auto; }
-    .klammer-demo-label {
-      background:var(--bg);
-      padding:12px 20px;
-      font-size:0.72rem;
-      font-weight:700;
-      letter-spacing:0.1em;
-      text-transform:uppercase;
-      color:var(--muted);
-    }
-    .klammer-rules {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:16px;
-      margin-top:32px;
-    }
-    .klammer-rule {
-      padding:24px 28px;
-      border-radius:4px;
-    }
-    .klammer-rule.use { background:rgba(122,201,135,0.08); border:1px solid rgba(122,201,135,0.3); }
-    .klammer-rule.dontuse { background:rgba(224,46,49,0.05); border:1px solid rgba(224,46,49,0.2); }
-    .klammer-rule-head {
-      font-size:0.68rem;
-      font-weight:700;
-      letter-spacing:0.15em;
-      text-transform:uppercase;
-      margin-bottom:12px;
-    }
+    /* ── KLAMMER ───────────────────────────────────────────────────────── */
+    .klammer-demos { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:36px; }
+    .klammer-demo-card { border-radius:4px; overflow:hidden; }
+    .klammer-demo-card img { width:100%; }
+    .klammer-demo-label { background:var(--bg); padding:10px 18px; font-size:0.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+    .klammer-rules { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:28px; }
+    .klammer-rule { padding:22px 26px; border-radius:4px; }
+    .klammer-rule.use { background:rgba(45,122,79,.06); border:1px solid rgba(45,122,79,.25); }
+    .klammer-rule.dontuse { background:rgba(224,46,49,.05); border:1px solid rgba(224,46,49,.2); }
+    .klammer-rule-head { font-size:0.68rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; margin-bottom:10px; }
     .klammer-rule.use .klammer-rule-head { color:#2d7a4f; }
     .klammer-rule.dontuse .klammer-rule-head { color:var(--red); }
     .klammer-rule ul { padding-left:16px; }
-    .klammer-rule li { font-size:0.85rem; line-height:1.8; color:var(--muted); }
+    .klammer-rule li { font-size:0.88rem; line-height:1.8; color:var(--muted); }
+    .formula-box { background:var(--bg); border:1px solid var(--border); border-radius:4px; padding:26px 32px; margin-top:20px; display:flex; gap:48px; align-items:flex-start; flex-wrap:wrap; }
+    .formula-label { font-size:0.65rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+    .formula-value { font-family:'Velo',serif; font-size:1.2rem; font-weight:700; color:var(--red); margin-bottom:4px; }
+    .formula-note { font-size:0.82rem; color:var(--muted); line-height:1.5; }
 
-    .formula-box {
-      background:var(--bg);
-      border:1px solid var(--border);
-      border-radius:4px;
-      padding:28px 32px;
-      margin-top:24px;
-      display:flex;
-      gap:48px;
-      align-items:flex-start;
-    }
-    .formula-item { }
-    .formula-label {
-      font-size:0.65rem;
-      font-weight:700;
-      letter-spacing:0.15em;
-      text-transform:uppercase;
-      color:var(--muted);
-      margin-bottom:8px;
-    }
-    .formula-value {
-      font-family:'Velo', serif;
-      font-size:1.2rem;
-      font-weight:700;
-      color:var(--red);
-      margin-bottom:4px;
-    }
-    .formula-note { font-size:0.8rem; color:var(--muted); }
-
-    /* Farver */
-    .color-swatches {
-      display:grid;
-      grid-template-columns:repeat(auto-fill, minmax(200px,1fr));
-      gap:20px;
-    }
-    .color-card {
-      border-radius:4px;
-      overflow:hidden;
-      box-shadow:0 1px 8px rgba(0,0,0,0.06);
-      background:var(--white);
-      transition:transform 0.2s, box-shadow 0.2s;
-    }
-    .color-card:hover { transform:translateY(-3px); box-shadow:0 6px 24px rgba(0,0,0,0.1); }
-    .color-swatch {
-      height:120px;
-      position:relative;
-    }
-    .color-badge {
-      position:absolute;
-      top:12px; right:12px;
-      font-size:0.6rem;
-      font-weight:700;
-      letter-spacing:0.12em;
-      text-transform:uppercase;
-      padding:3px 8px;
-      border-radius:2px;
-    }
-    .badge-primary { background:rgba(0,0,0,0.2); color:rgba(255,255,255,0.8); }
-    .badge-secondary { background:rgba(0,0,0,0.1); color:rgba(0,0,0,0.5); }
-    .badge-secondary-inv { background:rgba(255,255,255,0.2); color:rgba(255,255,255,0.7); }
+    /* ── FARVER ─────────────────────────────────────────────────────────── */
+    .color-layout { display:grid; grid-template-columns:1.6fr 1fr 1fr; grid-template-rows:auto auto; gap:20px; }
+    .color-card { border-radius:4px; overflow:hidden; box-shadow:0 1px 8px rgba(0,0,0,.05); background:var(--white); transition:transform .2s,box-shadow .2s; }
+    .color-card:hover { transform:translateY(-3px); box-shadow:0 6px 24px rgba(0,0,0,.1); }
+    .color-card-red { grid-row:1/3; }
+    .color-swatch { height:120px; position:relative; }
+    .color-card-red .color-swatch { height:240px; }
+    .color-badge { position:absolute; top:10px; right:10px; font-size:0.6rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; padding:3px 8px; border-radius:2px; }
+    .badge-primary { background:rgba(0,0,0,.2); color:rgba(255,255,255,.85); }
+    .badge-bg { background:rgba(0,0,0,.08); color:rgba(0,0,0,.45); }
+    .badge-bg-inv { background:rgba(255,255,255,.25); color:rgba(255,255,255,.8); }
+    .badge-secondary { background:rgba(255,255,255,.2); color:rgba(255,255,255,.75); }
     .color-info { padding:16px 20px; }
-    .color-name { font-weight:700; font-size:0.9rem; margin-bottom:4px; }
-    .color-hex  { font-size:0.8rem; color:var(--muted); font-family:monospace; letter-spacing:0.05em; }
-    .color-usage { font-size:0.78rem; color:var(--muted); margin-top:8px; line-height:1.5; }
-    .copy-btn {
-      display:inline-block;
-      margin-top:12px;
-      background:var(--bg);
-      border:none;
-      padding:6px 12px;
-      border-radius:2px;
-      font-family:'Muller', sans-serif;
-      font-size:0.72rem;
-      font-weight:700;
-      cursor:pointer;
-      letter-spacing:0.05em;
-      transition:background 0.15s;
-      color:var(--muted);
-    }
+    .color-name { font-weight:700; font-size:0.92rem; margin-bottom:4px; }
+    .color-hex  { font-size:0.82rem; color:var(--muted); font-family:monospace; letter-spacing:.05em; }
+    .color-usage { font-size:0.8rem; color:var(--muted); margin-top:6px; line-height:1.5; }
+    .copy-btn { display:inline-block; margin-top:10px; background:var(--bg); border:none; padding:6px 12px; border-radius:2px; font-family:'Muller',sans-serif; font-size:0.72rem; font-weight:700; cursor:pointer; letter-spacing:.05em; color:var(--muted); transition:background .15s; }
     .copy-btn:hover { background:var(--border); }
     .copy-btn.copied { background:#dff0e0; color:#2d7a4f; }
 
-    .color-note {
-      margin-top:24px;
-      padding:16px 20px;
-      background:#fff8e1;
-      border-left:3px solid #f0c040;
-      border-radius:2px;
-      font-size:0.83rem;
-      color:#7a6200;
-      line-height:1.6;
-    }
+    /* ── TYPOGRAFI ──────────────────────────────────────────────────────── */
+    .type-specimen { background:var(--bg); border-radius:4px; padding:40px; margin-bottom:20px; }
+    .type-font-tag { font-size:0.65rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--red); margin-bottom:18px; }
+    .type-big { font-family:'Velo',serif; font-weight:700; font-size:clamp(2.2rem,4vw,3.5rem); line-height:1; letter-spacing:-0.02em; margin-bottom:14px; }
+    .type-big-sub { font-family:'Muller',sans-serif; font-weight:300; font-size:2rem; line-height:1.1; }
+    .type-rule { font-size:0.88rem; color:var(--muted); line-height:1.65; max-width:460px; margin-top:10px; }
+    .type-weights-list { display:flex; flex-direction:column; margin-top:18px; border-top:1px solid var(--border); }
+    .type-weight-row { display:flex; align-items:baseline; justify-content:space-between; padding:9px 0; border-bottom:1px solid var(--border); font-family:'Muller',sans-serif; font-size:1rem; }
+    .type-weight-label { font-size:0.7rem; color:var(--muted); letter-spacing:.05em; }
 
-    /* Typografi */
-    .type-specimen {
-      background:var(--bg);
-      border-radius:4px;
-      padding:48px;
-      margin-bottom:24px;
-    }
-    .type-font-tag {
-      font-size:0.65rem;
-      font-weight:700;
-      letter-spacing:0.2em;
-      text-transform:uppercase;
-      color:var(--red);
-      margin-bottom:20px;
-    }
-    .type-big {
-      font-family:'Velo', serif;
-      font-weight:700;
-      font-size:clamp(2.5rem, 5vw, 4rem);
-      line-height:1;
-      letter-spacing:-0.02em;
-      margin-bottom:16px;
-    }
-    .type-big-sub {
-      font-family:'Muller', sans-serif;
-      font-weight:300;
-      font-size:2rem;
-      line-height:1.1;
-    }
-    .type-rule {
-      font-size:0.85rem;
-      color:var(--muted);
-      line-height:1.65;
-      max-width:480px;
-      margin-top:12px;
-    }
-    .type-weights-list {
-      display:flex;
-      flex-direction:column;
-      gap:0;
-      margin-top:20px;
-      border-top:1px solid var(--border);
-    }
-    .type-weight-row {
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      padding:10px 0;
-      border-bottom:1px solid var(--border);
-      font-family:'Muller', sans-serif;
-      font-size:1rem;
-    }
-    .type-weight-label {
-      font-size:0.72rem;
-      color:var(--muted);
-      letter-spacing:0.05em;
-    }
-
-    .type-principle {
-      display:flex;
-      gap:16px;
-      align-items:flex-start;
-      padding:20px 24px;
-      background:var(--beige);
-      border-radius:4px;
-      margin-top:24px;
-    }
-    .type-principle-icon { font-size:1.2rem; flex-shrink:0; margin-top:2px; }
-    .type-principle-text { font-size:0.88rem; line-height:1.65; }
-    .type-principle-text strong { display:block; margin-bottom:4px; font-size:0.9rem; }
-
-    /* Billedstil */
-    .photo-grid {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:16px;
-      margin-bottom:32px;
-    }
-    .photo-card {
-      border-radius:4px;
-      overflow:hidden;
-    }
-    .photo-card img { width:100%; height:220px; object-fit:cover; display:block; }
-    .photo-card-label {
-      background:var(--white);
-      padding:14px 20px;
-      border:1px solid var(--border);
-      border-top:none;
-    }
-    .photo-card-label strong { display:block; font-size:0.85rem; margin-bottom:4px; }
-    .photo-card-label span { font-size:0.78rem; color:var(--muted); }
-
-    .do-dont-split {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:16px;
-      margin-top:32px;
-    }
-    .do-box, .dont-box {
-      padding:24px 28px;
-      border-radius:4px;
-    }
-    .do-box { background:rgba(122,201,135,0.08); border:1px solid rgba(122,201,135,0.3); }
-    .dont-box { background:rgba(224,46,49,0.05); border:1px solid rgba(224,46,49,0.2); }
-    .do-box h4 { color:#2d7a4f; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:12px; }
-    .dont-box h4 { color:var(--red); font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:12px; }
-    .do-box li, .dont-box li { font-size:0.85rem; line-height:1.8; color:var(--muted); }
+    /* ── BILLEDSTIL ─────────────────────────────────────────────────────── */
+    .photo-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:28px; }
+    .photo-card { border-radius:4px; overflow:hidden; }
+    .photo-card img { width:100%; height:200px; object-fit:cover; }
+    .photo-card-label { background:var(--white); border:1px solid var(--border); border-top:none; padding:12px 18px; }
+    .photo-card-label strong { display:block; font-size:0.88rem; margin-bottom:3px; }
+    .photo-card-label span { font-size:0.8rem; color:var(--muted); }
+    .do-dont-split { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:28px; }
+    .do-box, .dont-box { padding:22px 26px; border-radius:4px; }
+    .do-box { background:rgba(45,122,79,.06); border:1px solid rgba(45,122,79,.25); }
+    .dont-box { background:rgba(224,46,49,.05); border:1px solid rgba(224,46,49,.2); }
+    .do-box h4 { color:#2d7a4f; font-size:0.68rem; letter-spacing:.15em; text-transform:uppercase; margin-bottom:10px; }
+    .dont-box h4 { color:var(--red); font-size:0.68rem; letter-spacing:.15em; text-transform:uppercase; margin-bottom:10px; }
+    .do-box li, .dont-box li { font-size:0.88rem; line-height:1.8; color:var(--muted); }
     .do-box ul, .dont-box ul { padding-left:16px; }
 
-    /* Kundeklub */
-    .klub-layout {
-      display:grid;
-      grid-template-columns:1fr 1.4fr;
-      gap:48px;
-      align-items:start;
-    }
-    .klub-mockup {
-      background:var(--white);
-      border:3px solid var(--red);
-      border-radius:6px;
-      padding:32px;
-      position:relative;
-    }
-    .klub-mockup-inner {
-      background:var(--beige);
-      padding:28px;
-      border-radius:3px;
-      position:relative;
-    }
-    .klub-bracket-tl, .klub-bracket-tr, .klub-bracket-bl, .klub-bracket-br {
-      position:absolute;
-      width:18px; height:18px;
-    }
-    .klub-bracket-tl { top:8px; left:8px; border-top:3px solid var(--white); border-left:3px solid var(--white); }
-    .klub-bracket-tr { top:8px; right:8px; border-top:3px solid var(--white); border-right:3px solid var(--white); }
-    .klub-bracket-bl { bottom:8px; left:8px; border-bottom:3px solid var(--white); border-left:3px solid var(--white); }
-    .klub-bracket-br { bottom:8px; right:8px; border-bottom:3px solid var(--white); border-right:3px solid var(--white); }
-    .klub-mockup-headline {
-      font-family:'Muller', sans-serif;
-      font-weight:400;
-      font-size:0.85rem;
-      color:var(--text);
-      margin-bottom:2px;
-    }
-    .klub-mockup-headline span {
-      font-weight:700;
-      color:var(--red);
-    }
-    .klub-mockup-copy {
-      font-size:0.78rem;
-      color:var(--muted);
-      line-height:1.55;
-      margin:12px 0 20px;
-    }
-    .klub-icons-row {
-      display:flex;
-      gap:12px;
-      justify-content:center;
-    }
-    .klub-icons-row img { width:56px; height:56px; }
-
-    .klub-rules { }
-    .klub-rule-item {
-      padding:20px 0;
-      border-bottom:1px solid var(--border);
-      display:flex;
-      gap:16px;
-      align-items:flex-start;
-    }
+    /* ── KUNDEKLUB ──────────────────────────────────────────────────────── */
+    .klub-layout { display:grid; grid-template-columns:1fr 1.4fr; gap:48px; align-items:start; }
+    .klub-mockup { background:var(--white); border:3px solid var(--red); border-radius:6px; padding:28px; }
+    .klub-mockup-inner { background:var(--beige); padding:24px; border-radius:3px; position:relative; }
+    .kb-tl,.kb-tr,.kb-bl,.kb-br { position:absolute; width:16px; height:16px; }
+    .kb-tl { top:8px; left:8px; border-top:3px solid #fff; border-left:3px solid #fff; }
+    .kb-tr { top:8px; right:8px; border-top:3px solid #fff; border-right:3px solid #fff; }
+    .kb-bl { bottom:8px; left:8px; border-bottom:3px solid #fff; border-left:3px solid #fff; }
+    .kb-br { bottom:8px; right:8px; border-bottom:3px solid #fff; border-right:3px solid #fff; }
+    .klub-headline { font-family:'Muller',sans-serif; font-weight:400; font-size:0.88rem; color:var(--text); margin-bottom:2px; }
+    .klub-headline span { font-weight:700; color:var(--red); }
+    .klub-copy { font-size:0.8rem; color:var(--muted); line-height:1.55; margin:10px 0 18px; }
+    .klub-icons-row { display:flex; gap:10px; justify-content:center; }
+    .klub-icons-row img { width:52px; height:52px; }
+    .klub-rules-list { }
+    .klub-rule-item { padding:18px 0; border-bottom:1px solid var(--border); display:flex; gap:14px; align-items:flex-start; }
     .klub-rule-item:last-child { border-bottom:none; }
-    .klub-rule-dot {
-      width:8px; height:8px;
-      background:var(--red);
-      border-radius:50%;
-      flex-shrink:0;
-      margin-top:7px;
-    }
-    .klub-rule-content strong { display:block; font-size:0.9rem; margin-bottom:4px; }
-    .klub-rule-content p { font-size:0.85rem; color:var(--muted); line-height:1.6; }
+    .klub-rule-dot { width:8px; height:8px; background:var(--red); border-radius:50%; flex-shrink:0; margin-top:8px; }
+    .klub-rule-content strong { display:block; font-size:0.92rem; margin-bottom:4px; }
+    .klub-rule-content p { font-size:0.86rem; color:var(--muted); line-height:1.6; }
+    .service-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:36px; }
+    .service-card { background:var(--white); border:1px solid var(--border); border-radius:4px; padding:24px; text-align:center; }
+    .service-card img { width:60px; height:60px; margin:0 auto 14px; }
+    .service-card-title { font-size:0.85rem; font-weight:700; margin-bottom:6px; }
+    .service-card-desc { font-size:0.8rem; color:var(--muted); line-height:1.55; }
 
-    .klub-services {
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:16px;
-      margin-top:40px;
-    }
-    .klub-service-card {
-      background:var(--white);
-      border:1px solid var(--border);
-      border-radius:4px;
-      padding:24px;
-      text-align:center;
-    }
-    .klub-service-card img { width:64px; height:64px; margin:0 auto 16px; }
-    .klub-service-title { font-size:0.82rem; font-weight:700; margin-bottom:6px; }
-    .klub-service-desc { font-size:0.78rem; color:var(--muted); line-height:1.55; }
+    /* ── SERVICES SECTION ──────────────────────────────────────────────── */
+    .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .svc-card { background:var(--white); border:1px solid var(--border); border-radius:4px; padding:28px 24px; }
+    .svc-card-icon { width:64px; height:64px; margin-bottom:16px; }
+    .svc-card-title { font-size:0.92rem; font-weight:700; margin-bottom:6px; }
+    .svc-card-long { font-size:0.85rem; color:var(--muted); line-height:1.65; margin-bottom:12px; }
+    .svc-card-short { font-size:0.8rem; color:var(--muted); background:var(--bg); border-left:2px solid var(--red); padding:8px 12px; border-radius:1px; font-style:italic; line-height:1.5; }
+    .svc-badge { display:inline-block; margin-top:10px; font-size:0.62rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--red); background:rgba(224,46,49,.08); padding:3px 8px; border-radius:2px; }
 
-    /* ─────────────────────────────────────────────────────────────────────
-       3. PRISKOMMUNIKATION
-    ───────────────────────────────────────────────────────────────────── */
-    .price-examples {
-      display:flex;
-      gap:24px;
-      flex-wrap:wrap;
-      margin:32px 0;
-    }
-    .price-tag {
-      background:var(--white);
-      border:1px solid var(--border);
-      border-radius:4px;
-      padding:20px 24px;
-      text-align:center;
-      min-width:160px;
-    }
-    .price-tag-label {
-      font-size:0.65rem;
-      font-weight:700;
-      letter-spacing:0.15em;
-      text-transform:uppercase;
-      color:var(--muted);
-      margin-bottom:16px;
-      display:block;
-    }
-    .price-product { font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; }
-    .price-author  { font-size:0.78rem; color:var(--muted); }
-    .price-normal  { font-size:0.75rem; color:var(--muted); margin:4px 0; text-decoration:line-through; }
-    .price-amount  { font-family:'Muller', sans-serif; font-weight:700; font-size:2.4rem; line-height:1; letter-spacing:-0.04em; }
-    .price-amount sup { font-size:0.45em; vertical-align:super; }
-    .price-spar {
-      display:inline-block;
-      background:var(--red);
-      color:var(--white);
-      font-weight:700;
-      font-size:0.75rem;
-      padding:4px 10px;
-      margin-top:8px;
-      letter-spacing:0.06em;
-    }
-
-    .price-rules {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:16px;
-      margin-top:32px;
-    }
-    .price-rule {
-      background:var(--bg);
-      border-radius:4px;
-      padding:20px 24px;
-      font-size:0.85rem;
-      line-height:1.65;
-    }
+    /* ── PRISKOMMUNIKATION ─────────────────────────────────────────────── */
+    .price-examples { display:flex; gap:20px; flex-wrap:wrap; margin:28px 0; }
+    .price-tag { background:var(--white); border:1px solid var(--border); border-radius:4px; padding:18px 22px; text-align:center; min-width:150px; }
+    .price-tag-label { font-size:0.62rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; display:block; }
+    .price-product { font-size:0.82rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; }
+    .price-author  { font-size:0.8rem; color:var(--muted); }
+    .price-normal  { font-size:0.78rem; color:var(--muted); margin:4px 0; text-decoration:line-through; }
+    .price-amount  { font-family:'Muller',sans-serif; font-weight:700; font-size:2.4rem; line-height:1; letter-spacing:-0.04em; }
+    .price-amount sup { font-size:.45em; vertical-align:super; }
+    .price-spar { display:inline-block; background:var(--red); color:#fff; font-weight:700; font-size:0.75rem; padding:4px 10px; margin-top:8px; letter-spacing:.06em; }
+    .price-rules { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:28px; }
+    .price-rule { background:var(--bg); border-radius:4px; padding:18px 22px; font-size:0.88rem; line-height:1.65; }
     .price-rule strong { display:block; margin-bottom:6px; }
     .price-rule span { color:var(--muted); }
 
-    /* ─────────────────────────────────────────────────────────────────────
-       4. ASSETS & MATERIALER
-    ───────────────────────────────────────────────────────────────────── */
-    .level-intro {
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:0;
-      margin-bottom:48px;
-      border:1px solid var(--border);
-      border-radius:4px;
-      overflow:hidden;
-    }
-    .level-block {
-      padding:24px 28px;
-      border-right:1px solid var(--border);
-    }
+    /* ── KONCEPTER ──────────────────────────────────────────────────────── */
+    .concept-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .concept-card { background:var(--white); border:1px solid var(--border); border-radius:4px; overflow:hidden; }
+    .concept-card-img { background:var(--bg); display:flex; align-items:center; justify-content:center; padding:20px; border-bottom:1px solid var(--border); }
+    .concept-card-img img { max-height:140px; width:auto; }
+    .concept-card-body { padding:22px 24px; }
+    .concept-card-title { font-size:1rem; font-weight:700; margin-bottom:8px; }
+    .concept-card-desc { font-size:0.86rem; color:var(--muted); line-height:1.65; }
+    .concept-card-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+    .concept-card-tag { font-size:0.65rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; background:var(--bg); padding:3px 8px; border-radius:2px; color:var(--muted); }
+
+    /* ── ASSETS & MATERIALER ────────────────────────────────────────────── */
+    .level-intro { display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-bottom:40px; border:1px solid var(--border); border-radius:4px; overflow:hidden; }
+    .level-block { padding:22px 26px; border-right:1px solid var(--border); }
     .level-block:last-child { border-right:none; }
-    .level-block-tag {
-      font-size:0.62rem;
-      font-weight:700;
-      letter-spacing:0.15em;
-      text-transform:uppercase;
-      color:var(--red);
-      margin-bottom:8px;
-    }
-    .level-block-title { font-size:0.9rem; font-weight:700; margin-bottom:6px; }
-    .level-block-formats { font-size:0.8rem; color:var(--muted); line-height:1.65; }
-
-    .format-cards {
-      display:flex;
-      flex-direction:column;
-      gap:16px;
-    }
-    .format-card {
-      background:var(--white);
-      border:1px solid var(--border);
-      border-radius:4px;
-      overflow:hidden;
-      display:grid;
-      grid-template-columns:200px 1fr;
-    }
-    .format-card-visual {
-      background:var(--bg);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-      border-right:1px solid var(--border);
-    }
-    .format-card-visual img { max-height:140px; width:auto; }
-    .format-card-body { padding:24px 28px; }
-    .format-card-name {
-      font-size:1rem;
-      font-weight:700;
-      margin-bottom:4px;
-    }
-    .format-card-size {
-      font-size:0.72rem;
-      color:var(--muted);
-      letter-spacing:0.06em;
-      margin-bottom:16px;
-    }
-    .format-specs {
-      display:grid;
-      grid-template-columns:auto 1fr;
-      gap:6px 16px;
-      font-size:0.82rem;
-    }
-    .spec-label {
-      font-weight:700;
-      font-size:0.68rem;
-      letter-spacing:0.12em;
-      text-transform:uppercase;
-      color:var(--muted);
-      padding-top:2px;
-      white-space:nowrap;
-    }
+    .level-block-tag { font-size:0.62rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--red); margin-bottom:6px; }
+    .level-block-title { font-size:0.92rem; font-weight:700; margin-bottom:6px; }
+    .level-block-formats { font-size:0.82rem; color:var(--muted); line-height:1.65; }
+    .format-cards { display:flex; flex-direction:column; gap:14px; }
+    .format-card { background:var(--white); border:1px solid var(--border); border-radius:4px; overflow:hidden; display:grid; grid-template-columns:180px 1fr; }
+    .format-card-visual { background:var(--bg); display:flex; align-items:center; justify-content:center; padding:18px; border-right:1px solid var(--border); }
+    .format-card-visual img { max-height:130px; width:auto; }
+    .format-card-body { padding:22px 26px; }
+    .format-card-name { font-size:0.98rem; font-weight:700; margin-bottom:3px; }
+    .format-card-size { font-size:0.72rem; color:var(--muted); letter-spacing:.06em; margin-bottom:14px; }
+    .format-specs { display:grid; grid-template-columns:auto 1fr; gap:5px 14px; font-size:0.84rem; }
+    .spec-label { font-weight:700; font-size:0.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); padding-top:2px; white-space:nowrap; }
     .spec-value { color:var(--text); line-height:1.5; }
-    .format-example {
-      margin-top:12px;
-      padding:10px 14px;
-      background:var(--bg);
-      border-radius:3px;
-      font-size:0.82rem;
-      font-style:italic;
-      color:var(--muted);
-      border-left:2px solid var(--red);
-    }
+    .format-example { margin-top:10px; padding:8px 12px; background:var(--bg); border-radius:3px; font-size:0.83rem; font-style:italic; color:var(--muted); border-left:2px solid var(--red); }
 
-    /* ─────────────────────────────────────────────────────────────────────
-       5. KAMPAGNESKABELON
-    ───────────────────────────────────────────────────────────────────── */
-    .brief-steps {
-      display:flex;
-      flex-direction:column;
-      gap:0;
-      border:1px solid var(--border);
-      border-radius:4px;
-      overflow:hidden;
-    }
-    .brief-step {
-      display:grid;
-      grid-template-columns:56px 1fr;
-      border-bottom:1px solid var(--border);
-    }
+    /* ── BØRNEUNIVERS ───────────────────────────────────────────────────── */
+    .born-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:28px; }
+    .born-card { border-radius:4px; overflow:hidden; border:1px solid var(--border); }
+    .born-card img { width:100%; display:block; }
+    .born-card-label { padding:12px 18px; background:var(--white); font-size:0.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+
+    /* ── KAMPAGNESKABELON ────────────────────────────────────────────────── */
+    .brief-steps { display:flex; flex-direction:column; border:1px solid var(--border); border-radius:4px; overflow:hidden; }
+    .brief-step { display:grid; grid-template-columns:52px 1fr; border-bottom:1px solid var(--border); }
     .brief-step:last-child { border-bottom:none; }
-    .brief-step-num {
-      background:var(--black);
-      color:var(--white);
-      font-family:'Velo', serif;
-      font-weight:700;
-      font-size:1.3rem;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .brief-step-body { padding:24px 28px; }
-    .brief-step-title {
-      font-weight:700;
-      font-size:0.95rem;
-      margin-bottom:6px;
-      color:var(--red);
-    }
-    .brief-step-desc {
-      font-size:0.85rem;
-      color:var(--muted);
-      line-height:1.65;
-    }
+    .brief-step-num { background:var(--red); color:#fff; font-family:'Velo',serif; font-weight:700; font-size:1.3rem; display:flex; align-items:center; justify-content:center; }
+    .brief-step-body { padding:22px 26px; }
+    .brief-step-title { font-weight:700; font-size:0.95rem; margin-bottom:5px; color:var(--red); }
+    .brief-step-desc { font-size:0.88rem; color:var(--muted); line-height:1.65; }
 
-    /* ── FOOTER ──────────────────────────────────────────────────────────── */
-    .site-footer {
-      background:var(--black);
-      color:var(--white);
-      padding:40px 64px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-    }
-    .footer-logo {
-      font-family:'Velo', serif;
-      font-weight:700;
-      font-size:1.2rem;
-      color:var(--white);
-    }
-    .footer-meta {
-      font-size:0.78rem;
-      color:rgba(255,255,255,0.3);
-      text-align:right;
-      line-height:1.7;
-    }
+    /* FOOTER */
+    .site-footer { background:var(--bg); border-top:1px solid var(--border); padding:36px 64px; display:flex; align-items:center; justify-content:space-between; }
+    .footer-logo { font-family:'Velo',serif; font-weight:700; font-size:1.1rem; }
+    .footer-meta { font-size:0.8rem; color:var(--muted); text-align:right; line-height:1.7; }
 
-    /* ── RESPONSIVE ──────────────────────────────────────────────────────── */
-    @media (max-width: 1024px) {
+    /* RESPONSIVE */
+    @media(max-width:1024px) {
       .sidebar { display:none; }
       .hero { padding-left:48px; }
-      .grid-2, .grid-3, .grid-4, .tov-pillars, .logo-variants, .channel-cards,
-      .klammer-demos, .klammer-rules, .do-dont-split, .signoff-levels,
-      .logo-rules, .price-rules, .level-intro { grid-template-columns:1fr; }
+      .grid-2,.tov-pillars,.logo-variants,.channel-cards,.klammer-demos,.klammer-rules,
+      .do-dont-split,.brand-levels,.brand-intro-grid,.respekt-wrap,.dodont-grid,
+      .price-rules,.level-intro,.born-grid,.color-layout { grid-template-columns:1fr; }
+      .color-card-red { grid-row:auto; }
       .format-card { grid-template-columns:1fr; }
       .format-card-visual { border-right:none; border-bottom:1px solid var(--border); }
       .klub-layout { grid-template-columns:1fr; }
-      .klub-services { grid-template-columns:1fr 1fr; }
+      .services-grid,.concept-grid { grid-template-columns:1fr 1fr; }
+      .download-grid { grid-template-columns:1fr 1fr; }
     }
-    @media (max-width: 640px) {
+    @media(max-width:640px) {
       .section { padding:48px 24px; }
+      .services-grid,.concept-grid,.service-grid { grid-template-columns:1fr; }
       .site-footer { flex-direction:column; gap:16px; text-align:center; }
       .footer-meta { text-align:center; }
     }
@@ -1062,1027 +360,776 @@
 </head>
 <body>
 
-<!-- ── HEADER ─────────────────────────────────────────────────────────────── -->
 <header class="site-header">
   <a class="site-header-logo" href="#">Bog <span>&amp;</span> idé</a>
   <span class="site-header-badge">Design Guide 2026 — Intern</span>
 </header>
 
-<!-- ── HERO ──────────────────────────────────────────────────────────────── -->
 <div class="hero">
   <p class="hero-eyebrow">Bog &amp; idé — Design Guide 2026</p>
   <h1 class="hero-title">Vores visuelle<br>og verbale identitet</h1>
   <p class="hero-desc">Alt hvad du skal bruge for at producere, godkende eller briefe kommunikation fra Bog &amp; idé. Farver, typografi, logo, tone of voice og materialer — samlet ét sted.</p>
-  <span class="hero-bracket">Altid en god idé</span>
 </div>
 
-<!-- ── PAGE BODY ──────────────────────────────────────────────────────────── -->
 <div class="page-body">
 
-  <!-- SIDEBAR NAV -->
-  <aside class="sidebar" id="sidebar">
-    <span class="sidebar-section-label">Indhold</span>
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <span class="sidebar-label">Indhold</span>
+  <a class="nav-link" href="#brand-intro">Brand &amp; Sign-off</a>
+  <a class="nav-link" href="#tone-of-voice">01 — Tone of Voice</a>
+  <a class="nav-link sub" href="#tov-hvem">Hvem vi taler som</a>
+  <a class="nav-link sub" href="#tov-siger">Vi siger / Vi siger ikke</a>
+  <a class="nav-link sub" href="#tov-kanaler">Tone per kanal</a>
+  <a class="nav-link" href="#visuel-identitet">02 — Visuel Identitet</a>
+  <a class="nav-link sub" href="#logo">Logo</a>
+  <a class="nav-link sub" href="#logo-facade">Logo — Facade</a>
+  <a class="nav-link sub" href="#klammerne">Klammerne</a>
+  <a class="nav-link sub" href="#farver">Farvepaletten</a>
+  <a class="nav-link sub" href="#typografi">Typografi</a>
+  <a class="nav-link sub" href="#billedstil">Billedstil</a>
+  <a class="nav-link sub" href="#kundeklub">Kundeklub</a>
+  <a class="nav-link" href="#services">03 — Services</a>
+  <a class="nav-link" href="#priskommunikation">04 — Priskommunikation</a>
+  <a class="nav-link" href="#koncepter">05 — Koncepter</a>
+  <a class="nav-link" href="#assets">06 — Assets &amp; Materialer</a>
+  <a class="nav-link sub" href="#butik">Butikskommunikation</a>
+  <a class="nav-link sub" href="#digitalt">Digitale formater</a>
+  <a class="nav-link" href="#borneunivers">07 — Børneunivers</a>
+  <a class="nav-link" href="#kampagne">08 — Kampagneskabelon</a>
+</aside>
 
-    <a class="nav-link" href="#tone-of-voice">01 — Tone of Voice</a>
-    <a class="nav-link sub" href="#tov-hvem">Hvem vi taler som</a>
-    <a class="nav-link sub" href="#tov-hvordan">Hvordan vi taler</a>
-    <a class="nav-link sub" href="#tov-siger">Vi siger / Vi siger ikke</a>
-    <a class="nav-link sub" href="#tov-kanaler">Tone per kanal</a>
+<main class="main-content">
 
-    <a class="nav-link" href="#visuel-identitet">02 — Visuel Identitet</a>
-    <a class="nav-link sub" href="#logo">Logo</a>
-    <a class="nav-link sub" href="#signoff">Brand Sign-off</a>
-    <a class="nav-link sub" href="#klammerne">Klammerne</a>
-    <a class="nav-link sub" href="#farver">Farvepaletten</a>
-    <a class="nav-link sub" href="#typografi">Typografi</a>
-    <a class="nav-link sub" href="#billedstil">Billedstil</a>
-    <a class="nav-link sub" href="#kundeklub">Kundeklub</a>
-
-    <a class="nav-link" href="#priskommunikation">03 — Priskommunikation</a>
-
-    <a class="nav-link" href="#assets">04 — Assets &amp; Materialer</a>
-    <a class="nav-link sub" href="#butik">Butikskommunikation</a>
-    <a class="nav-link sub" href="#digitalt">Digitale formater</a>
-
-    <a class="nav-link" href="#kampagne">05 — Kampagneskabelon</a>
-  </aside>
-
-  <!-- MAIN -->
-  <main class="main-content">
-
-    <!-- ══════════════════════════════════════════════════════════════════
-         1. TONE OF VOICE
-    ══════════════════════════════════════════════════════════════════ -->
-    <section class="section section-dark" id="tone-of-voice">
-      <span class="section-tag">01</span>
-      <h2 class="section-title" id="tov-hvem">Tone of Voice</h2>
-
-      <p class="lead">Tone of voice er den stemme kunden møder i al kommunikation fra Bog &amp; idé, uanset kanal og format. En konsistent stemme gør kommunikationen genkendelig og troværdig over tid.</p>
-
-      <h3 class="section-subtitle">Hvem vi taler som</h3>
-      <p class="rule" style="margin-bottom:32px;">Bog &amp; idé taler som en passioneret og vidende ven — ikke som en institution. Vi er talkshow-værten der finder de mest interessante vinkler og gør emner, man ikke troede man interesserede sig for, til noget man vil bruge tid på.</p>
-
-      <div class="tov-pillars">
-        <div class="tov-pillar">
-          <div class="tov-pillar-title">Passionerede</div>
-          <div class="tov-pillar-text">Vi elsker vores produkter og brænder for at skabe læselyst og fremme kreativiteten. Vores begejstring er ægte og smittende, når vi har noget på hjerte.</div>
-        </div>
-        <div class="tov-pillar">
-          <div class="tov-pillar-title">Vidende</div>
-          <div class="tov-pillar-text">Vi ved meget, fordi vi er nysgerrige og suger til os. Vi lytter til vores publikum og deler viden uden at kloge os — aldrig belærende eller bedrevidende.</div>
-        </div>
-        <div class="tov-pillar">
-          <div class="tov-pillar-title">Inspirerende</div>
-          <div class="tov-pillar-text">Vi er ikke bibliotekaren eller pædagogen. Vi lytter og giver nye perspektiver frem for at fortælle folk hvad de skal mene. Vi finder den vinkel der fanger.</div>
-        </div>
-        <div class="tov-pillar">
-          <div class="tov-pillar-title">Godt selskab</div>
-          <div class="tov-pillar-text">Vi byder alle varmt velkommen og går op i, at alle føler sig set. Vi underholder, motiverer og giver nye perspektiver til at kaste sig ud i nye bøger og projekter.</div>
-        </div>
+<!-- ══════════════════════════════════════════════════════════
+     BRAND INTRO + ALTID EN GOD IDÉ
+══════════════════════════════════════════════════════════ -->
+<section class="section section-alt" id="brand-intro">
+  <div class="brand-intro-grid">
+    <div>
+      <span class="section-tag">Bog &amp; idé som brand</span>
+      <p style="font-size:1.25rem; font-weight:300; line-height:1.7; color:var(--text); margin-bottom:20px;">"Bog &amp; idé er ikke det billigste sted at købe bøger.<br><strong>Det er det bedste sted at vælge dem.</strong>"</p>
+      <p class="rule">Vi konkurrerer ikke på pris — SAXO og SallingGroup kan strukturelt matche os der. Vi konkurrerer på kuratering og vejledning, og det er svært at kopiere. Vores styrke er evnen til at hjælpe kunden med at vælge rigtigt — i en tid med for mange muligheder og for lidt vejledning.</p>
+      <div class="brand-pills">
+        <span class="brand-pill">Kuratering</span>
+        <span class="brand-pill">Vejledning</span>
+        <span class="brand-pill">Nærvær</span>
+        <span class="brand-pill">Læselyst</span>
       </div>
+    </div>
+    <div>
+      <div class="brand-signoff-large">Altid en god idé</div>
+      <p style="font-size:0.88rem; font-weight:700; letter-spacing:.06em; color:var(--muted); margin-bottom:4px; text-transform:uppercase; font-size:0.65rem;">Brand Sign-off — ikke et claim</p>
+      <p style="font-size:0.92rem; color:var(--muted); line-height:1.7;">Sign-off'en afslutter al kommunikation og optræder altid med klammerne. Den må aldrig stå alene.</p>
+    </div>
+  </div>
 
-      <hr class="divider" id="tov-hvordan"/>
+  <div class="brand-levels">
+    <div class="brand-level">
+      <div class="brand-level-tag">Purpose</div>
+      <p><strong>Gode valg skaber nærvær i en digital tid.</strong> Vi tror på at det rigtige valg — en bog der rammer plet, en gave der viser at man kender modtageren — skaber noget sjældent og værdifuldt. Det er ikke et salgsargument. Det er en overbevisning.</p>
+    </div>
+    <div class="brand-level">
+      <div class="brand-level-tag">Position</div>
+      <p><strong>Vi hjælper dig med at vælge rigtigt.</strong> Kunden er omgivet af overvalg. Vores opgave er at skære igennem og pege på det rigtige valg — ikke at præsentere alle muligheder og overlade beslutningen til hende.</p>
+    </div>
+    <div class="brand-level">
+      <div class="brand-level-tag">Sign-off — purpose-niveau</div>
+      <p>Refererer til vores grundlæggende overbevisning: gode valg, bøger, gaver og kreative produkter skaber nærvær og mening i hverdagen.</p>
+    </div>
+    <div class="brand-level">
+      <div class="brand-level-tag">Sign-off — positions-niveau</div>
+      <p>Er konklusionen på vores løfte til kunden: vi hjælper dig med at vælge rigtigt — og det valg du tager med hjem er altid en god idé.</p>
+    </div>
+  </div>
 
-      <h3 class="section-subtitle">Hvordan vi taler</h3>
-      <p class="rule" style="margin-bottom:24px;">Vi er ligefremme og hverdagsagtige i vores skrivestil. Vi siger tingene ligeud og skriver som vi taler med gode venner — vi vil gerne involvere og skabe dialog. Vi ser bøger og kreative produkter som noget hverdagsagtigt, ikke noget højtideligt.</p>
-      <p class="rule">Vi er ikke i undervisningsbranchen — vi er i underholdningsbranchen. Vi refererer ikke bare indholdet i en bog, men finder den mest interessante måde at fortælle om den på. Vi bruger gerne bydeform fordi vi så gerne vil skabe handling.</p>
+  <div class="brand-rule" style="margin-top:20px;">
+    <strong>Kommunikationsfilter:</strong> Al kommunikation fra Bog &amp; idé skal kunne svare ja til mindst ét af: Understøtter det læsning, leg, læring eller nærvær? — eller — Viser det inspiration, kuratering eller personlig vejledning?
+  </div>
+</section>
 
-      <div style="margin-top:24px; padding:20px 24px; background:rgba(255,255,255,0.05); border-left:3px solid var(--red); border-radius:2px; font-size:0.88rem; color:rgba(255,255,255,0.65); font-style:italic; line-height:1.65;">
-        Tænk: <strong style="color:rgba(255,255,255,0.9); font-style:normal;">"Hvordan ville B.T. sælge denne historie?"</strong> Det er ikke en opfordring til tabloidjournalistik, men til at finde den vinkel der fanger — frem for den der blot beskriver.
+
+<!-- ══════════════════════════════════════════════════════════
+     01 TONE OF VOICE
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="tone-of-voice">
+  <span class="section-tag">01</span>
+  <h2 class="section-title" id="tov-hvem">Tone of Voice</h2>
+  <p class="lead">Bog &amp; idé taler som en passioneret og vidende ven — ikke som en institution. Vi er talkshow-værten der finder de mest interessante vinkler og gør emner spændende, man ikke troede man interesserede sig for.</p>
+
+  <div class="tov-pillars">
+    <div class="tov-pillar">
+      <div class="tov-pillar-title">Passionerede</div>
+      <div class="tov-pillar-text">Vi elsker vores produkter og brænder for at skabe læselyst og fremme kreativiteten. Vores begejstring er ægte og smittende, når vi har noget på hjerte.</div>
+    </div>
+    <div class="tov-pillar">
+      <div class="tov-pillar-title">Vidende</div>
+      <div class="tov-pillar-text">Vi ved meget, fordi vi er nysgerrige og suger til os. Vi lytter og deler viden uden at kloge os — aldrig belærende eller bedrevidende.</div>
+    </div>
+    <div class="tov-pillar">
+      <div class="tov-pillar-title">Inspirerende</div>
+      <div class="tov-pillar-text">Vi lytter og giver nye perspektiver frem for at fortælle folk hvad de skal mene. Vi finder den vinkel der fanger — frem for den der blot beskriver.</div>
+    </div>
+    <div class="tov-pillar">
+      <div class="tov-pillar-title">Godt selskab</div>
+      <div class="tov-pillar-text">Vi byder alle varmt velkommen og går op i, at alle føler sig set. Vi underholder, motiverer og giver nye perspektiver til at kaste sig ud i nye bøger og projekter.</div>
+    </div>
+  </div>
+
+  <p class="rule" style="margin-bottom:16px;">Vi er ligefremme og hverdagsagtige. Vi siger tingene ligeud og skriver som vi taler med gode venner. Vi er ikke i undervisningsbranchen — vi er i underholdningsbranchen. Vi bruger gerne bydeform fordi vi så gerne vil skabe handling.</p>
+  <div class="info-box" style="margin-bottom:40px;"><strong>Tip</strong>Tænk: "Hvordan ville B.T. sælge denne historie?" Det er ikke en opfordring til tabloidjournalistik, men til at finde den vinkel der fanger.</div>
+
+  <h3 class="section-subtitle" id="tov-siger">Vi siger / Vi siger ikke</h3>
+  <table class="says-table">
+    <thead><tr><th class="yes">✓ Vi siger</th><th class="no">✕ Vi siger ikke</th></tr></thead>
+    <tbody>
+      <tr><td>Spil mere. Har du glemt, hvor sjovt det er?</td><td>Vidste du at du træner din hjerne, når du spiller brætspil med dine børn?</td></tr>
+      <tr><td>Send mand og børn på forlænget weekend: Mr. Grey is back!</td><td>Sidste bind i Fifty Shades-trilogien.</td></tr>
+      <tr><td>Mere til fantasien. En stribe tusser, men også en duftende blomstereng.</td><td>Produktbeskrivelse uden vinkel.</td></tr>
+      <tr><td>Til alle jer, der siger, I ikke læser.</td><td>Bøger til ikke-læsere.</td></tr>
+      <tr><td>Personalets favorit denne uge. Ingen alternativ.</td><td>Ugens udvalgte titler.</td></tr>
+      <tr><td>Kan du lide sudoku, vil du elske kakuro.</td><td>Relaterede produkter.</td></tr>
+      <tr><td>Spar 20% på psykopater og seriemordere.</td><td>Spar 20% på krimier.</td></tr>
+      <tr><td>Kom i godt selskab med snigmordere, voldsforbrydere og fallerede efterforskere.</td><td>Generisk krimikampagne.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-subtitle" id="tov-kanaler">Tone per kanal</h3>
+  <div class="channel-cards">
+    <div class="channel-card">
+      <div class="channel-card-name">POS i butik</div>
+      <div class="channel-card-rule">Kort, kontant og stemningsskabende. Kunden er fysisk til stede og skal fanges på et sekund. Ingen lange forklaringer.</div>
+      <div class="channel-card-example">"Regn udenfor. Kaffe indenfor. En god bog." — "Spørg os, vi har en mening."</div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-card-name">Organisk SoMe</div>
+      <div class="channel-card-rule">Plads til personlighed og redaktionel stemme. Tag stilling, stil spørgsmål og involver. Undgå produktgrid uden kontekst.</div>
+      <div class="channel-card-example">"Vi har valgt tre bøger til din ferie. Du behøver ikke vælge selv." — "Trump hader den. Gør du?"</div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-card-name">Annoncer (betalt)</div>
+      <div class="channel-card-rule">Mere direkte og handlingsorienteret end organisk, men stadig forankret i en situation eller et behov.</div>
+      <div class="channel-card-example">"Ferielæsning: let, spændende, umulig at lægge fra sig." — "Tre sikre valg under 200 kr."</div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-card-name">E-mail &amp; nyhedsbrev</div>
+      <div class="channel-card-rule">Den mest personlige kanal. Varm, direkte og uden kampagnesprog. Skriv som om boghandleren selv sender mailen.</div>
+      <div class="channel-card-example">Emnefelt: "Fordi du læste [titel], tror vi du vil elske denne." — Preheader: "Vi har gjort valget nemt."</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     02 VISUEL IDENTITET
+══════════════════════════════════════════════════════════ -->
+<section class="section section-alt" id="visuel-identitet">
+  <span class="section-tag">02</span>
+  <h2 class="section-title">Visuel Identitet</h2>
+
+  <!-- LOGO: SORT + HVID -->
+  <div id="logo">
+    <h3 class="section-subtitle" style="margin-top:0;">Logo</h3>
+    <p class="lead">Logoet er Bog &amp; idés primære identitetsmarkør og bruges konsekvent på tværs af alle materialer.</p>
+
+    <div class="logo-variants">
+      <div class="logo-variant on-white">
+        <div class="logo-variant-display"><img src="assets/images/logo-sort.svg" alt="Logo sort"/></div>
+        <div class="logo-variant-label">Sort — til lys baggrund</div>
       </div>
-
-      <hr class="divider" id="tov-siger"/>
-
-      <h3 class="section-subtitle">Vi siger / Vi siger ikke</h3>
-      <table class="says-table">
-        <thead>
-          <tr>
-            <th class="yes">✓ Vi siger</th>
-            <th class="no">✕ Vi siger ikke</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Spil mere. Har du glemt, hvor sjovt det er?</td><td>Vidste du at du træner din hjerne, når du spiller brætspil med dine børn?</td></tr>
-          <tr><td>Send mand og børn på forlænget weekend: Mr. Grey is back!</td><td>Sidste bind i Fifty Shades-trilogien.</td></tr>
-          <tr><td>Mere til fantasien. En stribe tusser, men også en duftende blomstereng.</td><td>Produktbeskrivelse uden vinkel.</td></tr>
-          <tr><td>Til alle jer, der siger, I ikke læser.</td><td>Bøger til ikke-læsere.</td></tr>
-          <tr><td>Personalets favorit denne uge. Ingen alternativ.</td><td>Ugens udvalgte titler.</td></tr>
-          <tr><td>Kan du lide sudoku, vil du elske kakuro.</td><td>Relaterede produkter.</td></tr>
-          <tr><td>Spar 20% på psykopater og seriemordere.</td><td>Spar 20% på krimier.</td></tr>
-          <tr><td>Kom i godt selskab med snigmordere, voldsforbrydere og fallerede efterforskere.</td><td>Generisk krimikampagne.</td></tr>
-        </tbody>
-      </table>
-
-      <hr class="divider" id="tov-kanaler"/>
-
-      <h3 class="section-subtitle">Tone per kanal</h3>
-      <div class="channel-cards">
-        <div class="channel-card">
-          <div class="channel-card-name">POS i butik</div>
-          <div class="channel-card-rule">Kort, kontant og stemningsskabende. Kunden er fysisk til stede og skal fanges på et sekund. Ingen lange forklaringer.</div>
-          <div class="channel-card-example">"Regn udenfor. Kaffe indenfor. En god bog." — "Spørg os, vi har en mening."</div>
-        </div>
-        <div class="channel-card">
-          <div class="channel-card-name">Organisk SoMe</div>
-          <div class="channel-card-rule">Plads til personlighed og redaktionel stemme. Tag stilling, stil spørgsmål og involver. Undgå produktgrid uden kontekst.</div>
-          <div class="channel-card-example">"Vi har valgt tre bøger til din ferie. Du behøver ikke vælge selv." — "Trump hader den. Gør du?"</div>
-        </div>
-        <div class="channel-card">
-          <div class="channel-card-name">Annoncer (betalt)</div>
-          <div class="channel-card-rule">Mere direkte og handlingsorienteret end organisk, men stadig forankret i en situation eller et behov. Tag udgangspunkt i en konkret situation.</div>
-          <div class="channel-card-example">"Ferielæsning: let, spændende, umulig at lægge fra sig." — "Tre sikre valg under 200 kr."</div>
-        </div>
-        <div class="channel-card">
-          <div class="channel-card-name">E-mail &amp; nyhedsbrev</div>
-          <div class="channel-card-rule">Den mest personlige kanal. Tonen er varm, direkte og uden kampagnesprog. Skriv som om boghandleren selv sender mailen.</div>
-          <div class="channel-card-example">Emnefelt: "Fordi du læste [titel], tror vi du vil elske denne." — "Tre bøger til din ferie, udvalgt til dig."</div>
-        </div>
+      <div class="logo-variant">
+        <div class="logo-variant-display" style="background:#1a1a1a;"><img src="assets/images/logo-hvid.svg" alt="Logo hvid"/></div>
+        <div class="logo-variant-label" style="background:#2a2a2a;color:rgba(255,255,255,.4);">Hvid — til mørk baggrund</div>
       </div>
-    </section>
+    </div>
 
-
-    <!-- ══════════════════════════════════════════════════════════════════
-         2. VISUEL IDENTITET
-    ══════════════════════════════════════════════════════════════════ -->
-    <section class="section section-alt" id="visuel-identitet">
-      <span class="section-tag">02</span>
-      <h2 class="section-title">Visuel Identitet</h2>
-
-      <!-- 2.1 LOGO ─────────────────────────────────────────────────── -->
-      <div id="logo">
-        <h3 class="section-subtitle" style="margin-top:0;">Logo</h3>
-        <p class="lead">Logoet er Bog &amp; idés primære identitetsmarkør. Det bruges konsekvent på tværs af alle materialer og flader.</p>
-
-        <div class="logo-variants">
-          <div class="logo-variant on-white">
-            <div class="logo-variant-display">
-              <img src="assets/images/logo-sort.svg" alt="Logo — Sort"/>
-            </div>
-            <div class="logo-variant-label">Sort — til lys baggrund</div>
-          </div>
-          <div class="logo-variant on-dark">
-            <div class="logo-variant-display">
-              <img src="assets/images/logo-hvid.svg" alt="Logo — Hvid"/>
-            </div>
-            <div class="logo-variant-label" style="background:#2a2a2a; color:rgba(255,255,255,0.4);">Hvid — til mørk baggrund</div>
-          </div>
-          <div class="logo-variant on-red">
-            <div class="logo-variant-display">
-              <img src="assets/images/logo-facade.svg" alt="Logo — Facade"/>
-            </div>
-            <div class="logo-variant-label" style="background:#c02628; color:rgba(255,255,255,0.5);">Kvadrat — facader &amp; butiksafmelding</div>
-          </div>
-        </div>
-
+    <!-- RESPEKTAFSTAND -->
+    <h3 class="section-subtitle">Respektafstand</h3>
+    <div class="respekt-wrap">
+      <div class="respekt-img"><img src="assets/images/logo-respektafstand.svg" alt="Respektafstand illustration"/></div>
+      <div>
+        <p class="rule" style="margin-bottom:20px;">Respektafstanden er styret af O'ets mål i logoet. Brug altid frirum svarende til O'ets højde på alle sider — medmindre logoet bruges som en aktiv del af et grafisk design, f.eks. i grafik for services og kompetencer.</p>
         <div class="logo-rules">
           <div class="logo-rule-item">
             <div class="logo-rule-icon ok">✓</div>
-            <div class="logo-rule-text">
-              <strong>Respektafstand</strong>
-              <span>Frirum svarende til O'ets mål på alle sider — medmindre logoet er en aktiv del af et grafisk design.</span>
-            </div>
+            <div class="logo-rule-text"><strong>Minimumsstørrelse</strong><span>Logoet bruges aldrig mindre end 10 mm i den smalleste dimension ved print.</span></div>
           </div>
+          <div class="logo-rule-item">
+            <div class="logo-rule-icon no">✕</div>
+            <div class="logo-rule-text"><strong>Ingen omfarvning</strong><span>Kun sort på lys, hvid på mørk eller hvid på rød fagade-version.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DO/DON'T small -->
+    <h4 style="font-size:0.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Do &amp; Don't</h4>
+    <div class="dodont-grid">
+      <div class="dodont-card"><img src="assets/images/logo-do-clearspace.svg" alt="Korrekt frirum"/></div>
+      <div class="dodont-card"><img src="assets/images/logo-dont-stretch.svg" alt="Må ikke forvrænges"/></div>
+      <div class="dodont-card"><img src="assets/images/logo-dont-color.svg" alt="Må ikke omfarves"/></div>
+      <div class="dodont-card"><img src="assets/images/logo-dont-rotate.svg" alt="Må ikke roteres"/></div>
+    </div>
+
+    <!-- DOWNLOADS -->
+    <hr class="divider"/>
+    <h4 style="font-size:0.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Download logoet</h4>
+    <div class="download-grid">
+      <div class="download-card">
+        <div class="download-card-name">Logo — Sort</div>
+        <div class="download-card-meta">Til lys baggrund. Horisontal version.</div>
+        <div class="fmt-tags"><span class="fmt-tag">SVG</span><span class="fmt-tag">PNG</span><span class="fmt-tag">EPS</span><span class="fmt-tag">AI</span></div>
+        <a class="download-btn" href="assets/downloads/logo-sort.svg" download>↓ Download SVG</a>
+      </div>
+      <div class="download-card">
+        <div class="download-card-name">Logo — Hvid</div>
+        <div class="download-card-meta">Til mørk baggrund. Horisontal version.</div>
+        <div class="fmt-tags"><span class="fmt-tag">SVG</span><span class="fmt-tag">PNG</span><span class="fmt-tag">EPS</span><span class="fmt-tag">AI</span></div>
+        <a class="download-btn" href="assets/downloads/logo-hvid.svg" download>↓ Download SVG</a>
+      </div>
+      <div class="download-card">
+        <div class="download-card-name">Alle varianter</div>
+        <div class="download-card-meta">Komplet pakke med alle logoversioner og -formater.</div>
+        <div class="fmt-tags"><span class="fmt-tag">ZIP</span></div>
+        <a class="download-btn" href="assets/downloads/alle-logo-varianter.zip.svg" download>↓ Download ZIP</a>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- LOGO: FACADE -->
+  <div id="logo-facade">
+    <h3 class="section-subtitle" style="margin-top:0;">Logo — Facade</h3>
+    <p class="lead">Det kvadratiske logo bruges udelukkende til facader og butiksafmelding. Det må ikke bruges som erstatning for det horisontale logo i andre sammenhænge.</p>
+    <div class="logo-facade-block">
+      <div class="logo-facade-display">
+        <img src="assets/images/logo-facade.svg" alt="Logo facade"/>
+      </div>
+      <div class="logo-facade-info">
+        <h4>Kvadratisk version — facader &amp; butiksafmelding</h4>
+        <p style="margin-bottom:14px;">Det kvadratiske logo er designet til store flader — facadeskilte, butiksafmelding og steder hvor formatet kræver et kvadratisk udtryk. Logoet er altid hvid på rød baggrund i denne version.</p>
+        <div class="logo-rules" style="margin-top:0;">
           <div class="logo-rule-item">
             <div class="logo-rule-icon ok">✓</div>
-            <div class="logo-rule-text">
-              <strong>Minimumsstørrelse</strong>
-              <span>Logoet bruges aldrig mindre end 10 mm i den smalleste dimension ved print.</span>
-            </div>
+            <div class="logo-rule-text"><strong>Brugs til</strong><span>Facadeskilte, butiksafmelding, badges og steder der kræver kvadratisk format.</span></div>
           </div>
           <div class="logo-rule-item">
             <div class="logo-rule-icon no">✕</div>
-            <div class="logo-rule-text">
-              <strong>Ingen omfarvning</strong>
-              <span>Logoet bruges kun i sort på lys baggrund, hvid på mørk baggrund, eller hvid på rød facade-version.</span>
-            </div>
-          </div>
-          <div class="logo-rule-item">
-            <div class="logo-rule-icon no">✕</div>
-            <div class="logo-rule-text">
-              <strong>Ingen forvrængning</strong>
-              <span>Logoet skaleres altid proportionalt — aldrig strakt, skævt eller roteret.</span>
-            </div>
-          </div>
-        </div>
-
-        <hr class="divider"/>
-
-        <h4 style="font-size:0.72rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:20px;">Download logoet</h4>
-        <div class="download-grid">
-          <div class="download-card">
-            <div class="download-card-name">Logo — Sort</div>
-            <div class="download-card-meta">Til lys baggrund. Horisontal version.</div>
-            <div class="download-card-formats">
-              <span class="fmt-tag">SVG</span><span class="fmt-tag">PNG</span><span class="fmt-tag">EPS</span><span class="fmt-tag">AI</span>
-            </div>
-            <a class="download-btn" href="assets/downloads/logo-sort.svg" download>↓ Download SVG</a>
-          </div>
-          <div class="download-card">
-            <div class="download-card-name">Logo — Hvid</div>
-            <div class="download-card-meta">Til mørk baggrund. Horisontal version.</div>
-            <div class="download-card-formats">
-              <span class="fmt-tag">SVG</span><span class="fmt-tag">PNG</span><span class="fmt-tag">EPS</span><span class="fmt-tag">AI</span>
-            </div>
-            <a class="download-btn" href="assets/downloads/logo-hvid.svg" download>↓ Download SVG</a>
-          </div>
-          <div class="download-card">
-            <div class="download-card-name">Logo — Facade</div>
-            <div class="download-card-meta">Kvadratisk version til facader og butiksafmelding.</div>
-            <div class="download-card-formats">
-              <span class="fmt-tag">SVG</span><span class="fmt-tag">PNG</span><span class="fmt-tag">EPS</span><span class="fmt-tag">AI</span>
-            </div>
-            <a class="download-btn" href="assets/downloads/logo-facade.svg" download>↓ Download SVG</a>
-          </div>
-          <div class="download-card">
-            <div class="download-card-name">Alle varianter</div>
-            <div class="download-card-meta">Komplet pakke med alle logoversioner og -formater.</div>
-            <div class="download-card-formats">
-              <span class="fmt-tag">ZIP</span>
-            </div>
-            <a class="download-btn" href="assets/downloads/alle-logo-varianter.zip.svg" download>↓ Download ZIP</a>
+            <div class="logo-rule-text"><strong>Bruges ikke til</strong><span>Erstatter ikke det horisontale logo i tryksager, digitale flader eller kampagner.</span></div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <hr class="divider"/>
+  <hr class="divider"/>
 
-      <!-- 2.2 SIGN-OFF ─────────────────────────────────────────────── -->
-      <div id="signoff">
-        <h3 class="section-subtitle">Brand Sign-off: "Altid en god idé"</h3>
-        <p class="lead">Sign-off'en er den faste sætning der afslutter vores kommunikation og skaber genkendelighed over tid. Det er <em>ikke</em> et brand claim — det er en fast afslutningstekst der bruges konsekvent, ligesom "Just Do It" hos Nike.</p>
+  <!-- KLAMMERNE -->
+  <div id="klammerne">
+    <h3 class="section-subtitle" style="margin-top:0;">Klammerne</h3>
+    <p class="lead">Klammerne er Bog &amp; idés vigtigste grafiske brand asset. De binder kommunikationen sammen på tværs af alle formater og kanaler og optræder altid med sign-off'en "Altid en god idé".</p>
 
-        <div class="signoff-display">
-          <svg class="signoff-brackets" viewBox="0 0 800 200" preserveAspectRatio="none">
-            <polyline points="24,60 24,24 60,24" stroke="#e02e31" stroke-width="4" fill="none" stroke-linecap="square"/>
-            <polyline points="776,60 776,24 740,24" stroke="#e02e31" stroke-width="4" fill="none" stroke-linecap="square"/>
-            <polyline points="24,140 24,176 60,176" stroke="#e02e31" stroke-width="4" fill="none" stroke-linecap="square"/>
-            <polyline points="776,140 776,176 740,176" stroke="#e02e31" stroke-width="4" fill="none" stroke-linecap="square"/>
-          </svg>
-          <div class="signoff-text">Altid en god idé</div>
+    <div class="klammer-demos">
+      <div class="klammer-demo-card"><img src="assets/images/klammer-demo.svg" alt="Klammer rød"/><div class="klammer-demo-label">Rød version — standard</div></div>
+      <div class="klammer-demo-card"><img src="assets/images/klammer-hvid.svg" alt="Klammer hvid"/><div class="klammer-demo-label">Hvid version — når rød allerede dominerer materialet</div></div>
+    </div>
+
+    <div class="klammer-rules">
+      <div class="klammer-rule use">
+        <div class="klammer-rule-head">✓ Bruges til</div>
+        <ul><li>Brandkampagner</li><li>Lancering af nye tiltag</li><li>CSR-aktiviteter</li><li>Servicebudskaber</li></ul>
+      </div>
+      <div class="klammer-rule dontuse">
+        <div class="klammer-rule-head">✕ Bruges ikke til</div>
+        <ul><li>Taktisk priskommunikation</li><li>Prisskilte og prissplash</li><li>Rene produktlister</li></ul>
+      </div>
+    </div>
+
+    <div class="formula-box">
+      <div><div class="formula-label">Størrelse</div><div class="formula-value">5%</div><div class="formula-note">af formatets smalleste side<br><em style="font-size:.78rem;">Eks.: 120 mm → klammer = 6 mm</em></div></div>
+      <div><div class="formula-label">Afstand til kant</div><div class="formula-value">75%</div><div class="formula-note">af klammens størrelse<br><em style="font-size:.78rem;">Eks.: 6 mm klammer → 4,5 mm afstand</em></div></div>
+      <div><div class="formula-label">Farve</div><div class="formula-value" style="display:flex;gap:8px;align-items:center;"><span style="display:inline-block;width:20px;height:20px;background:#e02e31;border-radius:2px;"></span><span style="display:inline-block;width:20px;height:20px;background:#fff;border:1px solid #e5e3df;border-radius:2px;"></span></div><div class="formula-note">Rød som udgangspunkt.<br>Hvid hvis rød allerede dominerer.</div></div>
+      <div><div class="formula-label">Outdoor-regel</div><div class="formula-value" style="font-size:.9rem;">Ensartet</div><div class="formula-note">Klammer på vinduer side om side<br>skal have ens størrelse.</div></div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- FARVER -->
+  <div id="farver">
+    <h3 class="section-subtitle" style="margin-top:0;">Farvepaletten</h3>
+    <p class="lead">Farvepaletten er bygget op om én primær brandfarve og fire støttefarver. Den røde farve er brandfarven og bærer identiteten på tværs af alle formater.</p>
+
+    <div class="color-layout">
+      <!-- RED — large, spans 2 rows -->
+      <div class="color-card color-card-red" style="grid-row:1/3;">
+        <div class="color-swatch" style="background:#e02e31;height:280px;">
+          <span class="color-badge badge-primary">Primær · Brandfarve</span>
         </div>
-
-        <div class="signoff-levels">
-          <div class="signoff-level">
-            <div class="signoff-level-tag">Purpose-niveau</div>
-            <p>Refererer til vores grundlæggende overbevisning: gode valg, bøger, gaver og kreative produkter er altid en god idé — fordi de skaber nærvær og mening i hverdagen.</p>
-          </div>
-          <div class="signoff-level">
-            <div class="signoff-level-tag">Positions-niveau</div>
-            <p>Er konklusionen på vores løfte til kunden: vi hjælper dig med at vælge rigtigt — og det valg du tager med hjem er altid en god idé.</p>
-          </div>
-        </div>
-
-        <div style="margin-top:20px; padding:16px 20px; background:var(--bg); border-left:3px solid var(--red); border-radius:2px; font-size:0.85rem; color:var(--muted); line-height:1.65;">
-          <strong style="color:var(--text);">Reglen:</strong> Sign-off'en optræder altid med klammerne — aldrig uden. Klammerne kan bruges uden sign-off'en, men sign-off'en optræder aldrig alene.
+        <div class="color-info">
+          <div class="color-name">Bog &amp; idé Rød</div>
+          <div class="color-hex">#e02e31</div>
+          <div class="color-usage">Brandfarven. Bruges markant når vi har noget på hjerte. Altid den dominerende farve i brand-kommunikation.</div>
+          <button class="copy-btn" onclick="copyHex(this,'#e02e31')">Kopiér hex</button>
         </div>
       </div>
 
-      <hr class="divider"/>
-
-      <!-- 2.3 KLAMMERNE ───────────────────────────────────────────── -->
-      <div id="klammerne">
-        <h3 class="section-subtitle">Klammerne</h3>
-        <p class="lead">Klammerne er Bog &amp; idés vigtigste grafiske brand asset. De binder kommunikationen sammen på tværs af alle formater og kanaler og optræder altid med sign-off'en "Altid en god idé".</p>
-
-        <div class="klammer-demos">
-          <div class="klammer-demo-card">
-            <img src="assets/images/klammer-demo.svg" alt="Klammer — Rød"/>
-            <div class="klammer-demo-label">Rød version — standard</div>
-          </div>
-          <div class="klammer-demo-card">
-            <img src="assets/images/klammer-hvid.svg" alt="Klammer — Hvid"/>
-            <div class="klammer-demo-label">Hvid version — når rød dominerer materialet</div>
-          </div>
+      <!-- BEIGE -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#feede0;border-bottom:1px solid var(--border);">
+          <span class="color-badge badge-bg">Baggrundfarve</span>
         </div>
-
-        <div class="klammer-rules">
-          <div class="klammer-rule use">
-            <div class="klammer-rule-head">✓ Bruges til</div>
-            <ul>
-              <li>Brandkampagner</li>
-              <li>Lancering af nye tiltag</li>
-              <li>CSR-aktiviteter</li>
-              <li>Servicebudskaber</li>
-            </ul>
-          </div>
-          <div class="klammer-rule dontuse">
-            <div class="klammer-rule-head">✕ Bruges ikke til</div>
-            <ul>
-              <li>Taktisk priskommunikation</li>
-              <li>Prisskilte og prissplash</li>
-              <li>Rene produktlister</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="formula-box">
-          <div class="formula-item">
-            <div class="formula-label">Størrelse</div>
-            <div class="formula-value">5%</div>
-            <div class="formula-note">af formatets smalleste side<br><em style="font-size:0.75rem;">Eks.: 120 mm → klammer = 6 mm</em></div>
-          </div>
-          <div class="formula-item">
-            <div class="formula-label">Afstand til kant</div>
-            <div class="formula-value">75%</div>
-            <div class="formula-note">af klammens størrelse<br><em style="font-size:0.75rem;">Eks.: 6 mm klammer → 4,5 mm afstand</em></div>
-          </div>
-          <div class="formula-item">
-            <div class="formula-label">Farve</div>
-            <div class="formula-value" style="display:flex; gap:10px; align-items:center;">
-              <span style="display:inline-block; width:20px; height:20px; background:#e02e31; border-radius:2px;"></span>
-              <span style="display:inline-block; width:20px; height:20px; background:#fff; border:1px solid #e5e3df; border-radius:2px;"></span>
-            </div>
-            <div class="formula-note">Rød som udgangspunkt.<br>Hvid hvis rød allerede dominerer.</div>
-          </div>
-          <div class="formula-item">
-            <div class="formula-label">Outdoor-regel</div>
-            <div class="formula-value" style="font-size:0.9rem; line-height:1.3;">Ensartet</div>
-            <div class="formula-note">Klammer på vinduer placeret<br>side om side skal have ens størrelse.</div>
-          </div>
-        </div>
-
-        <div style="margin-top:16px; text-align:right;">
-          <a class="download-btn" href="assets/downloads/klammer-roed.svg" download style="display:inline-flex;">↓ Download klammer (SVG)</a>
+        <div class="color-info">
+          <div class="color-name">Bog &amp; idé Beige</div>
+          <div class="color-hex">#feede0</div>
+          <div class="color-usage">Dynamik og variation i kampagner. Bruges i Kundeklub-design.</div>
+          <button class="copy-btn" onclick="copyHex(this,'#feede0')">Kopiér hex</button>
         </div>
       </div>
 
-      <hr class="divider"/>
-
-      <!-- 2.4 FARVER ─────────────────────────────────────────────── -->
-      <div id="farver">
-        <h3 class="section-subtitle">Farvepaletten</h3>
-        <p class="lead">Farvepaletten er bygget op om to primære og fire sekundære farver. Den røde farve er brandfarven og bærer identiteten på tværs af alle formater.</p>
-
-        <div class="color-swatches">
-
-          <div class="color-card">
-            <div class="color-swatch" style="background:#e02e31;">
-              <span class="color-badge badge-primary">Primær</span>
-            </div>
-            <div class="color-info">
-              <div class="color-name">Bog &amp; idé Rød</div>
-              <div class="color-hex">#e02e31</div>
-              <div class="color-usage">Brandfarven. Bruges markant når vi har noget på hjerte.</div>
-              <button class="copy-btn" onclick="copyHex(this,'#e02e31')">Kopiér hex</button>
-            </div>
-          </div>
-
-          <div class="color-card">
-            <div class="color-swatch" style="background:#ffffff; border-bottom:1px solid var(--border);">
-              <span class="color-badge badge-secondary">Primær</span>
-            </div>
-            <div class="color-info">
-              <div class="color-name">Hvid</div>
-              <div class="color-hex">#FFFFFF</div>
-              <div class="color-usage">Tekster, prissplash og designelementer.</div>
-              <button class="copy-btn" onclick="copyHex(this,'#FFFFFF')">Kopiér hex</button>
-            </div>
-          </div>
-
-          <div class="color-card">
-            <div class="color-swatch" style="background:#000000;">
-              <span class="color-badge badge-primary">Primær</span>
-            </div>
-            <div class="color-info">
-              <div class="color-name">Sort</div>
-              <div class="color-hex">#000000</div>
-              <div class="color-usage">Tekster, prissplash og designelementer. Altid 100% sort.</div>
-              <button class="copy-btn" onclick="copyHex(this,'#000000')">Kopiér hex</button>
-            </div>
-          </div>
-
-          <div class="color-card">
-            <div class="color-swatch" style="background:#feede0; border-bottom:1px solid var(--border);">
-              <span class="color-badge badge-secondary">Sekundær</span>
-            </div>
-            <div class="color-info">
-              <div class="color-name">Bog &amp; idé Beige</div>
-              <div class="color-hex">#feede0</div>
-              <div class="color-usage">Dynamik og variation i kampagner. Bruges i Kundeklub-design.</div>
-              <button class="copy-btn" onclick="copyHex(this,'#feede0')">Kopiér hex</button>
-            </div>
-          </div>
-
-          <div class="color-card">
-            <div class="color-swatch" style="background:#f7c3c7; border-bottom:1px solid var(--border);">
-              <span class="color-badge badge-secondary">Sekundær</span>
-            </div>
-            <div class="color-info">
-              <div class="color-name">Bog &amp; idé Lys Rød</div>
-              <div class="color-hex">#f7c3c7</div>
-              <div class="color-usage">Sekundær kampagnefarve.</div>
-              <button class="copy-btn" onclick="copyHex(this,'#f7c3c7')">Kopiér hex</button>
-            </div>
-          </div>
-
-          <div class="color-card">
-            <div class="color-swatch" style="background:#b4dcf6; border-bottom:1px solid var(--border);">
-              <span class="color-badge badge-secondary">Sekundær</span>
-            </div>
-            <div class="color-info">
-              <div class="color-name">Bog &amp; idé Lys Blå</div>
-              <div class="color-hex">#b4dcf6</div>
-              <div class="color-usage">Sekundær kampagnefarve.</div>
-              <button class="copy-btn" onclick="copyHex(this,'#b4dcf6')">Kopiér hex</button>
-            </div>
-          </div>
-
-          <div class="color-card">
-            <div class="color-swatch" style="background:#00375c;">
-              <span class="color-badge badge-secondary-inv">Sekundær</span>
-            </div>
-            <div class="color-info">
-              <div class="color-name">Bog &amp; idé Blå</div>
-              <div class="color-hex">#00375c</div>
-              <div class="color-usage">Sekundær. Bruges bl.a. til Topskilt (Bestseller).</div>
-              <button class="copy-btn" onclick="copyHex(this,'#00375c')">Kopiér hex</button>
-            </div>
-          </div>
-
+      <!-- LYS RØD -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#f7c3c7;border-bottom:1px solid var(--border);">
+          <span class="color-badge badge-bg">Baggrundfarve</span>
         </div>
-
-        <div class="color-note">
-          <strong>Bemærk 2026-opdatering:</strong> Den røde brandfarve er revideret fra <code>#e73132</code> til <code>#e02e31</code>. Alle nye materialer bruger den reviderede røde. Opdatér eksisterende materialer ved næste produktion.
-        </div>
-
-        <div style="margin-top:16px; text-align:right;">
-          <a class="download-btn" href="assets/downloads/farvepalette.ase.svg" download style="display:inline-flex; background:var(--black);">↓ Download farvepalette (ASE)</a>
+        <div class="color-info">
+          <div class="color-name">Bog &amp; idé Lys Rød</div>
+          <div class="color-hex">#f7c3c7</div>
+          <div class="color-usage">Sekundær kampagnefarve.</div>
+          <button class="copy-btn" onclick="copyHex(this,'#f7c3c7')">Kopiér hex</button>
         </div>
       </div>
 
-      <hr class="divider"/>
-
-      <!-- 2.5 TYPOGRAFI ──────────────────────────────────────────── -->
-      <div id="typografi">
-        <h3 class="section-subtitle">Typografi</h3>
-        <p class="lead">To skrifttyper. Ét princip: Velo sætter tonen, Muller leverer indholdet.</p>
-
-        <div class="grid-2">
-          <div class="type-specimen">
-            <div class="type-font-tag">Brand-font · Budskaber</div>
-            <div class="type-big">Velo Serif<br>Display Bold</div>
-            <div class="type-rule">Bruges på grafiske materialer til budskaber om branding, salg og kampagner. <strong>Kun på overskriftsniveau — aldrig til brødtekst.</strong></div>
-            <div class="type-weights-list">
-              <div class="type-weight-row" style="font-family:'Velo',serif; font-weight:700;">Aa Bog &amp; idé — Bold<span class="type-weight-label">Bold 700</span></div>
-              <div class="type-weight-row" style="font-family:'Velo',serif; font-weight:500;">Aa Bog &amp; idé — Medium<span class="type-weight-label">Medium 500</span></div>
-            </div>
-          </div>
-
-          <div class="type-specimen">
-            <div class="type-font-tag">Brand-font · Information</div>
-            <div class="type-big-sub">Muller</div>
-            <div class="type-rule">Bruges på materialer med et informativt niveau — brødtekster, wayfinding, etiketter og steder med meget tekst.</div>
-            <div class="type-weights-list">
-              <div class="type-weight-row" style="font-family:'Muller',sans-serif; font-weight:300;">Aa Bog &amp; idé — Light<span class="type-weight-label">Light 300</span></div>
-              <div class="type-weight-row" style="font-family:'Muller',sans-serif; font-weight:400;">Aa Bog &amp; idé — Regular<span class="type-weight-label">Regular 400</span></div>
-              <div class="type-weight-row" style="font-family:'Muller',sans-serif; font-weight:700;">Aa Bog &amp; idé — Bold<span class="type-weight-label">Bold 700</span></div>
-            </div>
-          </div>
+      <!-- LYS BLÅ -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#b4dcf6;border-bottom:1px solid var(--border);">
+          <span class="color-badge badge-bg">Baggrundfarve</span>
         </div>
-
-        <div class="type-principle">
-          <span class="type-principle-icon">💡</span>
-          <div class="type-principle-text">
-            <strong>Grundprincippet</strong>
-            Velo Serif Display Bold bruges udelukkende til overskrifter, kampagnebudskaber og salgstekster på grafiske materialer. Muller bruges til alt indhold der skal læses — brødtekster, produkttekster, navigation og information. Bland dem aldrig på samme tekstniveau.
-          </div>
+        <div class="color-info">
+          <div class="color-name">Bog &amp; idé Lys Blå</div>
+          <div class="color-hex">#b4dcf6</div>
+          <div class="color-usage">Sekundær kampagnefarve.</div>
+          <button class="copy-btn" onclick="copyHex(this,'#b4dcf6')">Kopiér hex</button>
         </div>
+      </div>
 
-        <div style="margin-top:32px; background:var(--bg); border-radius:4px; padding:32px 40px;">
-          <div class="type-font-tag">Eksempel — Produkttekst opsætning</div>
-          <div style="display:flex; gap:48px; align-items:flex-start; flex-wrap:wrap; margin-top:8px;">
-            <div>
-              <div style="font-family:'Muller',sans-serif; font-weight:400; font-size:0.8rem; color:var(--muted);">Anna Jansson</div>
-              <div style="font-family:'Muller',sans-serif; font-weight:700; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em;">SKYGGEBARN</div>
-              <div style="font-family:'Muller',sans-serif; font-weight:400; font-size:0.8rem; color:var(--muted);">Normalpris 199,95</div>
-              <div style="font-family:'Muller',sans-serif; font-weight:700; font-size:0.8rem;">People'sPress</div>
-              <div style="font-family:'Muller',sans-serif; font-weight:700; font-size:2.4rem; line-height:1; letter-spacing:-0.04em; margin-top:4px;">149<sup style="font-size:0.45em; vertical-align:super;">95</sup></div>
-            </div>
-            <div style="font-size:0.78rem; color:var(--muted); line-height:2.2;">
-              <div>Muller Regular — 7,2/8,5pt</div>
-              <div>Muller Bold — 7,2/8,5pt — Caps</div>
-              <div>Muller Regular — 7,2/8,5pt — Tracking –10</div>
-              <div>Muller Bold — 7,2/8,5pt</div>
-              <div>Muller ExtraBold — 22/22pt — Tracking –40</div>
+      <!-- BLÅ (SEKUNDÆR) -->
+      <div class="color-card">
+        <div class="color-swatch" style="background:#00375c;">
+          <span class="color-badge badge-secondary">Sekundær</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Bog &amp; idé Blå</div>
+          <div class="color-hex">#00375c</div>
+          <div class="color-usage">Bruges bl.a. til Topskilt (Bestseller) og som sekundær accent.</div>
+          <button class="copy-btn" onclick="copyHex(this,'#00375c')">Kopiér hex</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- TYPOGRAFI -->
+  <div id="typografi">
+    <h3 class="section-subtitle" style="margin-top:0;">Typografi</h3>
+    <p class="lead">To skrifttyper. Ét princip: Velo sætter tonen, Muller leverer indholdet.</p>
+    <div class="grid-2">
+      <div class="type-specimen">
+        <div class="type-font-tag">Brand-font · Budskaber</div>
+        <div class="type-big">Velo Serif Display Bold</div>
+        <div class="type-rule">Bruges på grafiske materialer til budskaber om branding, salg og kampagner. <strong>Kun på overskriftsniveau — aldrig til brødtekst.</strong></div>
+        <div class="type-weights-list">
+          <div class="type-weight-row" style="font-family:'Velo',serif;font-weight:700;">Aa Bog &amp; idé — Bold <span class="type-weight-label">Bold 700</span></div>
+          <div class="type-weight-row" style="font-family:'Velo',serif;font-weight:500;">Aa Bog &amp; idé — Medium <span class="type-weight-label">Medium 500</span></div>
+        </div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-font-tag">Brand-font · Information</div>
+        <div class="type-big-sub">Muller</div>
+        <div class="type-rule">Bruges på materialer med et informativt niveau — brødtekster, wayfinding, etiketter og steder med meget tekst.</div>
+        <div class="type-weights-list">
+          <div class="type-weight-row" style="font-family:'Muller',sans-serif;font-weight:300;">Aa Bog &amp; idé — Light <span class="type-weight-label">Light 300</span></div>
+          <div class="type-weight-row" style="font-family:'Muller',sans-serif;font-weight:400;">Aa Bog &amp; idé — Regular <span class="type-weight-label">Regular 400</span></div>
+          <div class="type-weight-row" style="font-family:'Muller',sans-serif;font-weight:700;">Aa Bog &amp; idé — Bold <span class="type-weight-label">Bold 700</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="info-box" style="margin-top:20px;"><strong>Grundprincippet</strong>Velo Serif Display Bold bruges udelukkende til overskrifter, kampagnebudskaber og salgstekster. Muller bruges til alt indhold der skal læses. Bland dem aldrig på samme tekstniveau.</div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- BILLEDSTIL -->
+  <div id="billedstil">
+    <h3 class="section-subtitle" style="margin-top:0;">Billedstil</h3>
+    <p class="lead">Billeder skal kommunikere nærvær, varme og menneskelighed. De skal virke autentiske og have kontrast og farveidentitet der bidrager til et markant visuelt udtryk med tyngde.</p>
+    <div class="photo-grid">
+      <div class="photo-card"><img src="assets/images/foto-fordybelse.svg" alt="Fordybelse"/><div class="photo-card-label"><strong>Fordybelse og ro</strong><span>En person der læser alene, opslugt af en bog</span></div></div>
+      <div class="photo-card"><img src="assets/images/foto-samvaer.svg" alt="Samvær"/><div class="photo-card-label"><strong>Samvær og nærvær</strong><span>Forælder der læser højt for barn, venner der deler en bog</span></div></div>
+      <div class="photo-card"><img src="assets/images/foto-kreativitet.svg" alt="Kreativitet"/><div class="photo-card-label"><strong>Kreativitet i gang</strong><span>Familie der tegner, maler eller bygger sammen</span></div></div>
+      <div class="photo-card"><img src="assets/images/foto-hverdagsstemning.svg" alt="Hverdagsstemning"/><div class="photo-card-label"><strong>Hverdagsstemning</strong><span>Bogen på natbordet, koppen kaffe ved siden af</span></div></div>
+    </div>
+    <div class="do-dont-split">
+      <div class="do-box"><h4>✓ Vi bruger</h4><ul><li>Autentiske, ikke-opstillede motiver</li><li>Billeder med nærvær og menneskelig varme</li><li>Stærk kontrast og tydelig farveidentitet</li><li>Naturligt lys og ægte stemning</li></ul></div>
+      <div class="dont-box"><h4>✕ Vi undgår</h4><ul><li>Intetsigende eller generiske stockfotos</li><li>Kunstige eller for opstillede motiver</li><li>Billeder der kunne tilhøre enhver anden retailer</li><li>Emotionsløse flatlay-opstillinger</li></ul></div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- KUNDEKLUB -->
+  <div id="kundeklub">
+    <h3 class="section-subtitle" style="margin-top:0;">Kundeklub</h3>
+    <p class="lead">Kundeklubben er gratis at være medlem af og giver adgang til eksklusive fordele. Det visuelle system er defineret og adskiller sig bevidst fra den generelle brand-kommunikation.</p>
+    <div class="klub-layout">
+      <div>
+        <h4 style="font-size:0.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Visuelt system</h4>
+        <div class="klub-mockup">
+          <div class="klub-mockup-inner">
+            <div class="kb-tl"></div><div class="kb-tr"></div><div class="kb-bl"></div><div class="kb-br"></div>
+            <div class="klub-headline">VELKOMMEN I <span>KLUBBEN</span></div>
+            <div class="klub-copy">Det koster ikke noget, og du får masser af medlemsfordele. Se mere og meld dig ind på bog-ide.dk</div>
+            <div class="klub-icons-row">
+              <img src="assets/images/icon-fri-fragt.svg" alt="Fri fragt"/>
+              <img src="assets/images/icon-garanti.svg" alt="90 dages garanti"/>
+              <img src="assets/images/icon-returpant.svg" alt="Returpant"/>
             </div>
           </div>
         </div>
       </div>
+      <div class="klub-rules-list">
+        <div class="klub-rule-item"><div class="klub-rule-dot"></div><div class="klub-rule-content"><strong>Rød ramme — beige boks</strong><p>Rød ramme (#e02e31) om en beige boks (#feede0) med hvide klammer indeni. Denne kombination bruges udelukkende til Kundeklub-materiale.</p></div></div>
+        <div class="klub-rule-item"><div class="klub-rule-dot"></div><div class="klub-rule-content"><strong>"KLUBBEN" altid i rød</strong><p>Ordet KLUBBEN skrives altid med rød farve i overskriften. "VELKOMMEN I" er i sort/neutral.</p></div></div>
+        <div class="klub-rule-item"><div class="klub-rule-dot"></div><div class="klub-rule-content"><strong>Hvide klammer</strong><p>Klammerne inde i Kundeklub-designet er altid hvide — placeret på beige baggrund uden "Altid en god idé" sign-off'en.</p></div></div>
+        <div class="klub-rule-item"><div class="klub-rule-dot"></div><div class="klub-rule-content"><strong>Kun til klubben</strong><p>Ikonerne for klubfordele bruges udelukkende i Kundeklub-kommunikation. Farverne tilpasses farvepaletten.</p></div></div>
+      </div>
+    </div>
 
-      <hr class="divider"/>
+    <h4 style="font-size:0.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin:36px 0 14px;">De tre eksklusive klubfordele</h4>
+    <div class="service-grid">
+      <div class="service-card"><img src="assets/images/icon-fri-fragt.svg" alt="Fri fragt"/><div class="service-card-title">Fri Fragt</div><div class="service-card-desc">Altid fri fragt til nærmeste pakkeshop eller Bog &amp; idés butikker ved handel i webshoppen.</div></div>
+      <div class="service-card"><img src="assets/images/icon-garanti.svg" alt="90 dages garanti"/><div class="service-card-title">90 Dages Tilfredshedsgaranti</div><div class="service-card-desc">På alle børne- og ungdomsbøger. Rammer bogen ikke plet, kan du bytte den inden 90 dage.</div></div>
+      <div class="service-card"><img src="assets/images/icon-returpant.svg" alt="Returpant"/><div class="service-card-title">Giv din Bestseller Videre</div><div class="service-card-desc">Aflever din bestseller inden 3 måneder og få et tilgodebevis på 25% af bogens pris.</div></div>
+    </div>
+  </div>
+</section>
 
-      <!-- 2.6 BILLEDSTIL ─────────────────────────────────────────── -->
-      <div id="billedstil">
-        <h3 class="section-subtitle">Billedstil</h3>
-        <p class="lead">Billeder fra Bog &amp; idé skal kommunikere nærvær, varme og menneskelighed. De skal virke autentiske og have kontrast og farveidentitet der bidrager til et markant visuelt udtryk med tyngde.</p>
 
-        <div class="photo-grid">
-          <div class="photo-card">
-            <img src="assets/images/foto-fordybelse.svg" alt="Fordybelse og ro"/>
-            <div class="photo-card-label">
-              <strong>Fordybelse og ro</strong>
-              <span>En person der læser alene, opslugt af en bog</span>
-            </div>
-          </div>
-          <div class="photo-card">
-            <img src="assets/images/foto-samvaer.svg" alt="Samvær og nærvær"/>
-            <div class="photo-card-label">
-              <strong>Samvær og nærvær</strong>
-              <span>Forælder der læser højt for barn, venner der deler en bog</span>
-            </div>
-          </div>
-          <div class="photo-card">
-            <img src="assets/images/foto-kreativitet.svg" alt="Kreativitet i gang"/>
-            <div class="photo-card-label">
-              <strong>Kreativitet i gang</strong>
-              <span>Familie der tegner, maler eller bygger sammen</span>
-            </div>
-          </div>
-          <div class="photo-card">
-            <img src="assets/images/foto-hverdagsstemning.svg" alt="Hverdagsstemning"/>
-            <div class="photo-card-label">
-              <strong>Hverdagsstemning</strong>
-              <span>Bogen på natbordet, koppen kaffe ved siden af</span>
-            </div>
-          </div>
-        </div>
+<!-- ══════════════════════════════════════════════════════════
+     03 SERVICES
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="services">
+  <span class="section-tag">03</span>
+  <h2 class="section-title">Services</h2>
+  <p class="lead">Bog &amp; idé tilbyder en række services der understøtter kundeoplevelsen. Hvert service-element har et dedikeret ikon og to tekstversioner — en lang og en kort.</p>
 
-        <div class="do-dont-split">
-          <div class="do-box">
-            <h4>✓ Vi bruger</h4>
-            <ul>
-              <li>Autentiske, ikke-opstillede motiver</li>
-              <li>Billeder med nærvær og menneskelig varme</li>
-              <li>Stærk kontrast og tydelig farveidentitet</li>
-              <li>Motiver der fortæller en mini-historie</li>
-              <li>Naturligt lys og ægte stemning</li>
-            </ul>
-          </div>
-          <div class="dont-box">
-            <h4>✕ Vi undgår</h4>
-            <ul>
-              <li>Intetsigende eller generiske stockfotos</li>
-              <li>Kunstige eller for opstillede motiver</li>
-              <li>Billeder der kunne tilhøre enhver anden retailer</li>
-              <li>Overly-polerede, kliniske produktfotos som eneste billede</li>
-              <li>Emotionsløse flatlay-opstillinger</li>
-            </ul>
-          </div>
+  <div class="services-grid">
+
+    <div class="svc-card">
+      <img class="svc-card-icon" src="assets/images/icon-gem-kvittering.svg" alt="Gem kvittering"/>
+      <div class="svc-card-title">Gem Kvittering</div>
+      <div class="svc-card-long">Er du medlem af vores kundeklub, har du altid styr på dine kvitteringer. Vi gemmer dem automatisk for dig, både når du handler online og i vores butikker.</div>
+      <div class="svc-card-short">Er du medlem af vores kundeklub, gemmer vi automatisk dine kvitteringer, når du handler hos os.</div>
+      <span class="svc-badge">Klub-eksklusiv</span>
+    </div>
+
+    <div class="svc-card">
+      <img class="svc-card-icon" src="assets/images/icon-returpant.svg" alt="Giv din bestseller videre"/>
+      <div class="svc-card-title">Giv din Bestseller Videre</div>
+      <div class="svc-card-long">Lad en anden få glæde af din bestseller, når du har læst den. Er du medlem af vores kundeklub og leverer den tilbage inden 3 måneder, får du et tilgodebevis på 25% af bogens pris.</div>
+      <div class="svc-card-short">Aflever din bestseller inden 3 mdr. og få 25% på et tilgodebevis.</div>
+      <span class="svc-badge">Klub-eksklusiv</span>
+    </div>
+
+    <div class="svc-card">
+      <img class="svc-card-icon" src="assets/images/icon-klik-hent.svg" alt="Klik og hent i butik"/>
+      <div class="svc-card-title">Klik og Hent i Butik</div>
+      <div class="svc-card-long">Få hele vores online-udvalg i din lokale Bog &amp; idé: Bestil på bog-ide.dk og vælg levering til din butik. Det er både nemt og gratis!</div>
+      <div class="svc-card-short">Det er nemt og gratis at bestille online og hente i butikken.</div>
+    </div>
+
+    <div class="svc-card">
+      <img class="svc-card-icon" src="assets/images/icon-byttegaranti.svg" alt="365 dages byttegaranti"/>
+      <div class="svc-card-title">365 Dages Byttegaranti</div>
+      <div class="svc-card-long">Alt, hvad du køber hos os, kan byttes i alle vores butikker i hele landet — i helt op til et år. Gælder også varer købt i vores webshop.</div>
+      <div class="svc-card-short">365 dages byttegaranti i mere end 130 butikker. Gælder også webshop.</div>
+    </div>
+
+    <div class="svc-card">
+      <img class="svc-card-icon" src="assets/images/icon-send-gave.svg" alt="Send en gave"/>
+      <div class="svc-card-title">Send en Gave</div>
+      <div class="svc-card-long">Send en lille opmærksomhed eller gaven til fødselsdagen: Vælg blandt populære bøger og brætspil i vores web-gaveshop, så er din gave fremme samme dag eller dagen efter.</div>
+      <div class="svc-card-short">Bøger og spil er ALTID gode gaver! Få leveret samme dag eller dagen efter.</div>
+    </div>
+
+    <div class="svc-card">
+      <img class="svc-card-icon" src="assets/images/icon-fri-fragt.svg" alt="Fri fragt"/>
+      <div class="svc-card-title">Fri Fragt</div>
+      <div class="svc-card-long">Som medlem af vores kundeklub får du altid fri fragt til nærmeste pakkeshop eller Bog &amp; idés butikker, når du handler i vores webshop. Og det koster ikke noget at være med.</div>
+      <div class="svc-card-short">Få fri fragt til nærmeste pakkeshop — som gratis klubmedlem.</div>
+      <span class="svc-badge">Klub-eksklusiv</span>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     04 PRISKOMMUNIKATION
+══════════════════════════════════════════════════════════ -->
+<section class="section section-alt" id="priskommunikation">
+  <span class="section-tag">04</span>
+  <h2 class="section-title">Priskommunikation</h2>
+  <p class="lead">Priskommunikation adskiller sig bevidst fra brandkommunikation. Den er rent taktisk og følger et stramt visuelt system — ingen klammer, hvid baggrund, sort tekst.</p>
+
+  <div class="price-examples">
+    <div class="price-tag">
+      <span class="price-tag-label">Standard pris</span>
+      <div class="price-author">Anna Jansson</div>
+      <div class="price-product">Skyggebarn</div>
+      <div class="price-amount">199<sup>95</sup></div>
+    </div>
+    <div class="price-tag">
+      <span class="price-tag-label">Tilbud</span>
+      <div class="price-author">Anna Jansson</div>
+      <div class="price-product">Skyggebarn</div>
+      <div class="price-normal">199,95</div>
+      <div class="price-amount">149<sup>95</sup></div>
+      <div class="price-spar">SPAR 50.–</div>
+    </div>
+    <div class="price-tag">
+      <span class="price-tag-label">Frit valg</span>
+      <div style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">FRIT VALG</div>
+      <div class="price-amount">69<sup>95</sup></div>
+      <div style="font-size:.72rem;color:var(--muted);margin-top:4px;">2 bøger: 150.–</div>
+      <div class="price-spar">SPAR 30.–</div>
+    </div>
+  </div>
+
+  <div class="price-rules">
+    <div class="price-rule"><strong>Hvid baggrund — sort tekst</strong><span>Prisskilte og prissplash bruger altid hvid baggrund og sort tekst. Klammerne bruges ikke.</span></div>
+    <div class="price-rule"><strong>Normalpris vises tydeligt</strong><span>Når en vare er nedsat, angives normalpris tydeligt ved siden af kampagneprisen.</span></div>
+    <div class="price-rule"><strong>SPAR frem for procent</strong><span>"SPAR [beløb]" foretrækkes frem for procentsatser — medmindre procenten er særligt fordelagtig.</span></div>
+    <div class="price-rule"><strong>Kampagnefarver tilpasses</strong><span>Farverne på prissplash tilpasses de aktuelle kampagnefarver fra paletten.</span></div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     05 KONCEPTER
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="koncepter">
+  <span class="section-tag">05</span>
+  <h2 class="section-title">Koncepter</h2>
+  <p class="lead">Bag Bog &amp; idés kommunikation ligger en række faste koncepter med egne regler, ikoner og visuelle systemer.</p>
+
+  <div class="concept-grid">
+
+    <div class="concept-card">
+      <div class="concept-card-img"><img src="assets/images/concept-prismatch.svg" alt="Prismatch"/></div>
+      <div class="concept-card-body">
+        <div class="concept-card-title">Prismatch</div>
+        <div class="concept-card-desc">Vi garanterer at du ikke får vores produkter billigere andre steder. Gælder på identiske produkter inden for Danmarks grænser og skal dokumenteres inden for 14 dage efter købet. Undtaget er køtilbud, ophørsudsalg og timetilbud.</div>
+        <div class="concept-card-tags"><span class="concept-card-tag">Ikon</span><span class="concept-card-tag">Vilkår og betingelser</span></div>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-card-img"><img src="assets/images/concept-maanedslaseoplevelse.svg" alt="Månedens Læseoplevelse"/></div>
+      <div class="concept-card-body">
+        <div class="concept-card-title">Månedens Læseoplevelse</div>
+        <div class="concept-card-desc">Hver måned kårer Bog &amp; idés medarbejdere Månedens Læseoplevelse for voksne, unge og børn — den bog de vil anbefale, hvis du kun skal læse én bog den måned. Ikke nødvendigvis en nyhed, men altid en bog der giver en særlig oplevelse.</div>
+        <div class="concept-card-tags"><span class="concept-card-tag">Voksne</span><span class="concept-card-tag">Unge</span><span class="concept-card-tag">Børn</span></div>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-card-img"><img src="assets/images/concept-bestseller.svg" alt="Bestsellerlisten"/></div>
+      <div class="concept-card-body">
+        <div class="concept-card-title">Bestsellerlisten</div>
+        <div class="concept-card-desc">Bestsellerlisterne fra Bog &amp; idé bygger på salg af bøger i alle butikker i hele Danmark og opdateres hver mandag. En titel er en bestseller, når den fremgår af listen i en af de seks genrer.</div>
+        <div class="concept-card-tags"><span class="concept-card-tag">Skønlitteratur</span><span class="concept-card-tag">Krimi</span><span class="concept-card-tag">Biografi</span><span class="concept-card-tag">Børn</span><span class="concept-card-tag">Ungdom</span><span class="concept-card-tag">Faglitteratur</span></div>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="concept-card-img"><img src="assets/images/concept-spil.svg" alt="Årets Spil"/></div>
+      <div class="concept-card-body">
+        <div class="concept-card-title">Årets Spil</div>
+        <div class="concept-card-desc">Kåring af de bedste spil på tværs af fire kategorier. Alle indsendte spil vurderes af et forbrugerpanel der passer til kategorien og gives 1–6 point. Vinderen må bruge Årets Spil-logoet i sin markedsføring.</div>
+        <div class="concept-card-tags"><span class="concept-card-tag">Hele familien</span><span class="concept-card-tag">Børn</span><span class="concept-card-tag">Voksne</span><span class="concept-card-tag">Årets nyhed</span></div>
+      </div>
+    </div>
+
+    <div class="concept-card" style="grid-column:1/-1;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+        <div class="concept-card-img" style="border-bottom:none;border-right:1px solid var(--border);"><img src="assets/images/concept-martha.svg" alt="Marthaprisen"/></div>
+        <div class="concept-card-body">
+          <div class="concept-card-title">Marthaprisen</div>
+          <div class="concept-card-desc" style="margin-bottom:12px;">Hos Bog &amp; idé elsker vi bøger — og alle der læser dem. Marthaprisen er læsernes egen forfatterpris, stiftet af Bog &amp; idé. Det er den eneste danske litteraturpris, hvor det udelukkende er læsere der bestemmer, hvem der skal vinde.</div>
+          <div class="concept-card-desc">8 forfattere nomineres hvert år — 4 af medarbejderne og 4 af læserne. Nomineringer løber over forår og sommer, afstemning sker til og med september. Vinderen offentliggøres i oktober. Prisen er opkaldt efter den første prismodtager, Martha Christensen, og uddeles siden 1989.</div>
         </div>
       </div>
+    </div>
 
-      <hr class="divider"/>
+  </div>
+</section>
 
-      <!-- 2.7 KUNDEKLUB ──────────────────────────────────────────── -->
-      <div id="kundeklub">
-        <h3 class="section-subtitle">Kundeklub</h3>
-        <p class="lead">Kundeklubben er gratis at være medlem af og giver adgang til eksklusive fordele. Det visuelle system er defineret og adskiller sig bevidst fra den generelle brand-kommunikation.</p>
 
-        <div class="klub-layout">
-          <div>
-            <h4 style="font-size:0.72rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:20px;">Visuelt system</h4>
-            <div class="klub-mockup">
-              <div class="klub-mockup-inner">
-                <div class="klub-bracket-tl"></div>
-                <div class="klub-bracket-tr"></div>
-                <div class="klub-bracket-bl"></div>
-                <div class="klub-bracket-br"></div>
-                <div class="klub-mockup-headline">VELKOMMEN I <span>KLUBBEN</span></div>
-                <div class="klub-mockup-copy">Det koster ikke noget, og du får masser af medlemsfordele. Se mere og meld dig ind på bog-ide.dk</div>
-                <div class="klub-icons-row">
-                  <img src="assets/images/icon-fri-fragt.svg" alt="Fri fragt"/>
-                  <img src="assets/images/icon-garanti.svg" alt="90 dages garanti"/>
-                  <img src="assets/images/icon-returpant.svg" alt="Returpant"/>
-                </div>
-              </div>
-            </div>
-          </div>
+<!-- ══════════════════════════════════════════════════════════
+     06 ASSETS & MATERIALER
+══════════════════════════════════════════════════════════ -->
+<section class="section section-alt" id="assets">
+  <span class="section-tag">06</span>
+  <h2 class="section-title">Assets &amp; Materialer</h2>
+  <p class="lead">Hvert kommunikationsformat har en specifik opgave. Når vi forstår hvad hvert format er bedst til, undgår vi materialer der forsøger at løse to opgaver på én gang.</p>
 
-          <div class="klub-rules">
-            <div class="klub-rule-item">
-              <div class="klub-rule-dot"></div>
-              <div class="klub-rule-content">
-                <strong>Rød ramme — beige boks</strong>
-                <p>Designet er defineret af den røde ramme (#e02e31) omkring en beige boks (#feede0) med hvide klammer indeni. Denne kombination bruges udelukkende til Kundeklub-materiale.</p>
-              </div>
-            </div>
-            <div class="klub-rule-item">
-              <div class="klub-rule-dot"></div>
-              <div class="klub-rule-content">
-                <strong>"KLUBBEN" altid i rød</strong>
-                <p>Ordet KLUBBEN skrives altid med rød farve i overskriften. "VELKOMMEN I" er i sort/neutral. Eksempel: "VELKOMMEN I <span style="color:var(--red);">KLUBBEN</span>".</p>
-              </div>
-            </div>
-            <div class="klub-rule-item">
-              <div class="klub-rule-dot"></div>
-              <div class="klub-rule-content">
-                <strong>Hvide klammer</strong>
-                <p>Klammerne inde i Kundeklub-designet er altid hvide — de er placeret på den beige baggrund og optræder uden "Altid en god idé" sign-off'en.</p>
-              </div>
-            </div>
-            <div class="klub-rule-item">
-              <div class="klub-rule-dot"></div>
-              <div class="klub-rule-content">
-                <strong>Kun til klubben</strong>
-                <p>Ikonerne for de tre klubfordele (fri fragt, tilfredshedsgaranti, returpant) bruges udelukkende i Kundeklub-kommunikation. Farverne på ikoner tilpasses farvepaletten.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <h4 style="font-size:0.72rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin:40px 0 16px;">De tre eksklusive klubfordele</h4>
-        <div class="klub-services">
-          <div class="klub-service-card">
-            <img src="assets/images/icon-fri-fragt.svg" alt="Fri fragt"/>
-            <div class="klub-service-title">Fri Fragt</div>
-            <div class="klub-service-desc">Altid fri fragt til nærmeste pakkeshop eller Bog &amp; idés butikker ved handel i webshoppen.</div>
-          </div>
-          <div class="klub-service-card">
-            <img src="assets/images/icon-garanti.svg" alt="90 dages garanti"/>
-            <div class="klub-service-title">90 Dages Tilfredshedsgaranti</div>
-            <div class="klub-service-desc">På alle børne- og ungdomsbøger. Rammer bogen ikke plet, kan du bytte den inden 90 dage.</div>
-          </div>
-          <div class="klub-service-card">
-            <img src="assets/images/icon-returpant.svg" alt="Returpant"/>
-            <div class="klub-service-title">Giv din Bestseller Videre</div>
-            <div class="klub-service-desc">Aflever din bestseller inden 3 måneder og få et tilgodebevis på 25% af bogens pris.</div>
-          </div>
-        </div>
+  <div id="butik">
+    <h3 class="section-subtitle" style="margin-top:0;">Butikskommunikation</h3>
+    <div class="level-intro">
+      <div class="level-block"><div class="level-block-tag">Niveau 1</div><div class="level-block-title">Emotionel indgang</div><div class="level-block-formats">Uro · Gadestander (A2) · Vindue</div></div>
+      <div class="level-block"><div class="level-block-tag">Niveau 2</div><div class="level-block-title">Kuratering &amp; anbefaling</div><div class="level-block-formats">Profilskilt (A4) · Podie</div></div>
+      <div class="level-block" style="border-right:none;"><div class="level-block-tag">Niveau 3</div><div class="level-block-title">Konvertering &amp; taktik</div><div class="level-block-formats">Prisskilt · Kampagneskilt · Hyldemarkør · Hyldesvirper · Topskilt · Lysdug</div></div>
+    </div>
+    <div class="format-cards">
+      <div class="format-card">
+        <div class="format-card-visual"><img src="assets/images/pos-uro.svg" alt="Uro"/></div>
+        <div class="format-card-body"><div class="format-card-name">Uro</div><div class="format-card-size">A1 · 594 × 841 mm</div><div class="format-specs"><span class="spec-label">Register</span><span class="spec-value">Emotionelt og atmosfærisk</span><span class="spec-label">Opgave</span><span class="spec-value">Skaber den overordnede stemning og etablerer kampagnens univers</span><span class="spec-label">Indhold</span><span class="spec-value">Key visual · Kampagnebudskab · Klammer · "Altid en god idé"</span><span class="spec-label">Regler</span><span class="spec-value">Ingen produktpriser. Ingen produktlister.</span></div><div class="format-example">"Sommerferie, endelig tid til fordybelse."</div></div>
       </div>
-    </section>
-
-
-    <!-- ══════════════════════════════════════════════════════════════════
-         3. PRISKOMMUNIKATION
-    ══════════════════════════════════════════════════════════════════ -->
-    <section class="section" id="priskommunikation">
-      <span class="section-tag">03</span>
-      <h2 class="section-title">Priskommunikation</h2>
-      <p class="lead">Priskommunikation adskiller sig bevidst fra brandkommunikation. Den er rent taktisk og følger et stramt visuelt system — ingen klammer, hvid baggrund, sort tekst.</p>
-
-      <div class="price-examples">
-        <div class="price-tag">
-          <span class="price-tag-label">Standard pris</span>
-          <div class="price-author">Anna Jansson</div>
-          <div class="price-product">Skyggebarn</div>
-          <div class="price-amount">199<sup>95</sup></div>
-        </div>
-        <div class="price-tag">
-          <span class="price-tag-label">Tilbud</span>
-          <div class="price-author">Anna Jansson</div>
-          <div class="price-product">Skyggebarn</div>
-          <div class="price-normal">199,95</div>
-          <div class="price-amount">149<sup>95</sup></div>
-          <div class="price-spar">SPAR 50.–</div>
-        </div>
-        <div class="price-tag">
-          <span class="price-tag-label">Frit valg</span>
-          <div style="font-size:0.72rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">FRIT VALG</div>
-          <div class="price-amount">69<sup>95</sup></div>
-          <div style="font-size:0.72rem; color:var(--muted); margin-top:4px;">2 bøger: 150.–</div>
-          <div class="price-spar">SPAR 30.–</div>
-        </div>
+      <div class="format-card">
+        <div class="format-card-visual"><img src="assets/images/pos-profilskilt.svg" alt="Profilskilt"/></div>
+        <div class="format-card-body"><div class="format-card-name">Profilskilt</div><div class="format-card-size">A4 · 210 × 297 mm</div><div class="format-specs"><span class="spec-label">Register</span><span class="spec-value">Situationelt og redaktionelt</span><span class="spec-label">Opgave</span><span class="spec-value">Kuratering og anbefaling — hænger tematisk sammen med uroen</span><span class="spec-label">Indhold</span><span class="spec-value">Key visual · Inspirationstekst · Konkrete titler med kort beskrivelse · Klammer</span><span class="spec-label">Regler</span><span class="spec-value">Ingen priser.</span></div><div class="format-example">"Lette bøger til kufferten. Tre vi ikke kan holde op med at anbefale."</div></div>
       </div>
-
-      <div class="price-rules">
-        <div class="price-rule">
-          <strong>Hvid baggrund — sort tekst</strong>
-          <span>Prisskilte og prissplash bruger altid hvid baggrund og sort tekst. Klammerne bruges ikke. Simpelt hierarki: produkt → pris → evt. kort tekst.</span>
-        </div>
-        <div class="price-rule">
-          <strong>Normalpris vises tydeligt</strong>
-          <span>Når en vare er nedsat, angives normalpris tydeligt ved siden af kampagneprisen — aldrig skjult eller nedtonet.</span>
-        </div>
-        <div class="price-rule">
-          <strong>SPAR frem for procent</strong>
-          <span>Rabat kommunikeres som "SPAR [beløb]" frem for procentsatser — medmindre procenten er særligt fordelagtig og mere kommunikativ.</span>
-        </div>
-        <div class="price-rule">
-          <strong>Kampagnefarverne tilpasses</strong>
-          <span>Farverne på prissplash tilpasses de aktuelle kampagnefarver fra paletten. De viste eksempler er grundformen.</span>
-        </div>
+      <div class="format-card">
+        <div class="format-card-visual"><img src="assets/images/pos-gadestander.svg" alt="Gadestander"/></div>
+        <div class="format-card-body"><div class="format-card-name">Gadestander / Plakat</div><div class="format-card-size">A2 · 420 × 594 mm</div><div class="format-specs"><span class="spec-label">Register</span><span class="spec-value">Emotionelt og atmosfærisk</span><span class="spec-label">Opgave</span><span class="spec-value">Brandbudskab og stemningsskaber — bruges primært ved indgang og i vinduer</span><span class="spec-label">Indhold</span><span class="spec-value">Stort atmosfærisk billede · Ét budskab · Klammer · "Altid en god idé"</span><span class="spec-label">Regler</span><span class="spec-value">Ét budskab per plakat.</span></div><div class="format-example">"Din perfekte strandbog venter her."</div></div>
       </div>
-    </section>
-
-
-    <!-- ══════════════════════════════════════════════════════════════════
-         4. ASSETS & MATERIALER
-    ══════════════════════════════════════════════════════════════════ -->
-    <section class="section section-alt" id="assets">
-      <span class="section-tag">04</span>
-      <h2 class="section-title">Assets &amp; Materialer</h2>
-      <p class="lead">Hvert kommunikationsformat har en specifik opgave. Når vi forstår hvad hvert format er bedst til, undgår vi materialer der forsøger at løse to opgaver på én gang — og dermed løser ingen af dem optimalt.</p>
-
-      <!-- 4.1 BUTIK ────────────────────────────────────────────────── -->
-      <div id="butik">
-        <h3 class="section-subtitle">Butikskommunikation</h3>
-        <p class="rule" style="margin-bottom:32px;">En kampagne uden uro har ingen emotionel indgang. En uro uden profilskilt efterlader kunden med en stemning men ingen handling. De to formater arbejder altid sammen.</p>
-
-        <div class="level-intro">
-          <div class="level-block">
-            <div class="level-block-tag">Niveau 1</div>
-            <div class="level-block-title">Emotionel indgang</div>
-            <div class="level-block-formats">Uro · Gadestander (A2) · Vindueseksekvering</div>
-          </div>
-          <div class="level-block">
-            <div class="level-block-tag">Niveau 2</div>
-            <div class="level-block-title">Kuratering &amp; anbefaling</div>
-            <div class="level-block-formats">Profilskilt (A4) · Podie</div>
-          </div>
-          <div class="level-block" style="border-right:none;">
-            <div class="level-block-tag">Niveau 3</div>
-            <div class="level-block-title">Konvertering &amp; taktik</div>
-            <div class="level-block-formats">Prisskilt · Kampagneskilt · Hyldemarkør · Hyldesvirper · Topskilt · Lysdug</div>
-          </div>
-        </div>
-
-        <div class="format-cards">
-
-          <div class="format-card">
-            <div class="format-card-visual">
-              <img src="assets/images/pos-uro.svg" alt="Uro"/>
-            </div>
-            <div class="format-card-body">
-              <div class="format-card-name">Uro</div>
-              <div class="format-card-size">A1 · 594 × 841 mm</div>
-              <div class="format-specs">
-                <span class="spec-label">Register</span><span class="spec-value">Emotionelt og atmosfærisk</span>
-                <span class="spec-label">Opgave</span><span class="spec-value">Skaber den overordnede stemning og etablerer kampagnens univers</span>
-                <span class="spec-label">Indhold</span><span class="spec-value">Key visual · Kampagnebudskab · Klammer · "Altid en god idé"</span>
-                <span class="spec-label">Regler</span><span class="spec-value">Ingen produktpriser. Ingen produktlister.</span>
-              </div>
-              <div class="format-example">"Sommerferie, endelig tid til fordybelse."</div>
-            </div>
-          </div>
-
-          <div class="format-card">
-            <div class="format-card-visual">
-              <img src="assets/images/pos-profilskilt.svg" alt="Profilskilt"/>
-            </div>
-            <div class="format-card-body">
-              <div class="format-card-name">Profilskilt</div>
-              <div class="format-card-size">A4 · 210 × 297 mm</div>
-              <div class="format-specs">
-                <span class="spec-label">Register</span><span class="spec-value">Situationelt og redaktionelt</span>
-                <span class="spec-label">Opgave</span><span class="spec-value">Kuratering og anbefaling — hænger tematisk sammen med uroen</span>
-                <span class="spec-label">Indhold</span><span class="spec-value">Key visual · Inspirationstekst · Konkrete titler med kort beskrivelse · Klammer</span>
-                <span class="spec-label">Regler</span><span class="spec-value">Ingen priser.</span>
-              </div>
-              <div class="format-example">"Lette bøger til kufferten. Tre vi ikke kan holde op med at anbefale."</div>
-            </div>
-          </div>
-
-          <div class="format-card">
-            <div class="format-card-visual">
-              <img src="assets/images/pos-gadestander.svg" alt="Gadestander"/>
-            </div>
-            <div class="format-card-body">
-              <div class="format-card-name">Gadestander / Plakat</div>
-              <div class="format-card-size">A2 · 420 × 594 mm</div>
-              <div class="format-specs">
-                <span class="spec-label">Register</span><span class="spec-value">Emotionelt og atmosfærisk</span>
-                <span class="spec-label">Opgave</span><span class="spec-value">Brandbudskab og stemningsskaber — bruges primært ved indgang og i vinduer</span>
-                <span class="spec-label">Indhold</span><span class="spec-value">Stort atmosfærisk billede · Ét budskab · Klammer · "Altid en god idé"</span>
-                <span class="spec-label">Regler</span><span class="spec-value">Ét budskab per plakat.</span>
-              </div>
-              <div class="format-example">"Din perfekte strandbog venter her."</div>
-            </div>
-          </div>
-
-          <div class="format-card">
-            <div class="format-card-visual">
-              <img src="assets/images/pos-kampagneskilt.svg" alt="Kampagneskilt"/>
-            </div>
-            <div class="format-card-body">
-              <div class="format-card-name">Kampagneskilt</div>
-              <div class="format-card-size">A4 · 210 × 297 mm</div>
-              <div class="format-specs">
-                <span class="spec-label">Register</span><span class="spec-value">Situationelt og handlingsorienteret</span>
-                <span class="spec-label">Opgave</span><span class="spec-value">Fremhæver kampagnebudskab og skaber taktisk opmærksomhed</span>
-                <span class="spec-label">Indhold</span><span class="spec-value">Kampagnebudskab · Klammer · Key visual eller kurateringselementer</span>
-              </div>
-              <div class="format-example">"20% på alle krimier denne uge."</div>
-            </div>
-          </div>
-
-          <div class="format-card">
-            <div class="format-card-visual">
-              <img src="assets/images/pos-prisskilt.svg" alt="Prisskilt"/>
-            </div>
-            <div class="format-card-body">
-              <div class="format-card-name">Prisskilt</div>
-              <div class="format-card-size">A4 · 210 × 297 mm</div>
-              <div class="format-specs">
-                <span class="spec-label">Register</span><span class="spec-value">Handlingsorienteret — rent taktisk</span>
-                <span class="spec-label">Opgave</span><span class="spec-value">Produkt- og prisinformation direkte koblet til konkrete produkter</span>
-                <span class="spec-label">Indhold</span><span class="spec-value">Produkt · Pris · Kort produktinformation</span>
-                <span class="spec-label">Regler</span><span class="spec-value">Hvid baggrund. Ingen klammer. Ingen kampagnebudskaber.</span>
-              </div>
-              <div class="format-example">Produktnavn · Normalpris · Tilbudspris · SPAR beløb</div>
-            </div>
-          </div>
-
-        </div>
-
-        <div style="margin-top:32px; padding:20px 24px; background:var(--beige); border-radius:4px; font-size:0.85rem; line-height:1.65; color:var(--text);">
-          <strong>Øvrige butiksformater:</strong> Hyldemarkør (stor/lille) — genre- og nummermarkering på bestseller-reolen · Hyldesvirper — opmærksomhedsskabende fra siden af reolen · Topskilt — markerer bestseller-reolen i loftet (mørkeblå baggrund) · Lysdug (90×65 cm) — til bestsellerlisten på bord eller podie · Podie — redaktionel scene for kuraterede opstillinger.
-        </div>
+      <div class="format-card">
+        <div class="format-card-visual"><img src="assets/images/pos-prisskilt.svg" alt="Prisskilt"/></div>
+        <div class="format-card-body"><div class="format-card-name">Prisskilt</div><div class="format-card-size">A4 · 210 × 297 mm</div><div class="format-specs"><span class="spec-label">Register</span><span class="spec-value">Handlingsorienteret — rent taktisk</span><span class="spec-label">Opgave</span><span class="spec-value">Produkt- og prisinformation direkte koblet til konkrete produkter</span><span class="spec-label">Regler</span><span class="spec-value">Hvid baggrund. Ingen klammer. Ingen kampagnebudskaber.</span></div><div class="format-example">Produktnavn · Normalpris · Tilbudspris · SPAR beløb</div></div>
       </div>
+    </div>
+    <div class="info-box" style="margin-top:24px;"><strong>Øvrige butiksformater</strong>Hyldemarkør (stor/lille) — genre- og nummermarkering på bestseller-reolen · Hyldesvirper — opmærksomhedsskabende fra siden af reolen · Topskilt — markerer bestseller-reolen i loftet (mørkeblå baggrund) · Lysdug (90×65 cm) — til bestsellerlisten på bord eller podie · Podie — redaktionel scene for kuraterede opstillinger.</div>
+  </div>
 
-      <hr class="divider"/>
+  <hr class="divider"/>
 
-      <!-- 4.2 DIGITALT ─────────────────────────────────────────────── -->
-      <div id="digitalt">
-        <h3 class="section-subtitle">Digitale formater</h3>
-
-        <div class="format-cards">
-
-          <div class="format-card">
-            <div class="format-card-visual">
-              <img src="assets/images/digital-bannerad-300x250.svg" alt="Bannerad"/>
-            </div>
-            <div class="format-card-body">
-              <div class="format-card-name">Bannerad (display)</div>
-              <div class="format-card-size">300×250 · 728×90 · 160×600 px</div>
-              <div class="format-specs">
-                <span class="spec-label">Register</span><span class="spec-value">Handlingsorienteret</span>
-                <span class="spec-label">Opgave</span><span class="spec-value">Konverterer eksisterende interesse til handling</span>
-                <span class="spec-label">Regler</span><span class="spec-value">Ét budskab · Tydelig CTA · Ingen støj · Læses på under 2 sekunder</span>
-              </div>
-              <div class="format-example">"Find din strandbog. 3 anbefalinger fra vores boghandlere."</div>
-            </div>
-          </div>
-
-          <div class="format-card">
-            <div class="format-card-visual">
-              <img src="assets/images/digital-social-feed.svg" alt="Betalt social"/>
-            </div>
-            <div class="format-card-body">
-              <div class="format-card-name">Annonce, betalt social</div>
-              <div class="format-card-size">1080×1080 · 1080×1920 px</div>
-              <div class="format-specs">
-                <span class="spec-label">Register</span><span class="spec-value">Situationelt og præcist</span>
-                <span class="spec-label">Opgave</span><span class="spec-value">Skaber efterspørgsel ved at møde kunden i en konkret situation</span>
-                <span class="spec-label">Regler</span><span class="spec-value">Tag udgangspunkt i en situation. Undgå generiske slogans. Billede understøtter situationen.</span>
-              </div>
-              <div class="format-example">"Ferielæsning: let, spændende, umulig at lægge fra sig."</div>
-            </div>
-          </div>
-
-          <div class="format-card">
-            <div class="format-card-visual">
-              <img src="assets/images/digital-social-story.svg" alt="Organisk SoMe"/>
-            </div>
-            <div class="format-card-body">
-              <div class="format-card-name">Organisk SoMe</div>
-              <div class="format-card-size">1080×1080 · 1080×1350 · 1080×1920 px</div>
-              <div class="format-specs">
-                <span class="spec-label">Register</span><span class="spec-value">Redaktionelt og personligt</span>
-                <span class="spec-label">Opgave</span><span class="spec-value">Bygger relation, personlighed og mental tilgængelighed over tid</span>
-                <span class="spec-label">Regler</span><span class="spec-value">Tag stilling. Undgå produktgrid uden kontekst. Involver og skab dialog.</span>
-              </div>
-              <div class="format-example">"Vi har valgt tre bøger til din ferie. Du behøver ikke vælge selv."</div>
-            </div>
-          </div>
-
-          <div class="format-card">
-            <div class="format-card-visual">
-              <img src="assets/images/digital-email-header.svg" alt="E-mail kundeklub"/>
-            </div>
-            <div class="format-card-body">
-              <div class="format-card-name">E-mail, kundeklub</div>
-              <div class="format-card-size">600 px bred · variabel højde</div>
-              <div class="format-specs">
-                <span class="spec-label">Register</span><span class="spec-value">Personligt og relationelt</span>
-                <span class="spec-label">Opgave</span><span class="spec-value">Styrker relationen og skaber gentagende adfærd baseret på kundekendskab</span>
-                <span class="spec-label">Regler</span><span class="spec-value">Skriv som om boghandleren selv sender mailen. Personaliser på baggrund af adfærd.</span>
-              </div>
-              <div class="format-example">Emnefelt: "Fordi du læste [titel], tror vi du vil elske denne." · Preheader: "Vi har gjort valget nemt."</div>
-            </div>
-          </div>
-
-          <div class="format-card">
-            <div class="format-card-visual">
-              <img src="assets/images/digital-email-header.svg" alt="E-mail bred"/>
-            </div>
-            <div class="format-card-body">
-              <div class="format-card-name">E-mail, bred udsendelse</div>
-              <div class="format-card-size">600 px bred · variabel højde</div>
-              <div class="format-specs">
-                <span class="spec-label">Register</span><span class="spec-value">Situationelt med handlingsorienteret lag</span>
-                <span class="spec-label">Opgave</span><span class="spec-value">Skaber efterspørgsel og driver trafik. Kan konvertere ikke-medlemmer til klubmedlemmer.</span>
-                <span class="spec-label">Regler</span><span class="spec-value">Samme grundstruktur som klubmail, men med CTA der inviterer til medlemskab.</span>
-              </div>
-              <div class="format-example">Emnefelt: "Klar til ferie? Vi har valgt for dig." · Preheader: "Tre lette læsninger du ikke lægger fra dig."</div>
-            </div>
-          </div>
-
-        </div>
+  <div id="digitalt">
+    <h3 class="section-subtitle" style="margin-top:0;">Digitale formater</h3>
+    <div class="format-cards">
+      <div class="format-card">
+        <div class="format-card-visual"><img src="assets/images/digital-bannerad-300x250.svg" alt="Bannerad"/></div>
+        <div class="format-card-body"><div class="format-card-name">Bannerad (display)</div><div class="format-card-size">300×250 · 728×90 · 160×600 px</div><div class="format-specs"><span class="spec-label">Register</span><span class="spec-value">Handlingsorienteret</span><span class="spec-label">Opgave</span><span class="spec-value">Konverterer eksisterende interesse til handling</span><span class="spec-label">Regler</span><span class="spec-value">Ét budskab · Tydelig CTA · Læses på under 2 sekunder</span></div><div class="format-example">"Find din strandbog. 3 anbefalinger fra vores boghandlere."</div></div>
       </div>
-    </section>
-
-
-    <!-- ══════════════════════════════════════════════════════════════════
-         5. KAMPAGNESKABELON
-    ══════════════════════════════════════════════════════════════════ -->
-    <section class="section" id="kampagne">
-      <span class="section-tag">05</span>
-      <h2 class="section-title">Kampagneskabelon</h2>
-      <p class="lead">En veldefineret kampagnestruktur sikrer at alle assets arbejder i den samme retning og at eksekveringen kan skaleres effektivt på tværs af formater. Enhver kampagne tager udgangspunkt i disse fem elementer.</p>
-
-      <div class="brief-steps">
-        <div class="brief-step">
-          <div class="brief-step-num">1</div>
-          <div class="brief-step-body">
-            <div class="brief-step-title">Entry point</div>
-            <div class="brief-step-desc">Hvilken situation aktiverer kampagnen? Ét entry point per kampagne. Eksempler: "Jeg skal finde en gave" · "Jeg vil i gang med at læse" · "Jeg vil koble af i ferien" · "Mit barn skal starte i skole".</div>
-          </div>
-        </div>
-        <div class="brief-step">
-          <div class="brief-step-num">2</div>
-          <div class="brief-step-body">
-            <div class="brief-step-title">Budskab</div>
-            <div class="brief-step-desc">Hvad er det ene budskab kampagnen kommunikerer? Det skal kunne siges i én sætning. Eksempel: "Vi hjælper dig med at vælge den perfekte julegave — udvalgt af vores boghandlere."</div>
-          </div>
-        </div>
-        <div class="brief-step">
-          <div class="brief-step-num">3</div>
-          <div class="brief-step-body">
-            <div class="brief-step-title">Register</div>
-            <div class="brief-step-desc">Emotionelt, situationelt eller handlingsorienteret? Afgøres af de kanaler kampagnen lever i. Upper funnel = emotionelt. Mid funnel = situationelt. Lower funnel = handlingsorienteret.</div>
-          </div>
-        </div>
-        <div class="brief-step">
-          <div class="brief-step-num">4</div>
-          <div class="brief-step-body">
-            <div class="brief-step-title">Assets</div>
-            <div class="brief-step-desc">Hvilke formater produceres? Hvert format beskrives med budskab og billedretning. Husk: uro + profilskilt hænger altid sammen. Ingen uro = ingen emotionel indgang.</div>
-          </div>
-        </div>
-        <div class="brief-step">
-          <div class="brief-step-num">5</div>
-          <div class="brief-step-body">
-            <div class="brief-step-title">Genbrug</div>
-            <div class="brief-step-desc">Hvilke elementer kan genbruges på tværs af formater og i fremtidige kampagner? Key visuals, tekstelementer og kuraterede produktlister bør designes med genbrug i mente.</div>
-          </div>
-        </div>
+      <div class="format-card">
+        <div class="format-card-visual"><img src="assets/images/digital-social-feed.svg" alt="Betalt social"/></div>
+        <div class="format-card-body"><div class="format-card-name">Annonce, betalt social</div><div class="format-card-size">1080×1080 · 1080×1920 px</div><div class="format-specs"><span class="spec-label">Register</span><span class="spec-value">Situationelt og præcist</span><span class="spec-label">Opgave</span><span class="spec-value">Skaber efterspørgsel ved at møde kunden i en konkret situation</span><span class="spec-label">Regler</span><span class="spec-value">Tag udgangspunkt i en situation. Undgå generiske slogans.</span></div><div class="format-example">"Ferielæsning: let, spændende, umulig at lægge fra sig."</div></div>
       </div>
-
-      <div style="margin-top:32px; padding:24px 28px; background:var(--beige); border-radius:4px; font-size:0.88rem; line-height:1.7; color:var(--text);">
-        <strong>Årshjul og sæsonspecifikke paletter</strong> med kampagneperioder og fuldt briefingformat dokumenteres løbende og tilføjes her. Kontakt Marketing for seneste version.
+      <div class="format-card">
+        <div class="format-card-visual"><img src="assets/images/digital-social-story.svg" alt="Organisk SoMe"/></div>
+        <div class="format-card-body"><div class="format-card-name">Organisk SoMe</div><div class="format-card-size">1080×1080 · 1080×1350 · 1080×1920 px</div><div class="format-specs"><span class="spec-label">Register</span><span class="spec-value">Redaktionelt og personligt</span><span class="spec-label">Opgave</span><span class="spec-value">Bygger relation, personlighed og mental tilgængelighed over tid</span><span class="spec-label">Regler</span><span class="spec-value">Tag stilling. Involver og skab dialog.</span></div><div class="format-example">"Vi har valgt tre bøger til din ferie. Du behøver ikke vælge selv."</div></div>
       </div>
-    </section>
+      <div class="format-card">
+        <div class="format-card-visual"><img src="assets/images/digital-email-header.svg" alt="E-mail"/></div>
+        <div class="format-card-body"><div class="format-card-name">E-mail, kundeklub</div><div class="format-card-size">600 px bred · variabel højde</div><div class="format-specs"><span class="spec-label">Register</span><span class="spec-value">Personligt og relationelt</span><span class="spec-label">Opgave</span><span class="spec-value">Styrker relationen og skaber gentagende adfærd baseret på kundekendskab</span><span class="spec-label">Regler</span><span class="spec-value">Skriv som om boghandleren selv sender mailen. Personaliser på baggrund af adfærd.</span></div><div class="format-example">Emnefelt: "Fordi du læste [titel], tror vi du vil elske denne."</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  </main>
+
+<!-- ══════════════════════════════════════════════════════════
+     07 BØRNEUNIVERS
+══════════════════════════════════════════════════════════ -->
+<section class="section" id="borneunivers">
+  <span class="section-tag">07</span>
+  <h2 class="section-title">Børneunivers</h2>
+  <p class="lead">Børneuniverset har sit eget visuelle sprog med dedikerede illustrationer, en særlig skrifttype og et tilpasset farvepalette. Det giver Bog &amp; idé et genkendeligt og legende udtryk i børnevendt kommunikation.</p>
+
+  <div class="born-grid">
+    <div class="born-card">
+      <img src="assets/images/born-illustration.svg" alt="Børneunivers illustration"/>
+      <div class="born-card-label">Illustrationer — sæsonbestemte</div>
+    </div>
+    <div>
+      <div class="born-card" style="margin-bottom:16px;">
+        <img src="assets/images/born-font.svg" alt="Verveine font"/>
+        <div class="born-card-label">Verveine — Børnefont</div>
+      </div>
+      <div class="born-card">
+        <img src="assets/images/born-baggrund.svg" alt="Børneunivers baggrund"/>
+        <div class="born-card-label">Baggrundsillustration</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:28px;">
+    <div>
+      <h3 class="section-subtitle" style="margin-top:0;">Illustrationer</h3>
+      <p class="rule">Vores illustrationer er vores egne og giver særkende, skaber liv og sætter fokus på en anledning eller et produkt. De bruges med tilrettede farver og som baggrundsillustration. Det er vigtigt, at der ikke er for mange produkter på siden, og at baggrunden ikke stjæler opmærksomheden.</p>
+    </div>
+    <div>
+      <h3 class="section-subtitle" style="margin-top:0;">Verveine — Børnefont</h3>
+      <p class="rule" style="margin-bottom:16px;">Verveine bruges på grafiske materialer med børneillustrationer. Den bruges til at fremhæve budskaber der knytter sig til børnedesignet.</p>
+      <div class="info-box"><strong>Bruges kun som overskrifter</strong>Verveine bruges udelukkende til opmærksomhedsskabende tekster og overskrifter i børnematerialer — aldrig til brødtekst.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     08 KAMPAGNESKABELON
+══════════════════════════════════════════════════════════ -->
+<section class="section section-alt" id="kampagne">
+  <span class="section-tag">08</span>
+  <h2 class="section-title">Kampagneskabelon</h2>
+  <p class="lead">En veldefineret kampagnestruktur sikrer at alle assets arbejder i den samme retning. Enhver kampagne tager udgangspunkt i disse fem elementer.</p>
+
+  <div class="brief-steps">
+    <div class="brief-step"><div class="brief-step-num">1</div><div class="brief-step-body"><div class="brief-step-title">Entry point</div><div class="brief-step-desc">Hvilken situation aktiverer kampagnen? Ét entry point per kampagne. Eksempler: "Jeg skal finde en gave" · "Jeg vil i gang med at læse" · "Jeg vil koble af i ferien" · "Mit barn skal starte i skole".</div></div></div>
+    <div class="brief-step"><div class="brief-step-num">2</div><div class="brief-step-body"><div class="brief-step-title">Budskab</div><div class="brief-step-desc">Hvad er det ene budskab kampagnen kommunikerer? Det skal kunne siges i én sætning. Eksempel: "Vi hjælper dig med at vælge den perfekte julegave — udvalgt af vores boghandlere."</div></div></div>
+    <div class="brief-step"><div class="brief-step-num">3</div><div class="brief-step-body"><div class="brief-step-title">Register</div><div class="brief-step-desc">Emotionelt, situationelt eller handlingsorienteret? Afgøres af de kanaler kampagnen lever i. Upper funnel = emotionelt. Mid funnel = situationelt. Lower funnel = handlingsorienteret.</div></div></div>
+    <div class="brief-step"><div class="brief-step-num">4</div><div class="brief-step-body"><div class="brief-step-title">Assets</div><div class="brief-step-desc">Hvilke formater produceres? Hvert format beskrives med budskab og billedretning. Husk: uro + profilskilt hænger altid sammen. Ingen uro = ingen emotionel indgang.</div></div></div>
+    <div class="brief-step"><div class="brief-step-num">5</div><div class="brief-step-body"><div class="brief-step-title">Genbrug</div><div class="brief-step-desc">Hvilke elementer kan genbruges på tværs af formater og i fremtidige kampagner? Key visuals, tekstelementer og kuraterede produktlister bør designes med genbrug i mente.</div></div></div>
+  </div>
+
+  <div class="info-box" style="margin-top:28px;"><strong>Årshjul og sæsonspecifikke paletter</strong>Kampagneperioder og fuldt briefingformat dokumenteres løbende og tilføjes her. Kontakt Marketing for seneste version.</div>
+</section>
+
+</main>
 </div>
 
-<!-- ── FOOTER ─────────────────────────────────────────────────────────────── -->
 <footer class="site-footer">
   <div class="footer-logo">Bog &amp; idé</div>
-  <div class="footer-meta">
-    Design Guide 2026 — Intern brug<br>
-    Opdateres løbende af Marketing
-  </div>
+  <div class="footer-meta">Design Guide 2026 — Intern brug<br>Opdateres løbende af Marketing</div>
 </footer>
 
 <script>
-  /* ── Copy hex ──────────────────────────────────────────────────────────── */
-  function copyHex(btn, hex) {
-    navigator.clipboard.writeText(hex).then(() => {
-      btn.textContent = '✓ Kopieret!';
-      btn.classList.add('copied');
-      setTimeout(() => {
-        btn.textContent = 'Kopiér hex';
-        btn.classList.remove('copied');
-      }, 2000);
-    });
-  }
-
-  /* ── Sidebar scroll spy ────────────────────────────────────────────────── */
-  const navLinks = document.querySelectorAll('.nav-link');
-  const targets  = [];
-
-  navLinks.forEach(link => {
-    const id = link.getAttribute('href').replace('#', '');
-    const el = document.getElementById(id);
-    if (el) targets.push({ el, link });
+function copyHex(btn, hex) {
+  navigator.clipboard.writeText(hex).then(() => {
+    btn.textContent = '✓ Kopieret!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Kopiér hex'; btn.classList.remove('copied'); }, 2000);
   });
-
-  function onScroll() {
-    const scrollY = window.scrollY + 120;
-    let current = null;
-    targets.forEach(({ el, link }) => {
-      if (el.getBoundingClientRect().top + window.scrollY <= scrollY) {
-        current = link;
-      }
-    });
-    navLinks.forEach(l => l.classList.remove('active'));
-    if (current) current.classList.add('active');
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+}
+const navLinks = document.querySelectorAll('.nav-link');
+const targets = [];
+navLinks.forEach(link => {
+  const id = link.getAttribute('href').replace('#','');
+  const el = document.getElementById(id);
+  if (el) targets.push({ el, link });
+});
+function onScroll() {
+  const y = window.scrollY + 100;
+  let current = null;
+  targets.forEach(({ el, link }) => { if (el.getBoundingClientRect().top + window.scrollY <= y) current = link; });
+  navLinks.forEach(l => l.classList.remove('active'));
+  if (current) current.classList.add('active');
+}
+window.addEventListener('scroll', onScroll, { passive:true });
+onScroll();
 </script>
-
 </body>
 </html>
