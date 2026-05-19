@@ -37,19 +37,48 @@
     .site-header-logo span { color:var(--red); }
     .site-header-badge { font-size:0.65rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--red); border:1px solid rgba(224,46,49,0.35); padding:4px 10px; border-radius:2px; }
 
-    /* HERO */
-    .hero {
-      margin-top:var(--header-h); background:var(--white);
-      padding:88px 48px 88px calc(var(--sidebar-w) + 56px);
-      border-bottom:3px solid var(--red);
-    }
-    .hero-eyebrow { font-size:0.72rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--red); margin-bottom:18px; }
-    .hero-title { font-family:'Velo',serif; font-weight:700; font-size:clamp(2.8rem,5.5vw,5rem); line-height:1; letter-spacing:-0.02em; color:var(--text); margin-bottom:24px; }
-    .hero-desc { font-weight:300; font-size:1.1rem; color:var(--muted); max-width:560px; line-height:1.75; }
+    /* ROUTING */
+    .page { display:none; }
+    .page.active { display:block; }
 
-    /* PAGE LAYOUT */
-    .page-wrap { max-width:1440px; margin:0 auto; position:relative; }
+    /* HUB LAYOUT */
+    .hub-inner { max-width:1440px; margin:0 auto; padding:0 64px; }
+    .hub-hero-wrap { margin-top:var(--header-h); background:var(--white); border-bottom:3px solid var(--red); }
+    .hub-hero { padding:80px 0; }
+    .hub-eyebrow { font-size:0.72rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--red); margin-bottom:18px; }
+    .hub-title { font-family:'Velo',serif; font-weight:700; font-size:clamp(2.8rem,5.5vw,5rem); line-height:1; letter-spacing:-0.02em; margin-bottom:24px; }
+    .hub-desc { font-weight:300; font-size:1.1rem; color:var(--muted); max-width:560px; line-height:1.75; }
+    .hub-brand-strip { background:var(--red); }
+    .hub-brand-strip .hub-inner { padding-top:48px; padding-bottom:48px; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+    .hub-brand-quote { font-family:'Velo',serif; font-weight:700; font-size:clamp(1.4rem,2.6vw,2rem); color:#fff; line-height:1.2; letter-spacing:-0.02em; }
+    .hub-brand-desc { font-size:0.95rem; color:rgba(255,255,255,.75); line-height:1.75; font-weight:300; }
+    .hub-body-wrap { background:var(--bg); }
+    .hub-body { padding:64px 0; }
+    .hub-section-label { font-size:0.65rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:28px; display:block; }
+    .hub-chapters { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .hub-card { background:var(--white); border:1px solid var(--border); border-radius:6px; padding:32px; text-decoration:none; color:inherit; display:flex; flex-direction:column; transition:border-color .2s,box-shadow .2s,transform .2s; }
+    .hub-card:hover { border-color:var(--red); box-shadow:0 4px 32px rgba(224,46,49,.08); transform:translateY(-2px); }
+    .hub-card-num { font-size:0.62rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--red); margin-bottom:14px; }
+    .hub-card-title { font-family:'Velo',serif; font-weight:700; font-size:1.3rem; line-height:1.1; margin-bottom:12px; letter-spacing:-0.01em; }
+    .hub-card-desc { font-size:0.88rem; color:var(--muted); line-height:1.65; flex:1; }
+    .hub-card-arrow { margin-top:24px; font-size:0.82rem; font-weight:700; color:var(--red); }
+
+    /* CHAPTER PAGE LAYOUT */
+    .chapter-wrap { max-width:1440px; margin:0 auto; }
+    .chapter-wrap .page-body { margin-top:var(--header-h); }
     .page-body { display:flex; }
+
+    /* SIDEBAR BACK LINK */
+    .sidebar-back { display:flex; align-items:center; gap:8px; padding:14px 28px; font-size:0.78rem; font-weight:700; color:var(--muted); text-decoration:none; border-bottom:1px solid var(--border); margin-bottom:16px; transition:color .15s; }
+    .sidebar-back:hover { color:var(--red); }
+
+    /* CHAPTER PREV/NEXT NAV */
+    .chapter-nav { max-width:1440px; margin:0 auto; padding:32px 64px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); background:var(--white); }
+    .chapter-nav-btn { display:flex; flex-direction:column; gap:4px; text-decoration:none; color:inherit; padding:16px 20px; border:1px solid var(--border); border-radius:4px; transition:border-color .15s; min-width:200px; }
+    .chapter-nav-btn:hover { border-color:var(--red); }
+    .chapter-nav-btn.right { text-align:right; }
+    .chapter-nav-label { font-size:0.62rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+    .chapter-nav-title { font-family:'Velo',serif; font-weight:700; font-size:1rem; color:var(--text); }
 
     /* SIDEBAR */
     .sidebar {
@@ -344,7 +373,6 @@
     /* RESPONSIVE */
     @media(max-width:1024px) {
       .sidebar { display:none; }
-      .hero { padding-left:48px; }
       .grid-2,.tov-pillars,.logo-variants,.channel-cards,.klammer-demos,.klammer-rules,
       .do-dont-split,.brand-levels,.brand-intro-grid,.respekt-wrap,.dodont-grid,
       .price-rules,.level-intro,.born-grid,.color-layout { grid-template-columns:1fr; }
@@ -354,12 +382,20 @@
       .klub-layout { grid-template-columns:1fr; }
       .services-grid,.concept-grid { grid-template-columns:1fr 1fr; }
       .download-grid { grid-template-columns:1fr 1fr; }
+      .hub-brand-strip .hub-inner { grid-template-columns:1fr; }
+      .hub-chapters { grid-template-columns:1fr 1fr; }
+      .chapter-nav { padding:24px 32px; }
+      .chapter-nav-btn { min-width:140px; }
     }
     @media(max-width:640px) {
       .section { padding:48px 24px; }
       .services-grid,.concept-grid,.service-grid { grid-template-columns:1fr; }
       .site-footer-inner { flex-direction:column; gap:16px; text-align:center; }
       .footer-meta { text-align:center; }
+      .hub-chapters { grid-template-columns:1fr; }
+      .hub-inner { padding:0 24px; }
+      .chapter-nav { flex-direction:column; gap:12px; padding:24px; }
+      .chapter-nav-btn { min-width:100%; }
     }
   </style>
 </head>
@@ -367,47 +403,58 @@
 
 <header class="site-header">
   <div class="site-header-inner">
-    <a class="site-header-logo" href="#">Bog <span>&amp;</span> idé</a>
+    <a class="site-header-logo" href="#home">Bog <span>&amp;</span> idé</a>
     <span class="site-header-badge">Design Guide 2026 — Intern</span>
   </div>
 </header>
 
-<div class="page-wrap">
-<div class="hero">
-  <p class="hero-eyebrow">Bog &amp; idé — Design Guide 2026</p>
-  <h1 class="hero-title">Vores visuelle<br>og verbale identitet</h1>
-  <p class="hero-desc">Alt hvad du skal bruge for at producere, godkende eller briefe kommunikation fra Bog &amp; idé. Farver, typografi, logo, tone of voice og materialer — samlet ét sted.</p>
+<!-- ══════════════════════════ HUB PAGE ══════════════════════════ -->
+<div class="page active" id="page-home">
+  <div class="hub-hero-wrap">
+    <div class="hub-inner">
+      <div class="hub-hero">
+        <p class="hub-eyebrow">Bog &amp; idé — Design Guide 2026</p>
+        <h1 class="hub-title">Vores visuelle<br>og verbale identitet</h1>
+        <p class="hub-desc">Alt hvad du skal bruge for at producere, godkende eller briefe kommunikation fra Bog &amp; idé — samlet ét sted.</p>
+      </div>
+    </div>
+  </div>
+  <div class="hub-brand-strip">
+    <div class="hub-inner">
+      <div class="hub-brand-quote">"Bog &amp; idé er ikke det billigste sted at købe bøger. Det er det bedste sted at vælge dem."</div>
+      <p class="hub-brand-desc">Vi konkurrerer ikke på pris — vi konkurrerer på kuratering og vejledning. Vores styrke er evnen til at hjælpe kunden med at vælge rigtigt i en tid med for mange muligheder og for lidt vejledning.</p>
+    </div>
+  </div>
+  <div class="hub-body-wrap">
+    <div class="hub-inner">
+      <div class="hub-body">
+        <span class="hub-section-label">Vælg et kapitel</span>
+        <div class="hub-chapters">
+          <a class="hub-card" href="#brand"><div class="hub-card-num">Brand</div><div class="hub-card-title">Brand &amp; Sign-off</div><p class="hub-card-desc">Bog &amp; idés brandidentitet, purpose, position og kommunikationsfilter.</p><div class="hub-card-arrow">Læs kapitel →</div></a>
+          <a class="hub-card" href="#tone-of-voice"><div class="hub-card-num">01</div><div class="hub-card-title">Tone of Voice</div><p class="hub-card-desc">Hvem vi taler som, hvad vi siger, og hvad vi aldrig siger.</p><div class="hub-card-arrow">Læs kapitel →</div></a>
+          <a class="hub-card" href="#visuel-identitet"><div class="hub-card-num">02</div><div class="hub-card-title">Visuel Identitet</div><p class="hub-card-desc">Logo, klammerne, farvepaletten, typografi, billedstil og kundeklub.</p><div class="hub-card-arrow">Læs kapitel →</div></a>
+          <a class="hub-card" href="#services"><div class="hub-card-num">03</div><div class="hub-card-title">Services</div><p class="hub-card-desc">Ikoner og tekster til Bog &amp; idés service-kommunikation.</p><div class="hub-card-arrow">Læs kapitel →</div></a>
+          <a class="hub-card" href="#priskommunikation"><div class="hub-card-num">04</div><div class="hub-card-title">Priskommunikation</div><p class="hub-card-desc">Det taktiske visuelle system til priser, tilbud og kampagnepriser.</p><div class="hub-card-arrow">Læs kapitel →</div></a>
+          <a class="hub-card" href="#koncepter"><div class="hub-card-num">05</div><div class="hub-card-title">Koncepter</div><p class="hub-card-desc">Prismatch, Månedens Læseoplevelse, Bestsellerlisten, Årets Spil og Marthaprisen.</p><div class="hub-card-arrow">Læs kapitel →</div></a>
+          <a class="hub-card" href="#assets"><div class="hub-card-num">06</div><div class="hub-card-title">Assets &amp; Materialer</div><p class="hub-card-desc">Butikskommunikation og digitale formater — opgave og regler for hvert format.</p><div class="hub-card-arrow">Læs kapitel →</div></a>
+          <a class="hub-card" href="#borneunivers"><div class="hub-card-num">07</div><div class="hub-card-title">Børneunivers</div><p class="hub-card-desc">Illustrationer, dedikeret font og farvepalette til børnevendt kommunikation.</p><div class="hub-card-arrow">Læs kapitel →</div></a>
+          <a class="hub-card" href="#kampagne"><div class="hub-card-num">08</div><div class="hub-card-title">Kampagneskabelon</div><p class="hub-card-desc">Struktur for kampagner — entry point, budskab, register, assets og genbrug.</p><div class="hub-card-arrow">Læs kapitel →</div></a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="page-body">
-
-<!-- SIDEBAR -->
-<aside class="sidebar">
-  <span class="sidebar-label">Indhold</span>
-  <a class="nav-link" href="#brand-intro">Brand &amp; Sign-off</a>
-  <a class="nav-link" href="#tone-of-voice">01 — Tone of Voice</a>
-  <a class="nav-link sub" href="#tov-hvem">Hvem vi taler som</a>
-  <a class="nav-link sub" href="#tov-siger">Vi siger / Vi siger ikke</a>
-  <a class="nav-link sub" href="#tov-kanaler">Tone per kanal</a>
-  <a class="nav-link" href="#visuel-identitet">02 — Visuel Identitet</a>
-  <a class="nav-link sub" href="#logo">Logo</a>
-  <a class="nav-link sub" href="#logo-facade">Logo — Facade</a>
-  <a class="nav-link sub" href="#klammerne">Klammerne</a>
-  <a class="nav-link sub" href="#farver">Farvepaletten</a>
-  <a class="nav-link sub" href="#typografi">Typografi</a>
-  <a class="nav-link sub" href="#billedstil">Billedstil</a>
-  <a class="nav-link sub" href="#kundeklub">Kundeklub</a>
-  <a class="nav-link" href="#services">03 — Services</a>
-  <a class="nav-link" href="#priskommunikation">04 — Priskommunikation</a>
-  <a class="nav-link" href="#koncepter">05 — Koncepter</a>
-  <a class="nav-link" href="#assets">06 — Assets &amp; Materialer</a>
-  <a class="nav-link sub" href="#butik">Butikskommunikation</a>
-  <a class="nav-link sub" href="#digitalt">Digitale formater</a>
-  <a class="nav-link" href="#borneunivers">07 — Børneunivers</a>
-  <a class="nav-link" href="#kampagne">08 — Kampagneskabelon</a>
-</aside>
-
-<main class="main-content">
+<!-- ══════════════════════ BRAND CHAPTER ══════════════════════ -->
+<div class="page" id="page-brand">
+  <div class="chapter-wrap">
+    <div class="page-body">
+      <aside class="sidebar">
+        <a class="sidebar-back" href="#home">← Oversigt</a>
+        <span class="sidebar-label">Brand</span>
+        <a class="nav-link" href="#brand-intro">Bog &amp; idé som brand</a>
+      </aside>
+      <main class="main-content">
 
 <!-- ══════════════════════════════════════════════════════════
      BRAND INTRO + ALTID EN GOD IDÉ
@@ -457,6 +504,28 @@
 </section>
 
 
+      </main>
+    </div>
+  </div>
+  <div class="chapter-nav">
+    <a class="chapter-nav-btn" href="#home"><span class="chapter-nav-label">← Tilbage</span><span class="chapter-nav-title">Oversigt</span></a>
+    <a class="chapter-nav-btn right" href="#tone-of-voice"><span class="chapter-nav-label">Næste →</span><span class="chapter-nav-title">01 — Tone of Voice</span></a>
+  </div>
+</div>
+
+<!-- ══════════════════════ TOV CHAPTER ══════════════════════ -->
+<div class="page" id="page-tone-of-voice">
+  <div class="chapter-wrap">
+    <div class="page-body">
+      <aside class="sidebar">
+        <a class="sidebar-back" href="#home">← Oversigt</a>
+        <span class="sidebar-label">01 — Tone of Voice</span>
+        <a class="nav-link" href="#tone-of-voice">Intro</a>
+        <a class="nav-link sub" href="#tov-hvem">Hvem vi taler som</a>
+        <a class="nav-link sub" href="#tov-siger">Vi siger / Vi siger ikke</a>
+        <a class="nav-link sub" href="#tov-kanaler">Tone per kanal</a>
+      </aside>
+      <main class="main-content">
 <!-- ══════════════════════════════════════════════════════════
      01 TONE OF VOICE
 ══════════════════════════════════════════════════════════ -->
@@ -528,6 +597,32 @@
 </section>
 
 
+      </main>
+    </div>
+  </div>
+  <div class="chapter-nav">
+    <a class="chapter-nav-btn" href="#brand"><span class="chapter-nav-label">← Forrige</span><span class="chapter-nav-title">Brand &amp; Sign-off</span></a>
+    <a class="chapter-nav-btn right" href="#visuel-identitet"><span class="chapter-nav-label">Næste →</span><span class="chapter-nav-title">02 — Visuel Identitet</span></a>
+  </div>
+</div>
+
+<!-- ══════════════════════ VISUEL IDENTITET CHAPTER ══════════════════════ -->
+<div class="page" id="page-visuel-identitet">
+  <div class="chapter-wrap">
+    <div class="page-body">
+      <aside class="sidebar">
+        <a class="sidebar-back" href="#home">← Oversigt</a>
+        <span class="sidebar-label">02 — Visuel Identitet</span>
+        <a class="nav-link" href="#visuel-identitet">Intro</a>
+        <a class="nav-link sub" href="#logo">Logo</a>
+        <a class="nav-link sub" href="#logo-facade">Logo — Facade</a>
+        <a class="nav-link sub" href="#klammerne">Klammerne</a>
+        <a class="nav-link sub" href="#farver">Farvepaletten</a>
+        <a class="nav-link sub" href="#typografi">Typografi</a>
+        <a class="nav-link sub" href="#billedstil">Billedstil</a>
+        <a class="nav-link sub" href="#kundeklub">Kundeklub</a>
+      </aside>
+      <main class="main-content">
 <!-- ══════════════════════════════════════════════════════════
      02 VISUEL IDENTITET
 ══════════════════════════════════════════════════════════ -->
@@ -825,6 +920,25 @@
 </section>
 
 
+      </main>
+    </div>
+  </div>
+  <div class="chapter-nav">
+    <a class="chapter-nav-btn" href="#tone-of-voice"><span class="chapter-nav-label">← Forrige</span><span class="chapter-nav-title">01 — Tone of Voice</span></a>
+    <a class="chapter-nav-btn right" href="#services"><span class="chapter-nav-label">Næste →</span><span class="chapter-nav-title">03 — Services</span></a>
+  </div>
+</div>
+
+<!-- ══════════════════════ SERVICES CHAPTER ══════════════════════ -->
+<div class="page" id="page-services">
+  <div class="chapter-wrap">
+    <div class="page-body">
+      <aside class="sidebar">
+        <a class="sidebar-back" href="#home">← Oversigt</a>
+        <span class="sidebar-label">03 — Services</span>
+        <a class="nav-link" href="#services">Oversigt</a>
+      </aside>
+      <main class="main-content">
 <!-- ══════════════════════════════════════════════════════════
      03 SERVICES
 ══════════════════════════════════════════════════════════ -->
@@ -884,6 +998,25 @@
 </section>
 
 
+      </main>
+    </div>
+  </div>
+  <div class="chapter-nav">
+    <a class="chapter-nav-btn" href="#visuel-identitet"><span class="chapter-nav-label">← Forrige</span><span class="chapter-nav-title">02 — Visuel Identitet</span></a>
+    <a class="chapter-nav-btn right" href="#priskommunikation"><span class="chapter-nav-label">Næste →</span><span class="chapter-nav-title">04 — Priskommunikation</span></a>
+  </div>
+</div>
+
+<!-- ══════════════════════ PRISKOMMUNIKATION CHAPTER ══════════════════════ -->
+<div class="page" id="page-priskommunikation">
+  <div class="chapter-wrap">
+    <div class="page-body">
+      <aside class="sidebar">
+        <a class="sidebar-back" href="#home">← Oversigt</a>
+        <span class="sidebar-label">04 — Priskommunikation</span>
+        <a class="nav-link" href="#priskommunikation">Oversigt</a>
+      </aside>
+      <main class="main-content">
 <!-- ══════════════════════════════════════════════════════════
      04 PRISKOMMUNIKATION
 ══════════════════════════════════════════════════════════ -->
@@ -925,6 +1058,25 @@
 </section>
 
 
+      </main>
+    </div>
+  </div>
+  <div class="chapter-nav">
+    <a class="chapter-nav-btn" href="#services"><span class="chapter-nav-label">← Forrige</span><span class="chapter-nav-title">03 — Services</span></a>
+    <a class="chapter-nav-btn right" href="#koncepter"><span class="chapter-nav-label">Næste →</span><span class="chapter-nav-title">05 — Koncepter</span></a>
+  </div>
+</div>
+
+<!-- ══════════════════════ KONCEPTER CHAPTER ══════════════════════ -->
+<div class="page" id="page-koncepter">
+  <div class="chapter-wrap">
+    <div class="page-body">
+      <aside class="sidebar">
+        <a class="sidebar-back" href="#home">← Oversigt</a>
+        <span class="sidebar-label">05 — Koncepter</span>
+        <a class="nav-link" href="#koncepter">Oversigt</a>
+      </aside>
+      <main class="main-content">
 <!-- ══════════════════════════════════════════════════════════
      05 KONCEPTER
 ══════════════════════════════════════════════════════════ -->
@@ -986,6 +1138,27 @@
 </section>
 
 
+      </main>
+    </div>
+  </div>
+  <div class="chapter-nav">
+    <a class="chapter-nav-btn" href="#priskommunikation"><span class="chapter-nav-label">← Forrige</span><span class="chapter-nav-title">04 — Priskommunikation</span></a>
+    <a class="chapter-nav-btn right" href="#assets"><span class="chapter-nav-label">Næste →</span><span class="chapter-nav-title">06 — Assets &amp; Materialer</span></a>
+  </div>
+</div>
+
+<!-- ══════════════════════ ASSETS CHAPTER ══════════════════════ -->
+<div class="page" id="page-assets">
+  <div class="chapter-wrap">
+    <div class="page-body">
+      <aside class="sidebar">
+        <a class="sidebar-back" href="#home">← Oversigt</a>
+        <span class="sidebar-label">06 — Assets &amp; Materialer</span>
+        <a class="nav-link" href="#assets">Oversigt</a>
+        <a class="nav-link sub" href="#butik">Butikskommunikation</a>
+        <a class="nav-link sub" href="#digitalt">Digitale formater</a>
+      </aside>
+      <main class="main-content">
 <!-- ══════════════════════════════════════════════════════════
      06 ASSETS & MATERIALER
 ══════════════════════════════════════════════════════════ -->
@@ -1048,6 +1221,25 @@
 </section>
 
 
+      </main>
+    </div>
+  </div>
+  <div class="chapter-nav">
+    <a class="chapter-nav-btn" href="#koncepter"><span class="chapter-nav-label">← Forrige</span><span class="chapter-nav-title">05 — Koncepter</span></a>
+    <a class="chapter-nav-btn right" href="#borneunivers"><span class="chapter-nav-label">Næste →</span><span class="chapter-nav-title">07 — Børneunivers</span></a>
+  </div>
+</div>
+
+<!-- ══════════════════════ BØRNEUNIVERS CHAPTER ══════════════════════ -->
+<div class="page" id="page-borneunivers">
+  <div class="chapter-wrap">
+    <div class="page-body">
+      <aside class="sidebar">
+        <a class="sidebar-back" href="#home">← Oversigt</a>
+        <span class="sidebar-label">07 — Børneunivers</span>
+        <a class="nav-link" href="#borneunivers">Oversigt</a>
+      </aside>
+      <main class="main-content">
 <!-- ══════════════════════════════════════════════════════════
      07 BØRNEUNIVERS
 ══════════════════════════════════════════════════════════ -->
@@ -1087,6 +1279,25 @@
 </section>
 
 
+      </main>
+    </div>
+  </div>
+  <div class="chapter-nav">
+    <a class="chapter-nav-btn" href="#assets"><span class="chapter-nav-label">← Forrige</span><span class="chapter-nav-title">06 — Assets &amp; Materialer</span></a>
+    <a class="chapter-nav-btn right" href="#kampagne"><span class="chapter-nav-label">Næste →</span><span class="chapter-nav-title">08 — Kampagneskabelon</span></a>
+  </div>
+</div>
+
+<!-- ══════════════════════ KAMPAGNE CHAPTER ══════════════════════ -->
+<div class="page" id="page-kampagne">
+  <div class="chapter-wrap">
+    <div class="page-body">
+      <aside class="sidebar">
+        <a class="sidebar-back" href="#home">← Oversigt</a>
+        <span class="sidebar-label">08 — Kampagneskabelon</span>
+        <a class="nav-link" href="#kampagne">Oversigt</a>
+      </aside>
+      <main class="main-content">
 <!-- ══════════════════════════════════════════════════════════
      08 KAMPAGNESKABELON
 ══════════════════════════════════════════════════════════ -->
@@ -1106,9 +1317,14 @@
   <div class="info-box" style="margin-top:28px;"><strong>Årshjul og sæsonspecifikke paletter</strong>Kampagneperioder og fuldt briefingformat dokumenteres løbende og tilføjes her. Kontakt Marketing for seneste version.</div>
 </section>
 
-</main>
+      </main>
+    </div>
+  </div>
+  <div class="chapter-nav">
+    <a class="chapter-nav-btn" href="#borneunivers"><span class="chapter-nav-label">← Forrige</span><span class="chapter-nav-title">07 — Børneunivers</span></a>
+    <a class="chapter-nav-btn right" href="#home"><span class="chapter-nav-label">← Tilbage</span><span class="chapter-nav-title">Oversigt</span></a>
+  </div>
 </div>
-</div><!-- /page-wrap -->
 
 <footer class="site-footer">
   <div class="site-footer-inner">
@@ -1118,6 +1334,39 @@
 </footer>
 
 <script>
+// ── ROUTING ──────────────────────────────────────────────────────────────
+const PAGES = ['home','brand','tone-of-voice','visuel-identitet','services','priskommunikation','koncepter','assets','borneunivers','kampagne'];
+
+function showPage(hash) {
+  const id = (hash || '').replace('#','') || 'home';
+  if (!PAGES.includes(id)) return;
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + id) || document.getElementById('page-home');
+  if (target) target.classList.add('active');
+  window.scrollTo(0, 0);
+  updateNav();
+}
+
+window.addEventListener('hashchange', () => showPage(location.hash));
+showPage(location.hash);
+
+// ── SCROLL SPY ───────────────────────────────────────────────────────────
+function updateNav() {
+  const activePage = document.querySelector('.page.active');
+  if (!activePage) return;
+  const links = activePage.querySelectorAll('.nav-link[href^="#"]');
+  const y = window.scrollY + 80;
+  let current = null;
+  links.forEach(link => {
+    const el = document.getElementById(link.getAttribute('href').slice(1));
+    if (el && el.getBoundingClientRect().top + window.scrollY <= y) current = link;
+  });
+  links.forEach(l => l.classList.remove('active'));
+  if (current) current.classList.add('active');
+}
+window.addEventListener('scroll', updateNav, { passive:true });
+
+// ── COPY HEX ─────────────────────────────────────────────────────────────
 function copyHex(btn, hex) {
   navigator.clipboard.writeText(hex).then(() => {
     btn.textContent = '✓ Kopieret!';
@@ -1125,22 +1374,6 @@ function copyHex(btn, hex) {
     setTimeout(() => { btn.textContent = 'Kopiér hex'; btn.classList.remove('copied'); }, 2000);
   });
 }
-const navLinks = document.querySelectorAll('.nav-link');
-const targets = [];
-navLinks.forEach(link => {
-  const id = link.getAttribute('href').replace('#','');
-  const el = document.getElementById(id);
-  if (el) targets.push({ el, link });
-});
-function onScroll() {
-  const y = window.scrollY + 100;
-  let current = null;
-  targets.forEach(({ el, link }) => { if (el.getBoundingClientRect().top + window.scrollY <= y) current = link; });
-  navLinks.forEach(l => l.classList.remove('active'));
-  if (current) current.classList.add('active');
-}
-window.addEventListener('scroll', onScroll, { passive:true });
-onScroll();
 </script>
 </body>
 </html>
