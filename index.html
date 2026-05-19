@@ -15,7 +15,7 @@
       --red:#e02e31; --white:#ffffff; --black:#000000;
       --beige:#feede0; --light-red:#f7c3c7; --light-blue:#b4dcf6; --blue:#00375c;
       --bg:#faf9f7; --text:#1a1a1a; --muted:#666; --border:#e5e3df;
-      --sidebar-w:252px; --header-h:56px;
+      --sidebar-w:220px;
     }
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
     html { scroll-behavior:smooth; }
@@ -23,19 +23,32 @@
     img { max-width:100%; display:block; }
     a { color:inherit; }
 
-    /* HEADER */
-    .site-header {
-      position:fixed; top:0; left:0; right:0; z-index:200;
-      height:var(--header-h); background:var(--white);
-      border-bottom:1px solid var(--border);
+    /* APP LAYOUT */
+    .app-layout { display:flex; min-height:100vh; }
+
+    /* GLOBAL SIDEBAR */
+    .sidebar {
+      width:var(--sidebar-w); flex-shrink:0;
+      position:fixed; left:0; top:0; height:100vh; overflow-y:auto;
+      background:var(--white); border-right:1px solid var(--border); z-index:100;
     }
-    .site-header-inner {
-      max-width:1440px; margin:0 auto; height:100%;
-      display:flex; align-items:center; justify-content:space-between; padding:0 32px;
-    }
-    .site-header-logo { font-family:'Velo',serif; font-weight:700; font-size:1.25rem; color:var(--text); text-decoration:none; }
-    .site-header-logo span { color:var(--red); }
-    .site-header-badge { font-size:0.65rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--red); border:1px solid rgba(224,46,49,0.35); padding:4px 10px; border-radius:2px; }
+    .sidebar::-webkit-scrollbar { width:3px; }
+    .sidebar::-webkit-scrollbar-thumb { background:var(--border); }
+    .sidebar-brand { padding:24px 20px 18px; border-bottom:1px solid var(--border); }
+    .sidebar-brand-name { font-family:'Velo',serif; font-weight:700; font-size:1.1rem; color:var(--text); text-decoration:none; display:block; line-height:1.1; }
+    .sidebar-brand-name span { color:var(--red); }
+    .sidebar-brand-sub { font-size:0.58rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-top:5px; }
+    .sidebar-group { padding:10px 0 2px; }
+    .sidebar-group-label { font-size:0.58rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); padding:8px 20px 4px; display:block; }
+    .nav-item { display:flex; align-items:center; gap:9px; padding:7px 16px; font-size:0.84rem; color:var(--muted); text-decoration:none; border-radius:6px; margin:1px 6px; transition:background .15s,color .15s; cursor:pointer; }
+    .nav-item:hover { background:var(--bg); color:var(--text); }
+    .nav-item.active { background:rgba(224,46,49,.09); color:var(--red); font-weight:600; }
+    .nav-item svg { width:15px; height:15px; flex-shrink:0; opacity:.5; }
+    .nav-item.active svg { opacity:1; }
+    .nav-item.sub { padding-left:32px; font-size:0.80rem; }
+
+    /* MAIN AREA */
+    .main-area { margin-left:var(--sidebar-w); min-height:100vh; }
 
     /* ROUTING */
     .page { display:none; }
@@ -43,7 +56,7 @@
 
     /* HUB LAYOUT */
     .hub-inner { max-width:1440px; margin:0 auto; padding:0 64px; }
-    .hub-hero-wrap { margin-top:var(--header-h); background:var(--white); border-bottom:3px solid var(--red); }
+    .hub-hero-wrap { background:var(--white); border-bottom:3px solid var(--red); }
     .hub-hero { padding:80px 0; }
     .hub-eyebrow { font-size:0.72rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--red); margin-bottom:18px; }
     .hub-title { font-family:'Velo',serif; font-weight:700; font-size:clamp(2.8rem,5.5vw,5rem); line-height:1; letter-spacing:-0.02em; margin-bottom:24px; }
@@ -65,37 +78,6 @@
 
     /* CHAPTER PAGE LAYOUT */
     .chapter-wrap { max-width:1440px; margin:0 auto; }
-    .chapter-wrap .page-body { margin-top:var(--header-h); }
-    .page-body { display:flex; }
-
-    /* SIDEBAR BACK LINK */
-    .sidebar-back { display:flex; align-items:center; gap:8px; padding:14px 28px; font-size:0.78rem; font-weight:700; color:var(--muted); text-decoration:none; border-bottom:1px solid var(--border); margin-bottom:16px; transition:color .15s; }
-    .sidebar-back:hover { color:var(--red); }
-
-    /* CHAPTER PREV/NEXT NAV */
-    .chapter-nav { max-width:1440px; margin:0 auto; padding:32px 64px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); background:var(--white); }
-    .chapter-nav-btn { display:flex; flex-direction:column; gap:4px; text-decoration:none; color:inherit; padding:16px 20px; border:1px solid var(--border); border-radius:4px; transition:border-color .15s; min-width:200px; }
-    .chapter-nav-btn:hover { border-color:var(--red); }
-    .chapter-nav-btn.right { text-align:right; }
-    .chapter-nav-label { font-size:0.62rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
-    .chapter-nav-title { font-family:'Velo',serif; font-weight:700; font-size:1rem; color:var(--text); }
-
-    /* SIDEBAR */
-    .sidebar {
-      width:var(--sidebar-w); flex-shrink:0;
-      position:sticky; top:var(--header-h);
-      height:calc(100vh - var(--header-h)); overflow-y:auto;
-      background:var(--white); border-right:1px solid var(--border);
-      padding:28px 0 48px;
-    }
-    .sidebar::-webkit-scrollbar { width:3px; }
-    .sidebar::-webkit-scrollbar-thumb { background:var(--border); }
-    .sidebar-label { font-size:0.6rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); padding:20px 28px 6px; }
-    .sidebar-label:first-child { padding-top:0; }
-    .nav-link { display:block; padding:6px 28px; font-size:0.82rem; color:var(--muted); text-decoration:none; border-left:2px solid transparent; transition:color .15s,border-color .15s,background .15s; line-height:1.3; }
-    .nav-link:hover { color:var(--text); background:rgba(0,0,0,0.02); }
-    .nav-link.active { color:var(--red); border-left-color:var(--red); font-weight:700; background:rgba(224,46,49,0.04); }
-    .nav-link.sub { padding-left:42px; font-size:0.78rem; }
 
     /* MAIN */
     .main-content { flex:1; min-width:0; }
@@ -373,6 +355,7 @@
     /* RESPONSIVE */
     @media(max-width:1024px) {
       .sidebar { display:none; }
+      .main-area { margin-left:0; }
       .grid-2,.tov-pillars,.logo-variants,.channel-cards,.klammer-demos,.klammer-rules,
       .do-dont-split,.brand-levels,.brand-intro-grid,.respekt-wrap,.dodont-grid,
       .price-rules,.level-intro,.born-grid,.color-layout { grid-template-columns:1fr; }
@@ -384,8 +367,6 @@
       .download-grid { grid-template-columns:1fr 1fr; }
       .hub-brand-strip .hub-inner { grid-template-columns:1fr; }
       .hub-chapters { grid-template-columns:1fr 1fr; }
-      .chapter-nav { padding:24px 32px; }
-      .chapter-nav-btn { min-width:140px; }
     }
     @media(max-width:640px) {
       .section { padding:48px 24px; }
@@ -394,19 +375,54 @@
       .footer-meta { text-align:center; }
       .hub-chapters { grid-template-columns:1fr; }
       .hub-inner { padding:0 24px; }
-      .chapter-nav { flex-direction:column; gap:12px; padding:24px; }
-      .chapter-nav-btn { min-width:100%; }
     }
   </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="site-header-inner">
-    <a class="site-header-logo" href="#home">Bog <span>&amp;</span> idé</a>
-    <span class="site-header-badge">Design Guide 2026 — Intern</span>
+<div class="app-layout">
+
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <a class="sidebar-brand-name" href="#home">Bog <span>&</span> idé</a>
+    <div class="sidebar-brand-sub">Design Guide 2026</div>
   </div>
-</header>
+  <nav>
+    <div class="sidebar-group">
+      <span class="sidebar-group-label">Start</span>
+      <a class="nav-item" href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Forside</a>
+    </div>
+    <div class="sidebar-group">
+      <span class="sidebar-group-label">Strategi</span>
+      <a class="nav-item" href="#brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Brand</a>
+      <a class="nav-item" href="#tone-of-voice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Tone of Voice</a>
+    </div>
+    <div class="sidebar-group">
+      <span class="sidebar-group-label">Visuel Identitet</span>
+      <a class="nav-item" href="#logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>Logo</a>
+      <a class="nav-item sub" href="#logo-facade"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>Logo Facade</a>
+      <a class="nav-item" href="#klammerne"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 3 12 9 6"/><polyline points="15 6 21 12 15 18"/></svg>Klammerne</a>
+      <a class="nav-item" href="#farver"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10a4 4 0 0 1 0-8 4 4 0 0 0 0-8 10 10 0 0 1 0-4z"/></svg>Farver</a>
+      <a class="nav-item" href="#typografi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>Typografi</a>
+      <a class="nav-item" href="#billedstil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Billedstil</a>
+    </div>
+    <div class="sidebar-group">
+      <span class="sidebar-group-label">Systemer</span>
+      <a class="nav-item" href="#kundeklub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Kundeklub</a>
+      <a class="nav-item" href="#services"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Services</a>
+      <a class="nav-item" href="#priskommunikation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Priskommunikation</a>
+      <a class="nav-item" href="#koncepter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Koncepter</a>
+    </div>
+    <div class="sidebar-group">
+      <span class="sidebar-group-label">Produktion</span>
+      <a class="nav-item" href="#assets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>POS &amp; Materialer</a>
+      <a class="nav-item" href="#borneunivers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Børneunivers</a>
+      <a class="nav-item" href="#kampagne"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>Kampagneskabelon</a>
+    </div>
+  </nav>
+</aside>
+
+<div class="main-area">
 
 <!-- ══════════════════════════ HUB PAGE ══════════════════════════ -->
 <div class="page active" id="page-home">
@@ -432,7 +448,7 @@
         <div class="hub-chapters">
           <a class="hub-card" href="#brand"><div class="hub-card-num">Brand</div><div class="hub-card-title">Brand &amp; Sign-off</div><p class="hub-card-desc">Bog &amp; idés brandidentitet, purpose, position og kommunikationsfilter.</p><div class="hub-card-arrow">Læs kapitel →</div></a>
           <a class="hub-card" href="#tone-of-voice"><div class="hub-card-num">01</div><div class="hub-card-title">Tone of Voice</div><p class="hub-card-desc">Hvem vi taler som, hvad vi siger, og hvad vi aldrig siger.</p><div class="hub-card-arrow">Læs kapitel →</div></a>
-          <a class="hub-card" href="#visuel-identitet"><div class="hub-card-num">02</div><div class="hub-card-title">Visuel Identitet</div><p class="hub-card-desc">Logo, klammerne, farvepaletten, typografi, billedstil og kundeklub.</p><div class="hub-card-arrow">Læs kapitel →</div></a>
+          <a class="hub-card" href="#logo"><div class="hub-card-num">02</div><div class="hub-card-title">Visuel Identitet</div><p class="hub-card-desc">Logo, klammerne, farvepaletten, typografi, billedstil og kundeklub.</p><div class="hub-card-arrow">Læs kapitel →</div></a>
           <a class="hub-card" href="#services"><div class="hub-card-num">03</div><div class="hub-card-title">Services</div><p class="hub-card-desc">Ikoner og tekster til Bog &amp; idés service-kommunikation.</p><div class="hub-card-arrow">Læs kapitel →</div></a>
           <a class="hub-card" href="#priskommunikation"><div class="hub-card-num">04</div><div class="hub-card-title">Priskommunikation</div><p class="hub-card-desc">Det taktiske visuelle system til priser, tilbud og kampagnepriser.</p><div class="hub-card-arrow">Læs kapitel →</div></a>
           <a class="hub-card" href="#koncepter"><div class="hub-card-num">05</div><div class="hub-card-title">Koncepter</div><p class="hub-card-desc">Prismatch, Månedens Læseoplevelse, Bestsellerlisten, Årets Spil og Marthaprisen.</p><div class="hub-card-arrow">Læs kapitel →</div></a>
@@ -447,14 +463,7 @@
 
 <!-- ══════════════════════ BRAND CHAPTER ══════════════════════ -->
 <div class="page" id="page-brand">
-  <div class="chapter-wrap">
-    <div class="page-body">
-      <aside class="sidebar">
-        <a class="sidebar-back" href="#home">← Oversigt</a>
-        <span class="sidebar-label">Brand</span>
-        <a class="nav-link" href="#brand-intro">Bog &amp; idé som brand</a>
-      </aside>
-      <main class="main-content">
+  <main class="main-content">
 
 <!-- ══════════════════════════════════════════════════════════
      BRAND INTRO + ALTID EN GOD IDÉ
@@ -504,28 +513,12 @@
 </section>
 
 
-      </main>
-    </div>
-  </div>
-  <div class="chapter-nav">
-    <a class="chapter-nav-btn" href="#home"><span class="chapter-nav-label">← Tilbage</span><span class="chapter-nav-title">Oversigt</span></a>
-    <a class="chapter-nav-btn right" href="#tone-of-voice"><span class="chapter-nav-label">Næste →</span><span class="chapter-nav-title">01 — Tone of Voice</span></a>
-  </div>
+  </main>
 </div>
 
 <!-- ══════════════════════ TOV CHAPTER ══════════════════════ -->
 <div class="page" id="page-tone-of-voice">
-  <div class="chapter-wrap">
-    <div class="page-body">
-      <aside class="sidebar">
-        <a class="sidebar-back" href="#home">← Oversigt</a>
-        <span class="sidebar-label">01 — Tone of Voice</span>
-        <a class="nav-link" href="#tone-of-voice">Intro</a>
-        <a class="nav-link sub" href="#tov-hvem">Hvem vi taler som</a>
-        <a class="nav-link sub" href="#tov-siger">Vi siger / Vi siger ikke</a>
-        <a class="nav-link sub" href="#tov-kanaler">Tone per kanal</a>
-      </aside>
-      <main class="main-content">
+  <main class="main-content">
 <!-- ══════════════════════════════════════════════════════════
      01 TONE OF VOICE
 ══════════════════════════════════════════════════════════ -->
@@ -597,41 +590,16 @@
 </section>
 
 
-      </main>
-    </div>
-  </div>
-  <div class="chapter-nav">
-    <a class="chapter-nav-btn" href="#brand"><span class="chapter-nav-label">← Forrige</span><span class="chapter-nav-title">Brand &amp; Sign-off</span></a>
-    <a class="chapter-nav-btn right" href="#visuel-identitet"><span class="chapter-nav-label">Næste →</span><span class="chapter-nav-title">02 — Visuel Identitet</span></a>
-  </div>
+  </main>
 </div>
 
-<!-- ══════════════════════ VISUEL IDENTITET CHAPTER ══════════════════════ -->
-<div class="page" id="page-visuel-identitet">
-  <div class="chapter-wrap">
-    <div class="page-body">
-      <aside class="sidebar">
-        <a class="sidebar-back" href="#home">← Oversigt</a>
-        <span class="sidebar-label">02 — Visuel Identitet</span>
-        <a class="nav-link" href="#visuel-identitet">Intro</a>
-        <a class="nav-link sub" href="#logo">Logo</a>
-        <a class="nav-link sub" href="#logo-facade">Logo — Facade</a>
-        <a class="nav-link sub" href="#klammerne">Klammerne</a>
-        <a class="nav-link sub" href="#farver">Farvepaletten</a>
-        <a class="nav-link sub" href="#typografi">Typografi</a>
-        <a class="nav-link sub" href="#billedstil">Billedstil</a>
-        <a class="nav-link sub" href="#kundeklub">Kundeklub</a>
-      </aside>
-      <main class="main-content">
-<!-- ══════════════════════════════════════════════════════════
-     02 VISUEL IDENTITET
-══════════════════════════════════════════════════════════ -->
-<section class="section section-alt" id="visuel-identitet">
-  <span class="section-tag">02</span>
-  <h2 class="section-title">Visuel Identitet</h2>
-
-  <!-- LOGO: SORT + HVID -->
-  <div id="logo">
+<!-- ══════════════════════ LOGO PAGE ══════════════════════ -->
+<div class="page" id="page-logo">
+  <main class="main-content">
+<section class="section section-alt" id="logo">
+  <span class="section-tag">02 — Visuel Identitet</span>
+  <h2 class="section-title">Logo</h2>
+  <div>
     <h3 class="section-subtitle" style="margin-top:0;">Logo</h3>
     <p class="lead">Logoet er Bog &amp; idés primære identitetsmarkør og bruges konsekvent på tværs af alle materialer.</p>
 
@@ -698,11 +666,17 @@
       </div>
     </div>
   </div>
+</section>
+  </main>
+</div>
 
-  <hr class="divider"/>
-
-  <!-- LOGO: FACADE -->
-  <div id="logo-facade">
+<!-- ══════════════════════ LOGO FACADE PAGE ══════════════════════ -->
+<div class="page" id="page-logo-facade">
+  <main class="main-content">
+<section class="section section-alt" id="logo-facade">
+  <span class="section-tag">02 — Visuel Identitet</span>
+  <h2 class="section-title">Logo Facade</h2>
+  <div>
     <h3 class="section-subtitle" style="margin-top:0;">Logo — Facade</h3>
     <p class="lead">Det kvadratiske logo bruges udelukkende til facader og butiksafmelding. Det må ikke bruges som erstatning for det horisontale logo i andre sammenhænge.</p>
     <div class="logo-facade-block">
@@ -725,11 +699,17 @@
       </div>
     </div>
   </div>
+</section>
+  </main>
+</div>
 
-  <hr class="divider"/>
-
-  <!-- KLAMMERNE -->
-  <div id="klammerne">
+<!-- ══════════════════════ KLAMMERNE PAGE ══════════════════════ -->
+<div class="page" id="page-klammerne">
+  <main class="main-content">
+<section class="section section-alt" id="klammerne">
+  <span class="section-tag">02 — Visuel Identitet</span>
+  <h2 class="section-title">Klammerne</h2>
+  <div>
     <h3 class="section-subtitle" style="margin-top:0;">Klammerne</h3>
     <p class="lead">Klammerne er Bog &amp; idés vigtigste grafiske brand asset. De binder kommunikationen sammen på tværs af alle formater og kanaler og optræder altid med sign-off'en "Altid en god idé".</p>
 
@@ -756,11 +736,17 @@
       <div><div class="formula-label">Outdoor-regel</div><div class="formula-value" style="font-size:.9rem;">Ensartet</div><div class="formula-note">Klammer på vinduer side om side<br>skal have ens størrelse.</div></div>
     </div>
   </div>
+</section>
+  </main>
+</div>
 
-  <hr class="divider"/>
-
-  <!-- FARVER -->
-  <div id="farver">
+<!-- ══════════════════════ FARVER PAGE ══════════════════════ -->
+<div class="page" id="page-farver">
+  <main class="main-content">
+<section class="section section-alt" id="farver">
+  <span class="section-tag">02 — Visuel Identitet</span>
+  <h2 class="section-title">Farver</h2>
+  <div>
     <h3 class="section-subtitle" style="margin-top:0;">Farvepaletten</h3>
     <p class="lead">Farvepaletten er bygget op om én primær brandfarve og fire støttefarver. Den røde farve er brandfarven og bærer identiteten på tværs af alle formater.</p>
 
@@ -831,11 +817,17 @@
       </div>
     </div>
   </div>
+</section>
+  </main>
+</div>
 
-  <hr class="divider"/>
-
-  <!-- TYPOGRAFI -->
-  <div id="typografi">
+<!-- ══════════════════════ TYPOGRAFI PAGE ══════════════════════ -->
+<div class="page" id="page-typografi">
+  <main class="main-content">
+<section class="section section-alt" id="typografi">
+  <span class="section-tag">02 — Visuel Identitet</span>
+  <h2 class="section-title">Typografi</h2>
+  <div>
     <h3 class="section-subtitle" style="margin-top:0;">Typografi</h3>
     <p class="lead">To skrifttyper. Ét princip: Velo sætter tonen, Muller leverer indholdet.</p>
     <div class="grid-2">
@@ -861,11 +853,17 @@
     </div>
     <div class="info-box" style="margin-top:20px;"><strong>Grundprincippet</strong>Velo Serif Display Bold bruges udelukkende til overskrifter, kampagnebudskaber og salgstekster. Muller bruges til alt indhold der skal læses. Bland dem aldrig på samme tekstniveau.</div>
   </div>
+</section>
+  </main>
+</div>
 
-  <hr class="divider"/>
-
-  <!-- BILLEDSTIL -->
-  <div id="billedstil">
+<!-- ══════════════════════ BILLEDSTIL PAGE ══════════════════════ -->
+<div class="page" id="page-billedstil">
+  <main class="main-content">
+<section class="section section-alt" id="billedstil">
+  <span class="section-tag">02 — Visuel Identitet</span>
+  <h2 class="section-title">Billedstil</h2>
+  <div>
     <h3 class="section-subtitle" style="margin-top:0;">Billedstil</h3>
     <p class="lead">Billeder skal kommunikere nærvær, varme og menneskelighed. De skal virke autentiske og have kontrast og farveidentitet der bidrager til et markant visuelt udtryk med tyngde.</p>
     <div class="photo-grid">
@@ -879,11 +877,17 @@
       <div class="dont-box"><h4>✕ Vi undgår</h4><ul><li>Intetsigende eller generiske stockfotos</li><li>Kunstige eller for opstillede motiver</li><li>Billeder der kunne tilhøre enhver anden retailer</li><li>Emotionsløse flatlay-opstillinger</li></ul></div>
     </div>
   </div>
+</section>
+  </main>
+</div>
 
-  <hr class="divider"/>
-
-  <!-- KUNDEKLUB -->
-  <div id="kundeklub">
+<!-- ══════════════════════ KUNDEKLUB PAGE ══════════════════════ -->
+<div class="page" id="page-kundeklub">
+  <main class="main-content">
+<section class="section section-alt" id="kundeklub">
+  <span class="section-tag">Systemer</span>
+  <h2 class="section-title">Kundeklub</h2>
+  <div>
     <h3 class="section-subtitle" style="margin-top:0;">Kundeklub</h3>
     <p class="lead">Kundeklubben er gratis at være medlem af og giver adgang til eksklusive fordele. Det visuelle system er defineret og adskiller sig bevidst fra den generelle brand-kommunikation.</p>
     <div class="klub-layout">
@@ -918,27 +922,12 @@
     </div>
   </div>
 </section>
-
-
-      </main>
-    </div>
-  </div>
-  <div class="chapter-nav">
-    <a class="chapter-nav-btn" href="#tone-of-voice"><span class="chapter-nav-label">← Forrige</span><span class="chapter-nav-title">01 — Tone of Voice</span></a>
-    <a class="chapter-nav-btn right" href="#services"><span class="chapter-nav-label">Næste →</span><span class="chapter-nav-title">03 — Services</span></a>
-  </div>
+  </main>
 </div>
 
 <!-- ══════════════════════ SERVICES CHAPTER ══════════════════════ -->
 <div class="page" id="page-services">
-  <div class="chapter-wrap">
-    <div class="page-body">
-      <aside class="sidebar">
-        <a class="sidebar-back" href="#home">← Oversigt</a>
-        <span class="sidebar-label">03 — Services</span>
-        <a class="nav-link" href="#services">Oversigt</a>
-      </aside>
-      <main class="main-content">
+  <main class="main-content">
 <!-- ══════════════════════════════════════════════════════════
      03 SERVICES
 ══════════════════════════════════════════════════════════ -->
@@ -998,25 +987,12 @@
 </section>
 
 
-      </main>
-    </div>
-  </div>
-  <div class="chapter-nav">
-    <a class="chapter-nav-btn" href="#visuel-identitet"><span class="chapter-nav-label">← Forrige</span><span class="chapter-nav-title">02 — Visuel Identitet</span></a>
-    <a class="chapter-nav-btn right" href="#priskommunikation"><span class="chapter-nav-label">Næste →</span><span class="chapter-nav-title">04 — Priskommunikation</span></a>
-  </div>
+  </main>
 </div>
 
 <!-- ══════════════════════ PRISKOMMUNIKATION CHAPTER ══════════════════════ -->
 <div class="page" id="page-priskommunikation">
-  <div class="chapter-wrap">
-    <div class="page-body">
-      <aside class="sidebar">
-        <a class="sidebar-back" href="#home">← Oversigt</a>
-        <span class="sidebar-label">04 — Priskommunikation</span>
-        <a class="nav-link" href="#priskommunikation">Oversigt</a>
-      </aside>
-      <main class="main-content">
+  <main class="main-content">
 <!-- ══════════════════════════════════════════════════════════
      04 PRISKOMMUNIKATION
 ══════════════════════════════════════════════════════════ -->
@@ -1058,25 +1034,12 @@
 </section>
 
 
-      </main>
-    </div>
-  </div>
-  <div class="chapter-nav">
-    <a class="chapter-nav-btn" href="#services"><span class="chapter-nav-label">← Forrige</span><span class="chapter-nav-title">03 — Services</span></a>
-    <a class="chapter-nav-btn right" href="#koncepter"><span class="chapter-nav-label">Næste →</span><span class="chapter-nav-title">05 — Koncepter</span></a>
-  </div>
+  </main>
 </div>
 
 <!-- ══════════════════════ KONCEPTER CHAPTER ══════════════════════ -->
 <div class="page" id="page-koncepter">
-  <div class="chapter-wrap">
-    <div class="page-body">
-      <aside class="sidebar">
-        <a class="sidebar-back" href="#home">← Oversigt</a>
-        <span class="sidebar-label">05 — Koncepter</span>
-        <a class="nav-link" href="#koncepter">Oversigt</a>
-      </aside>
-      <main class="main-content">
+  <main class="main-content">
 <!-- ══════════════════════════════════════════════════════════
      05 KONCEPTER
 ══════════════════════════════════════════════════════════ -->
@@ -1138,27 +1101,12 @@
 </section>
 
 
-      </main>
-    </div>
-  </div>
-  <div class="chapter-nav">
-    <a class="chapter-nav-btn" href="#priskommunikation"><span class="chapter-nav-label">← Forrige</span><span class="chapter-nav-title">04 — Priskommunikation</span></a>
-    <a class="chapter-nav-btn right" href="#assets"><span class="chapter-nav-label">Næste →</span><span class="chapter-nav-title">06 — Assets &amp; Materialer</span></a>
-  </div>
+  </main>
 </div>
 
 <!-- ══════════════════════ ASSETS CHAPTER ══════════════════════ -->
 <div class="page" id="page-assets">
-  <div class="chapter-wrap">
-    <div class="page-body">
-      <aside class="sidebar">
-        <a class="sidebar-back" href="#home">← Oversigt</a>
-        <span class="sidebar-label">06 — Assets &amp; Materialer</span>
-        <a class="nav-link" href="#assets">Oversigt</a>
-        <a class="nav-link sub" href="#butik">Butikskommunikation</a>
-        <a class="nav-link sub" href="#digitalt">Digitale formater</a>
-      </aside>
-      <main class="main-content">
+  <main class="main-content">
 <!-- ══════════════════════════════════════════════════════════
      06 ASSETS & MATERIALER
 ══════════════════════════════════════════════════════════ -->
@@ -1221,25 +1169,12 @@
 </section>
 
 
-      </main>
-    </div>
-  </div>
-  <div class="chapter-nav">
-    <a class="chapter-nav-btn" href="#koncepter"><span class="chapter-nav-label">← Forrige</span><span class="chapter-nav-title">05 — Koncepter</span></a>
-    <a class="chapter-nav-btn right" href="#borneunivers"><span class="chapter-nav-label">Næste →</span><span class="chapter-nav-title">07 — Børneunivers</span></a>
-  </div>
+  </main>
 </div>
 
 <!-- ══════════════════════ BØRNEUNIVERS CHAPTER ══════════════════════ -->
 <div class="page" id="page-borneunivers">
-  <div class="chapter-wrap">
-    <div class="page-body">
-      <aside class="sidebar">
-        <a class="sidebar-back" href="#home">← Oversigt</a>
-        <span class="sidebar-label">07 — Børneunivers</span>
-        <a class="nav-link" href="#borneunivers">Oversigt</a>
-      </aside>
-      <main class="main-content">
+  <main class="main-content">
 <!-- ══════════════════════════════════════════════════════════
      07 BØRNEUNIVERS
 ══════════════════════════════════════════════════════════ -->
@@ -1279,25 +1214,12 @@
 </section>
 
 
-      </main>
-    </div>
-  </div>
-  <div class="chapter-nav">
-    <a class="chapter-nav-btn" href="#assets"><span class="chapter-nav-label">← Forrige</span><span class="chapter-nav-title">06 — Assets &amp; Materialer</span></a>
-    <a class="chapter-nav-btn right" href="#kampagne"><span class="chapter-nav-label">Næste →</span><span class="chapter-nav-title">08 — Kampagneskabelon</span></a>
-  </div>
+  </main>
 </div>
 
 <!-- ══════════════════════ KAMPAGNE CHAPTER ══════════════════════ -->
 <div class="page" id="page-kampagne">
-  <div class="chapter-wrap">
-    <div class="page-body">
-      <aside class="sidebar">
-        <a class="sidebar-back" href="#home">← Oversigt</a>
-        <span class="sidebar-label">08 — Kampagneskabelon</span>
-        <a class="nav-link" href="#kampagne">Oversigt</a>
-      </aside>
-      <main class="main-content">
+  <main class="main-content">
 <!-- ══════════════════════════════════════════════════════════
      08 KAMPAGNESKABELON
 ══════════════════════════════════════════════════════════ -->
@@ -1317,13 +1239,7 @@
   <div class="info-box" style="margin-top:28px;"><strong>Årshjul og sæsonspecifikke paletter</strong>Kampagneperioder og fuldt briefingformat dokumenteres løbende og tilføjes her. Kontakt Marketing for seneste version.</div>
 </section>
 
-      </main>
-    </div>
-  </div>
-  <div class="chapter-nav">
-    <a class="chapter-nav-btn" href="#borneunivers"><span class="chapter-nav-label">← Forrige</span><span class="chapter-nav-title">07 — Børneunivers</span></a>
-    <a class="chapter-nav-btn right" href="#home"><span class="chapter-nav-label">← Tilbage</span><span class="chapter-nav-title">Oversigt</span></a>
-  </div>
+  </main>
 </div>
 
 <footer class="site-footer">
@@ -1333,9 +1249,12 @@
   </div>
 </footer>
 
+</div><!-- /.main-area -->
+</div><!-- /.app-layout -->
+
 <script>
 // ── ROUTING ──────────────────────────────────────────────────────────────
-const PAGES = ['home','brand','tone-of-voice','visuel-identitet','services','priskommunikation','koncepter','assets','borneunivers','kampagne'];
+const PAGES = ['home','brand','tone-of-voice','logo','logo-facade','klammerne','farver','typografi','billedstil','kundeklub','services','priskommunikation','koncepter','assets','borneunivers','kampagne'];
 
 function showPage(hash) {
   const id = (hash || '').replace('#','') || 'home';
@@ -1344,27 +1263,18 @@ function showPage(hash) {
   const target = document.getElementById('page-' + id) || document.getElementById('page-home');
   if (target) target.classList.add('active');
   window.scrollTo(0, 0);
-  updateNav();
+  updateNav(id);
 }
 
 window.addEventListener('hashchange', () => showPage(location.hash));
 showPage(location.hash);
 
-// ── SCROLL SPY ───────────────────────────────────────────────────────────
-function updateNav() {
-  const activePage = document.querySelector('.page.active');
-  if (!activePage) return;
-  const links = activePage.querySelectorAll('.nav-link[href^="#"]');
-  const y = window.scrollY + 80;
-  let current = null;
-  links.forEach(link => {
-    const el = document.getElementById(link.getAttribute('href').slice(1));
-    if (el && el.getBoundingClientRect().top + window.scrollY <= y) current = link;
+// ── NAV HIGHLIGHT ─────────────────────────────────────────────────────────
+function updateNav(id) {
+  document.querySelectorAll('.nav-item').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + id);
   });
-  links.forEach(l => l.classList.remove('active'));
-  if (current) current.classList.add('active');
 }
-window.addEventListener('scroll', updateNav, { passive:true });
 
 // ── COPY HEX ─────────────────────────────────────────────────────────────
 function copyHex(btn, hex) {
