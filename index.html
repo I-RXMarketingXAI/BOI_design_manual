@@ -28,6 +28,9 @@
       position:fixed; top:0; left:0; right:0; z-index:200;
       height:var(--header-h); background:var(--white);
       border-bottom:1px solid var(--border);
+    }
+    .site-header-inner {
+      max-width:1440px; margin:0 auto; height:100%;
       display:flex; align-items:center; justify-content:space-between; padding:0 32px;
     }
     .site-header-logo { font-family:'Velo',serif; font-weight:700; font-size:1.25rem; color:var(--text); text-decoration:none; }
@@ -45,6 +48,7 @@
     .hero-desc { font-weight:300; font-size:1.1rem; color:var(--muted); max-width:560px; line-height:1.75; }
 
     /* PAGE LAYOUT */
+    .page-wrap { max-width:1440px; margin:0 auto; position:relative; }
     .page-body { display:flex; }
 
     /* SIDEBAR */
@@ -332,7 +336,8 @@
     .brief-step-desc { font-size:0.88rem; color:var(--muted); line-height:1.65; }
 
     /* FOOTER */
-    .site-footer { background:var(--bg); border-top:1px solid var(--border); padding:36px 64px; display:flex; align-items:center; justify-content:space-between; }
+    .site-footer { background:var(--bg); border-top:1px solid var(--border); }
+    .site-footer-inner { max-width:1440px; margin:0 auto; padding:36px 64px; display:flex; align-items:center; justify-content:space-between; }
     .footer-logo { font-family:'Velo',serif; font-weight:700; font-size:1.1rem; }
     .footer-meta { font-size:0.8rem; color:var(--muted); text-align:right; line-height:1.7; }
 
@@ -353,7 +358,7 @@
     @media(max-width:640px) {
       .section { padding:48px 24px; }
       .services-grid,.concept-grid,.service-grid { grid-template-columns:1fr; }
-      .site-footer { flex-direction:column; gap:16px; text-align:center; }
+      .site-footer-inner { flex-direction:column; gap:16px; text-align:center; }
       .footer-meta { text-align:center; }
     }
   </style>
@@ -361,10 +366,13 @@
 <body>
 
 <header class="site-header">
-  <a class="site-header-logo" href="#">Bog <span>&amp;</span> idé</a>
-  <span class="site-header-badge">Design Guide 2026 — Intern</span>
+  <div class="site-header-inner">
+    <a class="site-header-logo" href="#">Bog <span>&amp;</span> idé</a>
+    <span class="site-header-badge">Design Guide 2026 — Intern</span>
+  </div>
 </header>
 
+<div class="page-wrap">
 <div class="hero">
   <p class="hero-eyebrow">Bog &amp; idé — Design Guide 2026</p>
   <h1 class="hero-title">Vores visuelle<br>og verbale identitet</h1>
@@ -1100,10 +1108,13 @@
 
 </main>
 </div>
+</div><!-- /page-wrap -->
 
 <footer class="site-footer">
-  <div class="footer-logo">Bog &amp; idé</div>
-  <div class="footer-meta">Design Guide 2026 — Intern brug<br>Opdateres løbende af Marketing</div>
+  <div class="site-footer-inner">
+    <div class="footer-logo">Bog &amp; idé</div>
+    <div class="footer-meta">Design Guide 2026 — Intern brug<br>Opdateres løbende af Marketing</div>
+  </div>
 </footer>
 
 <script>
